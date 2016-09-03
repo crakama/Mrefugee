@@ -74,7 +74,7 @@ public class CardsFragment extends Fragment {
 
                             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
                             CampListFragment camplistfragment = new CampListFragment();
-                            ft.replace(R.id.stopwatch_container, camplistfragment);
+                            ft.replace(R.id.fragment_container, camplistfragment);
                             ft.addToBackStack(null);
                             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                             ft.commit();
