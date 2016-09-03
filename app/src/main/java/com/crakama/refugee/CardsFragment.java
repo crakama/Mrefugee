@@ -3,6 +3,7 @@ package com.crakama.refugee;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,8 +22,6 @@ public class CardsFragment extends Fragment {
     private static final String ARG_POSITION = "position";
 
     private int position;
-
-
 
 
     String[] gridViewString = {
@@ -72,6 +71,13 @@ public class CardsFragment extends Fragment {
                             break;
                         case 1:
                             //Do some thing here
+
+                            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                            CampListFragment camplistfragment = new CampListFragment();
+                            ft.replace(R.id.stopwatch_container, camplistfragment);
+                            ft.addToBackStack(null);
+                            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                            ft.commit();
                             break;
                         case 3:
                             //Do some thing here
