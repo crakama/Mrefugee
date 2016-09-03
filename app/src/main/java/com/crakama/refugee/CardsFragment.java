@@ -23,10 +23,10 @@ public class CardsFragment extends Fragment {
     private int position;
 
 
-    GridView servicesGridView;
+
 
     String[] gridViewString = {
-            "PROTECTION", "Child Registration", "Repatriation", "rsd", "REFERRAL", "Resettlement",};
+            "PROTECTION", "CHILD REGISTRATION", "REPATRIATION", "RSD", "REFERRAL", "RESETTLEMENT",};
 
     int[] gridViewImageId = {
             R.drawable.protection, R.drawable.childregistration,
@@ -50,30 +50,45 @@ public class CardsFragment extends Fragment {
         position = getArguments().getInt(ARG_POSITION);
     }
 
-
-
-    //Populate the fragment with TextView
+    //Populate the fragment with TextViews and grid view images
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         if (position == 1) {
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.MATCH_PARENT);
-
-            FrameLayout fl = new FrameLayout(getActivity());
-            fl.setLayoutParams(params);
-
-            final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-                    .getDisplayMetrics());
 
             View rootView = inflater.inflate(R.layout.activity_gv_services, container, false);
 
             // Here we inflate the layout we created above
             GridView gridView = (GridView) rootView.findViewById(R.id.gv_services);
             gridView.setAdapter(new GV_ServicesAdapter(getActivity().getApplicationContext(),gridViewString, gridViewImageId));
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            params.setMargins(margin, margin, margin, margin);
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                    switch (i) {
+                        case 0:
+                            //Do some thing here
+                            Toast.makeText(getActivity().getApplicationContext(), "GridView Item: " + gridViewString[+i], Toast.LENGTH_LONG).show();
+                            break;
+                        case 1:
+                            //Do some thing here
+                            break;
+                        case 3:
+                            //Do some thing here
+                            break;
+                        case 4:
+                            //Do some thing here
+                            break;
+                        case 5:
+                            //Do some thing here
+                            break;
+                        case 6:
+                            //Do some thing here
+                            break;
+
+                    }
+                }
+            });
 
             return rootView;
         }else {
@@ -97,10 +112,12 @@ public class CardsFragment extends Fragment {
             return fl;
         }
     }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
 
-
-
+    }
 
 
 }

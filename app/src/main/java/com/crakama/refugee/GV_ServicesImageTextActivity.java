@@ -18,8 +18,9 @@ public class GV_ServicesImageTextActivity extends AppCompatActivity {
             "PROTECTION", "Child Registration", "Repatriation", "rsd", "REFERRAL", "Resettlement",};
 
     int[] gridViewImageId = {
-            R.drawable.protection, R.drawable.childregistration, R.drawable.repatriation, R.drawable.rsd, R.drawable.refferal,
-            R.drawable.resettlement,};
+            R.drawable.protection, R.drawable.childregistration,
+            R.drawable.repatriation, R.drawable.rsd,
+            R.drawable.refferal, R.drawable.resettlement,};
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,24 @@ public class GV_ServicesImageTextActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                Toast.makeText(GV_ServicesImageTextActivity.this, "GridView Item: " + gridViewString[+i], Toast.LENGTH_LONG).show();
+//                Toast.makeText(GV_ServicesImageTextActivity.this, "GridView Item: " + gridViewString[+i], Toast.LENGTH_LONG).show();
+                switch (i) {
+                    case 0:
+                        //Do some thing here
+                        Toast.makeText(GV_ServicesImageTextActivity.this, "GridView Item: " + gridViewString[+i], Toast.LENGTH_LONG).show();
+
+                        break;
+                    case 1:
+                        //Do some thing here
+                        break;
+                    case 3:
+                        //Do some thing here
+                        break;
+                    case 4:
+                        //Do some thing here
+                        break;
+
+                }
             }
         });
 
