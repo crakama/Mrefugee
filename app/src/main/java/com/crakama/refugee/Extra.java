@@ -11,14 +11,14 @@ import android.widget.TextView;
 /**
  * Created by cate.rakama@gmail.com on 9/2/2016.
  */
-public class MyAdapter extends BaseAdapter {
+public class Extra extends BaseAdapter {
 
 
     private Context mContext;
     private final String[] gridViewString;
     private final int[] gridViewImageId;
 
-    public MyAdapter(Context context, String[] gridViewString, int[] gridViewImageId) {
+    public Extra(Context context, String[] gridViewString, int[] gridViewImageId) {
         mContext = context;
         this.gridViewImageId = gridViewImageId;
         this.gridViewString = gridViewString;

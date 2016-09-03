@@ -71,13 +71,13 @@ public class CardsFragment extends Fragment {
                             break;
                         case 1:
                             //Do some thing here
-
                             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
                             CampListFragment camplistfragment = new CampListFragment();
-                            ft.replace(R.id.fragment_container, camplistfragment);
+                            ft.replace(R.id.camps_list_frag, camplistfragment);
                             ft.addToBackStack(null);
                             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                             ft.commit();
+
                             break;
                         case 3:
                             //Do some thing here
