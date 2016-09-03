@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.GridView;
+import android.widget.TextView;
 
 /**
  * Created by cate.rakama@gmail.com on 9/1/2016.
@@ -93,6 +97,32 @@ public class Extra extends Activity {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
     }
+
+
+
+
+
+
+    //    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//
+//        LayoutInflater gridInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View v = gridInflater.inflate(R.layout.activity_gv_services, null);
+//        GridView gridView = (GridView) v.findViewById(R.id.gv_services);
+//
+//
+//        GV_ServicesActivity adapterViewAndroid = new GV_ServicesActivity(CardsFragment.this, gridViewString, gridViewImageId);
+//        //servicesGridView = (GridView) findViewById(R.id.gv_services);
+//        servicesGridView.setAdapter(adapterViewAndroid);
+//        servicesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+//               // Toast.makeText(CardsFragment.this, "GridView Item: " + gridViewString[+i], Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 }
 

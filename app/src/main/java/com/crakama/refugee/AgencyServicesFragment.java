@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.crakama.mrefugee.R;
+//import com.crakama.mrefugee.R;
 
 /**
  * A simple {@link Fragment} subclass.

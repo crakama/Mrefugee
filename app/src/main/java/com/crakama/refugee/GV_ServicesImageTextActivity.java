@@ -24,9 +24,9 @@ public class GV_ServicesImageTextActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gv_services);
+        setContentView(R.layout.activity_gv_services);
 
-        GV_ServicesActivity adapterViewAndroid = new GV_ServicesActivity(GV_ServicesImageTextActivity.this, gridViewString, gridViewImageId);
+        GV_ServicesAdapter adapterViewAndroid = new GV_ServicesAdapter(GV_ServicesImageTextActivity.this, gridViewString, gridViewImageId);
         servicesGridView = (GridView) findViewById(R.id.gv_services);
         servicesGridView.setAdapter(adapterViewAndroid);
         servicesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
