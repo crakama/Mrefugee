@@ -18,7 +18,7 @@ import android.widget.Toast;
 /**
  * Created by cate.rakama@gmail.com on 8/28/2016.
  */
-public class CardsFragment extends Fragment {
+public class CardsFragment extends Fragment implements CampListFragment.OnCampListFragListener{
     private static final String ARG_POSITION = "position";
 
     private int position;
@@ -71,13 +71,8 @@ public class CardsFragment extends Fragment {
                             break;
                         case 1:
                             //Do some thing here
-                            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-                            CampListFragment camplistfragment = new CampListFragment();
-                            ft.replace(R.id.content, camplistfragment);
-                            ft.addToBackStack(null);
-                            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                            ft.commit();
-
+                            CardsFragment camplistfragment = new CardsFragment();
+                            camplistfragment.onCampListFragItemClicked(id);
                             break;
                         case 3:
                             //Do some thing here
@@ -126,4 +121,14 @@ public class CardsFragment extends Fragment {
     }
 
 
+    @Override
+    public void onCampListFragItemClicked(Long id) {
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        CampListFragment camplistfragment = new CampListFragment();
+        ft.replace(R.id.content, camplistfragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+
+    }
 }
