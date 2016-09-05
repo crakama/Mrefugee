@@ -33,6 +33,11 @@ public class CampListFragment extends ListFragment {
 
     private OnCampListFragListener listener;
 
+    static interface OnCampListFragListener {
+        // TODO: Update argument type and name
+        void onCampListFragItemClicked(Long id);
+    }
+
     public CampListFragment() {
         // Required empty public constructor
     }
@@ -40,9 +45,7 @@ public class CampListFragment extends ListFragment {
 
 
 //    //Add a listener to a fragment by creating an Interface
-//    static interface OnCampListFragListener {
-//        void itemClicked(long id);
-//    };
+
 
     @Override
     public void   onListItemClick(ListView lst, View vw, int pos, long id){
@@ -77,7 +80,7 @@ public class CampListFragment extends ListFragment {
          * simple_list_item_1 This is a built-in layout resource.
          * It tells the array adapter to display each item in the array in a single text view
          */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1, names);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),R.layout.layout, names);
         setListAdapter(adapter);
 
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -101,6 +104,18 @@ public class CampListFragment extends ListFragment {
         }
     }
 
+    /**The onStart() method is called when the fragment is about to become visible.*/
+    @Override
+    public void onStart() {
+        super.onStart();
+//        try {
+//            listener = (OnCampListFragListener) getActivity();
+//        } catch (ClassCastException e) {
+//            throw new ClassCastException(getActivity().toString()
+//                    + " MUST IMPLEMENT CourseListListener");
+//        }
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -118,9 +133,6 @@ public class CampListFragment extends ListFragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     //Add a listener to a fragment by creating an Interface
-    public interface OnCampListFragListener {
-        // TODO: Update argument type and name
-        void onCampListFragItemClicked(Long id);
-    }
+
 }
 

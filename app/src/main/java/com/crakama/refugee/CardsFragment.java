@@ -73,7 +73,7 @@ public class CardsFragment extends Fragment {
                             //Do some thing here
                             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
                             CampListFragment camplistfragment = new CampListFragment();
-                            ft.replace(R.id.camps_list_frag, camplistfragment);
+                            ft.replace(R.id.content, camplistfragment);
                             ft.addToBackStack(null);
                             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                             ft.commit();
