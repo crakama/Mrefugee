@@ -18,7 +18,7 @@ import android.widget.Toast;
 /**
  * Created by cate.rakama@gmail.com on 8/28/2016.
  */
-public class CardsFragment extends Fragment implements CampListFragment.OnCampListFragListener{
+public class CardsFragment extends Fragment {
     private static final String ARG_POSITION = "position";
 
     private int position;
@@ -71,8 +71,21 @@ public class CardsFragment extends Fragment implements CampListFragment.OnCampLi
                             break;
                         case 1:
                             //Do some thing here
-                            CardsFragment camplistfragment = new CardsFragment();
-                            camplistfragment.onCampListFragItemClicked(id);
+                            //setContentView(R.layout.list_item_main);
+
+                            CampListFragment nextFrag = new CampListFragment();
+
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+                            //ft.replace(R.id.fragment_container, nextFrag);
+                            ft.replace(R.id.contentl, nextFrag);
+
+                            //ft.replace(((ViewGroup) getView().getParent()).getId(), nextFrag);
+                           // ft.replace(android.R.id.content, nextFrag);
+                            ft.setTransition(FragmentTransaction.TRANSIT_NONE);// it will anim while calling fragment.
+                            ft.addToBackStack(null); // it will manage back stack of fragments.
+                            ft.commit();
+
                             break;
                         case 3:
                             //Do some thing here
@@ -121,14 +134,15 @@ public class CardsFragment extends Fragment implements CampListFragment.OnCampLi
     }
 
 
-    @Override
-    public void onCampListFragItemClicked(Long id) {
-        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        CampListFragment camplistfragment = new CampListFragment();
-        ft.replace(R.id.content, camplistfragment);
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
-
-    }
+//    @Override
+//    public void onCampListFragItemClicked(Long id) {
+//        CampDetailsFragment campdetailsfragment = new CampDetailsFragment();
+//        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//        campdetailsfragment.setCamp(id);
+//        ft.replace(R.id.content, campdetailsfragment);
+//        ft.addToBackStack(null);
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//        ft.commit();
+//
+//    }
 }

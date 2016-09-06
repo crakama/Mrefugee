@@ -6,12 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.crakama.mrefugee.R;
+//import com.crakama.mrefugee.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CampDetailsFragment#newInstance} factory method to
+ * Use the {@link CampDetailsFragment#//newInstance} factory method to
  * create an instance of this fragment.
  */
 public class CampDetailsFragment extends Fragment {
@@ -38,7 +39,7 @@ public class CampDetailsFragment extends Fragment {
      * @return A new instance of fragment CampDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CampDetailsFragment newInstance(String param1, String param2) {
+   /** public static CampDetailsFragment newInstance(String param1, String param2) {
         CampDetailsFragment fragment = new CampDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -54,13 +55,39 @@ public class CampDetailsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
+    } */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if(savedInstanceState != null){
+            campId = savedInstanceState.getLong("campId");
+        }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_camp_details, container, false);
+    }
+
+
+
+    private long campId;
+
+    public void setCamp(long id) {
+        this.campId = id;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        View view = getView();
+        if (view != null) {
+            TextView title = (TextView) view.findViewById(R.id.textTitle);
+            DadaabCamp camp = DadaabCamp.camps[(int) campId];
+            title.setText(camp.getName());
+            TextView description = (TextView) view.findViewById(R.id.textDescription);
+            description.setText(camp.getDescription());
+
+
+        }
     }
 
 }

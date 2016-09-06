@@ -6,12 +6,23 @@
     android:orientation="vertical"
     android:id="@+id/camps_list_linear">
 
-    <FrameLayout
+    <!--<FrameLayout-->
+        <!--class="com.crakama.refugee.CampListFragment"-->
+        <!--android:id="@+id/list_frag"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:layout="@android:layout/simple_list_item_1" />-->
 
-        android:id="@+id/camps_list_frag"
+    <!--<FrameLayout-->
+
+        <!--android:id="@+id/camps_list_frag"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+         <!--/>-->
+    <ListView
+        android:id="@+id/item_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@android:layout/simple_list_item_1" />
-
+        android:layout_height="wrap_content">
+    </ListView>
 
 </LinearLayout>

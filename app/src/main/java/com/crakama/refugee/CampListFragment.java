@@ -22,6 +22,64 @@ import android.widget.ListView;
  * create an instance of this fragment.
  */
 public class CampListFragment extends ListFragment {
+    private ListView mListView;
+    // Required empty public constructor
+    public CampListFragment() {
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        /**
+         * Inflate the layout for this fragment
+         * return inflater.inflate(R.layout.fragment_view_course, container, false);
+         * Calling the superclass onCreateView() method gives you the default layout
+         * for the ListFragment
+         */
+        //Create a String array of the course names
+        String[] names = new String[DadaabCamp.camps.length];
+             for (int i = 0; i < names.length; i++) {
+             names[i] = DadaabCamp.camps[i].getName();
+         }
+        /**
+         * simple_list_item_1 This is a built-in layout resource.
+         * It tells the array adapter to display each item in the array in a single text view
+         */
+        View campview = inflater.inflate(R.layout.fragment_camp_list, container, false);
+        //mListView = (ListView) campview.findViewById(R.id.item_list_view);
+        //mListView.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1, names);
+        mListView = (ListView) campview.findViewById(R.id.list_frag);
+        setListAdapter(adapter);
+
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
@@ -73,13 +131,13 @@ public class CampListFragment extends ListFragment {
         //return inflater.inflate(R.layout.fragment_camp_list, container, false);
         //Create a String array of the course names
         String[] names = new String[DadaabCamp.camps.length];
-        for (int i = 0; i < names.length; i++) {
+  /**      for (int i = 0; i < names.length; i++) {
             names[i] = DadaabCamp.camps[i].getName();
         }
         /**
          * simple_list_item_1 This is a built-in layout resource.
          * It tells the array adapter to display each item in the array in a single text view
-         */
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),R.layout.layout, names);
         setListAdapter(adapter);
 
@@ -104,7 +162,9 @@ public class CampListFragment extends ListFragment {
         }
     }
 
-    /**The onStart() method is called when the fragment is about to become visible.*/
+
+
+    /**The onStart() method is called when the fragment is about to become visible.
     @Override
     public void onStart() {
         super.onStart();
