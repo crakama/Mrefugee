@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ import com.flyco.animation.SlideExit.SlideBottomExit;
 import com.flyco.dialog.entity.DialogMenuItem;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.NormalListDialog;
-import com.flyco.dialogsamples.utils.T;
+//import com.flyco.dialogsamples.utils.T;
 
 import java.util.ArrayList;
 
@@ -35,12 +36,15 @@ public class CardsFragment extends Fragment {
 
 
     /**  Alert dialogue variables   */
-    private Context mContext = this;
+    private  android.content.Context mContext = getContext();
     private ArrayList<DialogMenuItem> mMenuItems = new ArrayList<>();
     private String[] mStringItems = {"favor", "download", "share", "delete", "artist", "album"};
     private BaseAnimatorSet mBasIn;
     private BaseAnimatorSet mBasOut;
 
+    public class AlertConntext extends AppCompatActivity {
+
+    }
     /**  Alert dialogue functions   */
     public void setBasIn(BaseAnimatorSet bas_in) {
         this.mBasIn = bas_in;
@@ -173,6 +177,7 @@ public class CardsFragment extends Fragment {
 //        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 //        ft.commit();
 //
+
 //    }
 
     private void NormalListDialogCustomAttr(){
@@ -190,7 +195,7 @@ public class CardsFragment extends Fragment {
         dialog.setOnOperItemClickL(new OnOperItemClickL() {
             @Override
             public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-                T.showShort(mContext, mMenuItems.get(position).mOperName);
+                //T.showShort(mContext, mMenuItems.get(position).mOperName);
                 dialog.dismiss();
             }
         });
