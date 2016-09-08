@@ -1,9 +1,9 @@
 package com.crakama.refugee;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,13 +15,41 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flyco.animation.BaseAnimatorSet;
+import com.flyco.animation.BounceEnter.BounceTopEnter;
+import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.flyco.dialog.entity.DialogMenuItem;
+import com.flyco.dialog.listener.OnOperItemClickL;
+import com.flyco.dialog.widget.NormalListDialog;
+import com.flyco.dialogsamples.utils.T;
+
+import java.util.ArrayList;
+
+
 /**
  * Created by cate.rakama@gmail.com on 8/28/2016.
  */
 public class CardsFragment extends Fragment {
     private static final String ARG_POSITION = "position";
-
     private int position;
+
+
+    /**  Alert dialogue variables   */
+    private Context mContext = this;
+    private ArrayList<DialogMenuItem> mMenuItems = new ArrayList<>();
+    private String[] mStringItems = {"favor", "download", "share", "delete", "artist", "album"};
+    private BaseAnimatorSet mBasIn;
+    private BaseAnimatorSet mBasOut;
+
+    /**  Alert dialogue functions   */
+    public void setBasIn(BaseAnimatorSet bas_in) {
+        this.mBasIn = bas_in;
+    }
+
+    public void setBasOut(BaseAnimatorSet bas_out) {
+        this.mBasOut = bas_out;
+    }
+
 
 
     String[] gridViewString = {
@@ -47,6 +75,17 @@ public class CardsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         position = getArguments().getInt(ARG_POSITION);
+
+        /**  Alert dialogue list menu items to be displayed on list view  */
+        mMenuItems.add(new DialogMenuItem("favor", R.mipmap.ic_winstyle_favor));
+        mMenuItems.add(new DialogMenuItem("download", R.mipmap.ic_winstyle_download));
+        mMenuItems.add(new DialogMenuItem("share", R.mipmap.ic_winstyle_share));
+        mMenuItems.add(new DialogMenuItem("delete", R.mipmap.ic_winstyle_delete));
+        mMenuItems.add(new DialogMenuItem("artist", R.mipmap.ic_winstyle_artist));
+        mMenuItems.add(new DialogMenuItem("album", R.mipmap.ic_winstyle_album));
+
+        mBasIn = new BounceTopEnter();
+        mBasOut = new SlideBottomExit();
     }
 
     //Populate the fragment with TextViews and grid view images
@@ -56,6 +95,7 @@ public class CardsFragment extends Fragment {
         if (position == 1) {
 
             View rootView = inflater.inflate(R.layout.activity_gv_services, container, false);
+            View rv = inflater.inflate(R.layout.layout,container,false);
 
             // Here we inflate the layout we created above
             GridView gridView = (GridView) rootView.findViewById(R.id.gv_services);
@@ -72,19 +112,8 @@ public class CardsFragment extends Fragment {
                         case 1:
                             //Do some thing here
                             //setContentView(R.layout.list_item_main);
-
-                            CampListFragment nextFrag = new CampListFragment();
-
-                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-                            //ft.replace(R.id.fragment_container, nextFrag);
-                            ft.replace(R.id.contentl, nextFrag);
-
-                            //ft.replace(((ViewGroup) getView().getParent()).getId(), nextFrag);
-                           // ft.replace(android.R.id.content, nextFrag);
-                            ft.setTransition(FragmentTransaction.TRANSIT_NONE);// it will anim while calling fragment.
-                            ft.addToBackStack(null); // it will manage back stack of fragments.
-                            ft.commit();
+                            CardsFragment f = new CardsFragment();
+                            f.NormalListDialogCustomAttr();
 
                             break;
                         case 3:
@@ -145,4 +174,28 @@ public class CardsFragment extends Fragment {
 //        ft.commit();
 //
 //    }
+
+    private void NormalListDialogCustomAttr(){
+        final NormalListDialog dialog = new NormalListDialog(mContext, mMenuItems);
+        dialog.title("Alert Dialog")//
+                .titleTextSize_SP(18)//
+                .titleBgColor(Color.parseColor("#409ED7"))//
+                .itemPressColor(Color.parseColor("#85D3EF"))//
+                .itemTextColor(Color.parseColor("#303030"))//
+                .itemTextSize(14)//
+                .cornerRadius(0)//
+                .widthScale(0.8f)//
+                .show(R.style.myDialogAnim);
+
+        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+            @Override
+            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                T.showShort(mContext, mMenuItems.get(position).mOperName);
+                dialog.dismiss();
+            }
+        });
+    }
+
+
+
 }
