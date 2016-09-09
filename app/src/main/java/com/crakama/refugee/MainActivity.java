@@ -1,6 +1,9 @@
 package com.crakama.refugee;
 
+import android.app.Service;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,14 +13,21 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements
+        ServiceListFragment.OnGridItemFragInteractionListener,DialogInterface.OnClickListener {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -27,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager pager;
     private ClassPagerAdapter adapter;
 
+    ArrayList<String> camps = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,48 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void itemClicked(AdapterView<?> parent, View view, int pos,long id) {
+
+ //switch case statement
+        //INITIALIZE DB ADAPTER
+        final DBAdapter sqlDBAdapter = new DBAdapter(this);
+
+        //RETRIEVE CAMP NAMES FROM DB
+        camps.clear();
+        sqlDBAdapter.openDB();
+        Cursor c = sqlDBAdapter.getAllCampDetails();
+        while(c.moveToNext()){
+            // 1 is column index in the table
+            String campname = c.getString(1);
+            camps.add(campname);
+        }
+        sqlDBAdapter.close();
+
+        /** SHOW DIALOGUE*/
+        if(this!= null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            int campNum = camps.size();
+            String[] campnames = new String[campNum];
+            for(int cm =0;cm <campNum; cm++){
+                campnames[cm]= camps.get(cm);
+            }
+            //set items
+            builder.setItems(campnames, (DialogInterface.OnClickListener) this);
+        }else{
+            throw new RuntimeException(" CONTEXT IS NULL,");
+        }
+
+
+
+    }
+
+
+    @Override
+    public void onClick(DialogInterface dialogInterface, int position) {
+        Toast.makeText(this,camps.get(position), Toast.LENGTH_SHORT).show();
+    }
+
 
     public class ClassPagerAdapter extends FragmentPagerAdapter {
 
@@ -60,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
         //get card fragment to display the cards(items) when different tabs are swipped
         @Override
         public Fragment getItem(int position) {
-            return CardsFragment.newInstance(position);
+
+            return ServiceListFragment.newInstance(position);
         }
 
         @Override

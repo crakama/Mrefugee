@@ -136,9 +136,9 @@ public class CardsFragment extends Fragment implements DialogInterface.OnClickLi
                                 camps.add(campname);
                             }
                             sqlDBAdapter.close();
-                           // private void showDiaglog(){
+                            private void showDiaglog(){
 
-//                            if(thiscontext != null){
+                          if(thiscontext != null){
                                 AlertDialog.Builder builder = new AlertDialog.Builder(thiscontext);
                                 int campNum = camps.size();
                                 String[] campnames = new String[campNum];
@@ -146,11 +146,11 @@ public class CardsFragment extends Fragment implements DialogInterface.OnClickLi
                                     campnames[cm]= camps.get(cm);
                                 }
                                 //set items
-                                //builder.setItems(campnames, thiscontext);
-//                            }else{
-//                                throw new RuntimeException(" CONTEXT IS NULL,");
-//                            }
-                        //}
+                                builder.setItems(campnames, thiscontext);
+                            }else{
+                                throw new RuntimeException(" CONTEXT IS NULL,");
+                            }
+                        }
 
                             break;
                         case 3:
