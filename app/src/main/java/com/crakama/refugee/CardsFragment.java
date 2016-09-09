@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -84,6 +83,16 @@ public class CardsFragment extends Fragment implements DialogInterface.OnClickLi
 
         position = getArguments().getInt(ARG_POSITION);
 
+        /**  Alert dialogue list menu items to be displayed on list view  */
+//        mMenuItems.add(new DialogMenuItem("favor", R.mipmap.ic_winstyle_favor));
+//        mMenuItems.add(new DialogMenuItem("download", R.mipmap.ic_winstyle_download));
+//        mMenuItems.add(new DialogMenuItem("share", R.mipmap.ic_winstyle_share));
+//        mMenuItems.add(new DialogMenuItem("delete", R.mipmap.ic_winstyle_delete));
+//        mMenuItems.add(new DialogMenuItem("artist", R.mipmap.ic_winstyle_artist));
+//        mMenuItems.add(new DialogMenuItem("album", R.mipmap.ic_winstyle_album));
+//
+//        mBasIn = new BounceTopEnter();
+//        mBasOut = new SlideBottomExit();
 
     }
 
@@ -91,7 +100,10 @@ public class CardsFragment extends Fragment implements DialogInterface.OnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        final Context thiscontext = container.getContext();
+        /////////////////////////////
 
+
+        ////////////////////////////////
         final DBAdapter sqlDBAdapter = new DBAdapter(thiscontext);
         if (position == 1) {
 
@@ -101,7 +113,62 @@ public class CardsFragment extends Fragment implements DialogInterface.OnClickLi
             // Here we inflate the layout we created above
             GridView gridView = (GridView) rootView.findViewById(R.id.gv_services);
             gridView.setAdapter(new GV_ServicesAdapter(getActivity().getApplicationContext(),gridViewString, gridViewImageId));
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                    switch (i) {
+                        case 0:
+                            //Do some thing here
+                            Toast.makeText(getActivity().getApplicationContext(), "GridView Item: " + gridViewString[+i], Toast.LENGTH_LONG).show();
+                            break;
+                        case 1:
+                            //Do some thing here
+                            //setContentView(R.layout.list_item_main);
+//                            CardsFragment f = new CardsFragment();
+//                            f.NormalListDialogCustomAttr();
+                            camps.clear();
+                            sqlDBAdapter.openDB();
+                            Cursor c = sqlDBAdapter.getAllCampDetails();
+                            while(c.moveToNext()){
+                                // 1 is column index in the table
+                                String campname = c.getString(1);
+                                camps.add(campname);
+                            }
+                            sqlDBAdapter.close();
+                           // private void showDiaglog(){
+
+//                            if(thiscontext != null){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(thiscontext);
+                                int campNum = camps.size();
+                                String[] campnames = new String[campNum];
+                                for(int cm =0;cm <campNum; cm++){
+                                    campnames[cm]= camps.get(cm);
+                                }
+                                //set items
+                                //builder.setItems(campnames, thiscontext);
+//                            }else{
+//                                throw new RuntimeException(" CONTEXT IS NULL,");
+//                            }
+                        //}
+
+                            break;
+                        case 3:
+                            //Do some thing here
+                            break;
+                        case 4:
+                            //Do some thing here
+                            break;
+                        case 5:
+                            //Do some thing here
+                            break;
+                        case 6:
+                            //Do some thing here
+                            break;
+
+                    }
+                }
+            });
 
             return rootView;
         }else {
@@ -138,40 +205,40 @@ public class CardsFragment extends Fragment implements DialogInterface.OnClickLi
      Toast.makeText(getActivity().getApplicationContext(),camps.get(pos), Toast.LENGTH_SHORT).show();
     }
 
+//    @Override
+//    public void onCampListFragItemClicked(Long id) {
+//        CampDetailsFragment campdetailsfragment = new CampDetailsFragment();
+//        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//        campdetailsfragment.setCamp(id);
+//        ft.replace(R.id.content, campdetailsfragment);
+//        ft.addToBackStack(null);
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//        ft.commit();
+//
+
+//    }
+
+//    private void NormalListDialogCustomAttr(){
+//        final NormalListDialog dialog = new NormalListDialog(mContext, mMenuItems);
+//        dialog.title("Alert Dialog")//
+//                .titleTextSize_SP(18)//
+//                .titleBgColor(Color.parseColor("#409ED7"))//
+//                .itemPressColor(Color.parseColor("#85D3EF"))//
+//                .itemTextColor(Color.parseColor("#303030"))//
+//                .itemTextSize(14)//
+//                .cornerRadius(0)//
+//                .widthScale(0.8f)//
+//                .show(R.style.myDialogAnim);
+//
+//        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+//            @Override
+//            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                //T.showShort(mContext, mMenuItems.get(position).mOperName);
+//                dialog.dismiss();
+//            }
+//        });
+//    }
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onGridFragInteraction(Uri uri);
-    }
 
 }
