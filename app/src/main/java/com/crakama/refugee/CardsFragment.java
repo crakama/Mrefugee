@@ -1,9 +1,12 @@
 package com.crakama.refugee;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -30,21 +33,19 @@ import java.util.ArrayList;
 /**
  * Created by cate.rakama@gmail.com on 8/28/2016.
  */
-public class CardsFragment extends Fragment {
+public class CardsFragment extends Fragment implements DialogInterface.OnClickListener{
     private static final String ARG_POSITION = "position";
     private int position;
 
 
     /**  Alert dialogue variables   */
-    private  android.content.Context mContext = getContext();
+    private  android.content.Context mContext = getActivity().getApplicationContext();
     private ArrayList<DialogMenuItem> mMenuItems = new ArrayList<>();
     private String[] mStringItems = {"favor", "download", "share", "delete", "artist", "album"};
     private BaseAnimatorSet mBasIn;
     private BaseAnimatorSet mBasOut;
 
-    public class AlertConntext extends AppCompatActivity {
-
-    }
+   ArrayList<String> camps = new ArrayList<String>();
     /**  Alert dialogue functions   */
     public void setBasIn(BaseAnimatorSet bas_in) {
         this.mBasIn = bas_in;
@@ -81,15 +82,16 @@ public class CardsFragment extends Fragment {
         position = getArguments().getInt(ARG_POSITION);
 
         /**  Alert dialogue list menu items to be displayed on list view  */
-        mMenuItems.add(new DialogMenuItem("favor", R.mipmap.ic_winstyle_favor));
-        mMenuItems.add(new DialogMenuItem("download", R.mipmap.ic_winstyle_download));
-        mMenuItems.add(new DialogMenuItem("share", R.mipmap.ic_winstyle_share));
-        mMenuItems.add(new DialogMenuItem("delete", R.mipmap.ic_winstyle_delete));
-        mMenuItems.add(new DialogMenuItem("artist", R.mipmap.ic_winstyle_artist));
-        mMenuItems.add(new DialogMenuItem("album", R.mipmap.ic_winstyle_album));
+//        mMenuItems.add(new DialogMenuItem("favor", R.mipmap.ic_winstyle_favor));
+//        mMenuItems.add(new DialogMenuItem("download", R.mipmap.ic_winstyle_download));
+//        mMenuItems.add(new DialogMenuItem("share", R.mipmap.ic_winstyle_share));
+//        mMenuItems.add(new DialogMenuItem("delete", R.mipmap.ic_winstyle_delete));
+//        mMenuItems.add(new DialogMenuItem("artist", R.mipmap.ic_winstyle_artist));
+//        mMenuItems.add(new DialogMenuItem("album", R.mipmap.ic_winstyle_album));
+//
+//        mBasIn = new BounceTopEnter();
+//        mBasOut = new SlideBottomExit();
 
-        mBasIn = new BounceTopEnter();
-        mBasOut = new SlideBottomExit();
     }
 
     //Populate the fragment with TextViews and grid view images
@@ -116,8 +118,21 @@ public class CardsFragment extends Fragment {
                         case 1:
                             //Do some thing here
                             //setContentView(R.layout.list_item_main);
+//                            CardsFragment f = new CardsFragment();
+//                            f.NormalListDialogCustomAttr();
+
+                            final DBAdapter sqlDBAdapter = new DBAdapter(getActivity().getApplication());
+                            camps.clear();
+                            sqlDBAdapter.openDB();
+                            Cursor c = sqlDBAdapter.getAllCampDetails();
+                            while(c.moveToNext()){
+                                // 1 is column index in the table
+                                String campname = c.getString(1);
+                                camps.add(campname);
+                            }
+                            sqlDBAdapter.close();
                             CardsFragment f = new CardsFragment();
-                            f.NormalListDialogCustomAttr();
+                            f.showDiaglog();
 
                             break;
                         case 3:
@@ -165,7 +180,21 @@ public class CardsFragment extends Fragment {
 
 
     }
+    private void showDiaglog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
+        int campNum = camps.size();
+        String[] campnames = new String[campNum];
+        for(int cm =0;cm <campNum; cm++){
+            campnames[cm]= camps.get(cm);
+        }
+        //set items
+        builder.setItems(campnames, this);
+    }
 
+    @Override
+    public void onClick(DialogInterface dialoginterface, int pos) {
+     Toast.makeText(getActivity().getApplicationContext(),camps.get(pos), Toast.LENGTH_SHORT).show();
+    }
 
 //    @Override
 //    public void onCampListFragItemClicked(Long id) {
@@ -180,26 +209,26 @@ public class CardsFragment extends Fragment {
 
 //    }
 
-    private void NormalListDialogCustomAttr(){
-        final NormalListDialog dialog = new NormalListDialog(mContext, mMenuItems);
-        dialog.title("Alert Dialog")//
-                .titleTextSize_SP(18)//
-                .titleBgColor(Color.parseColor("#409ED7"))//
-                .itemPressColor(Color.parseColor("#85D3EF"))//
-                .itemTextColor(Color.parseColor("#303030"))//
-                .itemTextSize(14)//
-                .cornerRadius(0)//
-                .widthScale(0.8f)//
-                .show(R.style.myDialogAnim);
-
-        dialog.setOnOperItemClickL(new OnOperItemClickL() {
-            @Override
-            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //T.showShort(mContext, mMenuItems.get(position).mOperName);
-                dialog.dismiss();
-            }
-        });
-    }
+//    private void NormalListDialogCustomAttr(){
+//        final NormalListDialog dialog = new NormalListDialog(mContext, mMenuItems);
+//        dialog.title("Alert Dialog")//
+//                .titleTextSize_SP(18)//
+//                .titleBgColor(Color.parseColor("#409ED7"))//
+//                .itemPressColor(Color.parseColor("#85D3EF"))//
+//                .itemTextColor(Color.parseColor("#303030"))//
+//                .itemTextSize(14)//
+//                .cornerRadius(0)//
+//                .widthScale(0.8f)//
+//                .show(R.style.myDialogAnim);
+//
+//        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+//            @Override
+//            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                //T.showShort(mContext, mMenuItems.get(position).mOperName);
+//                dialog.dismiss();
+//            }
+//        });
+//    }
 
 
 
