@@ -1,6 +1,7 @@
 package com.crakama.refugee;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
@@ -16,14 +17,14 @@ import android.widget.TextView;
 //import com.crakama.mrefugee.R;
 
 /**
- * A simple {@link //Fragment} subclass.
+ * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ServiceListFragment.OnGridItemFragInteractionListener} interface
+ * {@link //HomeTabFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link //ServiceListFragment#newInstance} factory method to
+ * Use the {@link HomeTabFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ServiceListFragment extends Fragment {
+public class HomeTabFrag extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
@@ -43,7 +44,7 @@ public class ServiceListFragment extends Fragment {
             R.drawable.repatriation, R.drawable.rsd,
             R.drawable.refferal, R.drawable.resettlement,};
 
-    public ServiceListFragment() {
+    public HomeTabFrag() {
         // Required empty public constructor
     }
 
@@ -56,8 +57,8 @@ public class ServiceListFragment extends Fragment {
      * @return A new instance of fragment ServiceListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ServiceListFragment newInstance(int position) {
-        ServiceListFragment fragment = new ServiceListFragment();
+    public static HomeTabFrag newInstance(int position) {
+        HomeTabFrag fragment = new HomeTabFrag();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION,position);
         fragment.setArguments(args);
@@ -76,31 +77,7 @@ public class ServiceListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        if (position == 1) {
 
-            View rootView = inflater.inflate(R.layout.activity_gv_services, container, false);
-
-
-            // Here we inflate the layout we created above
-            GridView gridView = (GridView) rootView.findViewById(R.id.gv_services);
-            gridView.setAdapter(new GV_ServicesAdapter(getActivity().getApplicationContext(),gridViewString, gridViewImageId));
-           //gridView.getOnItemClickListener(myOnItemClickListener);
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int p, long l) {
-                    //
-                    if(mListener != null){
-                        mListener.itemClicked(p,l);
-                    }else{
-                        throw new RuntimeException(getActivity().getApplicationContext().toString()
-                                + " GRID ITEM LISTENER IS NULL");
-                    }
-
-                }
-            });
-            return rootView;
-
-        }else {
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.MATCH_PARENT);
 
@@ -122,7 +99,7 @@ public class ServiceListFragment extends Fragment {
         }
 
 
-    }
+
     public void setListener(OnGridItemFragInteractionListener listener){
         mListener = listener;
 
@@ -174,6 +151,4 @@ public class ServiceListFragment extends Fragment {
         // TODO: Update argument type and name
         void itemClicked(int p,long id);
     }
-
-
 }

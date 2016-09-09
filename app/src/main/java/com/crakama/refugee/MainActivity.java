@@ -10,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -60,9 +61,39 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void itemClicked(AdapterView<?> parent, View view, int pos,long id) {
+    public void itemClicked(int pos, long id) {
 
- //switch case statement
+        switch (pos) {
+            case 0:
+                //do
+                Toast.makeText(this, "GridView Item NO: ", Toast.LENGTH_LONG).show();
+                break;
+            case 1:
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ServiceDetailsFragment camplistfragment = new ServiceDetailsFragment();
+                ft.replace(R.id.contentl, camplistfragment);
+                ft.addToBackStack(null);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+                break;
+
+            case 3:
+                //
+                break;
+            case 4:
+                //
+                break;
+            case 5:
+                //
+                break;
+            case 6:
+                //
+                break;
+        }
+
+
+
+        //switch case statement
         //INITIALIZE DB ADAPTER
         final DBAdapter sqlDBAdapter = new DBAdapter(this);
 
@@ -78,19 +109,18 @@ public class MainActivity extends AppCompatActivity implements
         sqlDBAdapter.close();
 
         /** SHOW DIALOGUE*/
-        if(this!= null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            int campNum = camps.size();
-            String[] campnames = new String[campNum];
-            for(int cm =0;cm <campNum; cm++){
-                campnames[cm]= camps.get(cm);
-            }
-            //set items
-            builder.setItems(campnames, (DialogInterface.OnClickListener) this);
-        }else{
-            throw new RuntimeException(" CONTEXT IS NULL,");
-        }
-
+//        if(this!= null){
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            int campNum = camps.size();
+//            String[] campnames = new String[campNum];
+//            for(int cm =0;cm <campNum; cm++){
+//                campnames[cm]= camps.get(cm);
+//            }
+//            //set items
+//            builder.setItems(campnames, this);
+//        }else{
+//            throw new RuntimeException(" CONTEXT IS NULL,");
+//        }
 
 
     }
@@ -113,8 +143,21 @@ public class MainActivity extends AppCompatActivity implements
         //get card fragment to display the cards(items) when different tabs are swipped
         @Override
         public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return HomeTabFrag.newInstance(position);
 
-            return ServiceListFragment.newInstance(position);
+                case 1:
+
+                    return ServiceListFragment.newInstance(position);
+
+                case 2:
+                    return ListProductFunctionsFragment.newInstance();
+                case 3:
+                    return ListCropsFragment.newInstance();
+                default:
+                    return null;
+            }
         }
 
         @Override
