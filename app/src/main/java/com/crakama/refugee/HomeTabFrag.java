@@ -33,7 +33,7 @@ public class HomeTabFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private int position;
 
-    private OnGridItemFragInteractionListener mListener;
+    private OnHomeTabFragListener mListener;
 
     // Set grid view items titles and images
     String[] gridViewString = {
@@ -100,7 +100,7 @@ public class HomeTabFrag extends Fragment {
 
 
 
-    public void setListener(OnGridItemFragInteractionListener listener){
+    public void setListener(OnHomeTabFragListener listener){
         mListener = listener;
 
     }
@@ -115,8 +115,8 @@ public class HomeTabFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnGridItemFragInteractionListener) {
-            mListener = (OnGridItemFragInteractionListener) context;
+        if (context instanceof OnHomeTabFragListener) {
+            mListener = (OnHomeTabFragListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -147,7 +147,7 @@ public class HomeTabFrag extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public static interface OnGridItemFragInteractionListener {
+    public static interface OnHomeTabFragListener {
         // TODO: Update argument type and name
         void itemClicked(int p,long id);
     }

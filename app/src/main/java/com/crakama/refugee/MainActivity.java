@@ -28,7 +28,8 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
-        ServiceListFragment.OnGridItemFragInteractionListener,DialogInterface.OnClickListener {
+        ServiceListFragment.OnGridItemFragInteractionListener,DialogInterface.OnClickListener,
+        HomeTabFrag.OnHomeTabFragListener,DashBoardFrag.OnDashBoardFragListener {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -95,18 +96,18 @@ public class MainActivity extends AppCompatActivity implements
 
         //switch case statement
         //INITIALIZE DB ADAPTER
-        final DBAdapter sqlDBAdapter = new DBAdapter(this);
-
-        //RETRIEVE CAMP NAMES FROM DB
-        camps.clear();
-        sqlDBAdapter.openDB();
-        Cursor c = sqlDBAdapter.getAllCampDetails();
-        while(c.moveToNext()){
-            // 1 is column index in the table
-            String campname = c.getString(1);
-            camps.add(campname);
-        }
-        sqlDBAdapter.close();
+//        final DBAdapter sqlDBAdapter = new DBAdapter(this);
+//
+//        //RETRIEVE CAMP NAMES FROM DB
+//        camps.clear();
+//        sqlDBAdapter.openDB();
+//        Cursor c = sqlDBAdapter.getAllCampDetails();
+//        while(c.moveToNext()){
+//            // 1 is column index in the table
+//            String campname = c.getString(1);
+//            camps.add(campname);
+//        }
+//        sqlDBAdapter.close();
 
         /** SHOW DIALOGUE*/
 //        if(this!= null){
@@ -152,9 +153,8 @@ public class MainActivity extends AppCompatActivity implements
                     return ServiceListFragment.newInstance(position);
 
                 case 2:
-                    return ListProductFunctionsFragment.newInstance();
-                case 3:
-                    return ListCropsFragment.newInstance();
+                    return DashBoardFrag.newInstance(position);
+
                 default:
                     return null;
             }

@@ -76,7 +76,6 @@ public class ServiceListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        if (position == 1) {
 
             View rootView = inflater.inflate(R.layout.activity_gv_services, container, false);
 
@@ -100,26 +99,6 @@ public class ServiceListFragment extends Fragment {
             });
             return rootView;
 
-        }else {
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.MATCH_PARENT);
-
-            FrameLayout fl = new FrameLayout(getActivity());
-            fl.setLayoutParams(params);
-
-            final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-                    .getDisplayMetrics());
-            TextView v = new TextView(getActivity());
-            params.setMargins(margin, margin, margin, margin);
-            v.setLayoutParams(params);
-            v.setLayoutParams(params);
-            v.setGravity(Gravity.CENTER);
-            v.setBackgroundResource(R.drawable.background_card);
-            v.setText("CARD " + (position + 1));
-
-            fl.addView(v);
-            return fl;
-        }
 
 
     }
