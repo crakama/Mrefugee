@@ -21,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -34,10 +36,12 @@ public class MainActivity extends AppCompatActivity implements
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigation;
+    AlertDialog diagsettings;
 
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
     private ClassPagerAdapter adapter;
+
 
     ArrayList<String> camps = new ArrayList<String>();
 
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /** INITIALIZE TABS*/
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         pager = (ViewPager) findViewById(R.id.pager);
         adapter = new ClassPagerAdapter(getSupportFragmentManager());
@@ -56,8 +61,31 @@ public class MainActivity extends AppCompatActivity implements
         pager.setPageMargin(pageMargin);
         tabs.setViewPager(pager);
         tabs.setIndicatorColor(Color.parseColor("#3f51B5"));
-        initInstances();
 
+        /** CALL    METHOD */
+        initInstances();
+        final DBAdapter db = new DBAdapter(this);
+
+       /**  INITIALIZE VIEWS FOR ADD CAMP UI*/
+        final EditText txtcampname = (EditText) findViewById(R.id.editTextCampName);
+        final EditText txtcamploc = (EditText) findViewById(R.id.editTextcamplocation);
+        Button addButton = (Button) findViewById(R.id.buttonAddCamp);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /**  OPEN DB */
+                   db.openDB();
+                /**  INSERT INTO DB */
+                long result = db.add(txtcampname.getText().toString(),txtcamploc.getText().toString());
+                if(result >0){
+                    txtcampname.setText("");
+                    txtcamploc.setText("");
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"FAILED TO INSERT TO DB",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
@@ -70,12 +98,30 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, "GridView Item NO: ", Toast.LENGTH_LONG).show();
                 break;
             case 1:
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ServiceDetailsFragment camplistfragment = new ServiceDetailsFragment();
-                ft.replace(R.id.contentl, camplistfragment);
-                ft.addToBackStack(null);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.commit();
+
+                //INITIALIZE DB ADAPTER
+        final DBAdapter sqlDBAdapter = new DBAdapter(this);
+
+        //RETRIEVE CAMP NAMES FROM DB
+        camps.clear();
+        sqlDBAdapter.openDB();
+        Cursor c = sqlDBAdapter.getAllCampDetails();
+        while(c.moveToNext()){
+            // 1 is column index in the table
+            String campname = c.getString(1);
+            camps.add(campname);
+        }
+        //sqlDBAdapter.close();
+                //showDialogue();
+
+
+//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                ServiceDetailsFragment camplistfragment = new ServiceDetailsFragment();
+//                ft.replace(R.id.fragment_container, camplistfragment);
+//                ft.addToBackStack(null);
+//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//                ft.commit();
+
                 break;
 
             case 3:
@@ -126,6 +172,24 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    public void showDialogue(){
+
+        if(this!= null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            int campNum = camps.size();
+            String[] campnames = new String[campNum];
+            for(int cm =0;cm <campNum; cm++){
+                campnames[cm]= camps.get(cm);
+            }
+            //set items
+            builder.setItems(campnames, this);
+            diagsettings.setTitle("CAMP NAMES");
+            diagsettings.show();
+
+        }else{
+            throw new RuntimeException(" CONTEXT IS NULL,");
+        }
+    }
 
     @Override
     public void onClick(DialogInterface dialogInterface, int position) {

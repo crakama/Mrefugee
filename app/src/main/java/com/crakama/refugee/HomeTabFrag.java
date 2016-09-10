@@ -17,11 +17,11 @@ import android.widget.TextView;
 //import com.crakama.mrefugee.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * //A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link //HomeTabFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeTabFrag#newInstance} factory method to
+ * //Use the {@link HomeTabFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class HomeTabFrag extends Fragment {

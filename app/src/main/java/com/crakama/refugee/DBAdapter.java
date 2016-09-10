@@ -94,7 +94,7 @@ public class DBAdapter {
                 cv.put(LOCATION, loc);
                 return sqlitedatabase.insert(CAMPNAME, KEY_ROWID, cv);
             } catch (SQLException e) {
-
+               e.printStackTrace();
             }
             return 0;
         }

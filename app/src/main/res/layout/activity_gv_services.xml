@@ -13,14 +13,14 @@
         android:gravity="center"
         android:numColumns="auto_fit" />
 
-    <!--<FrameLayout-->
-        <!--class="com.crakama.refugee.CampListFragment"-->
-        <!--android:id="@+id/fragment_container"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" >-->
+    <FrameLayout
+        class="com.crakama.refugee.CampListFragment"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
 
-        <!--</FrameLayout>-->
+        </FrameLayout>
 
 </FrameLayout>
 
