@@ -1,16 +1,14 @@
 package com.crakama.refugee;
 
-import android.app.Service;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,10 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -30,13 +25,13 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
-        ServiceListFragment.OnGridItemFragInteractionListener,DialogInterface.OnClickListener,
+        ServiceListFragment.OnGridItemFragInteractionListener,
         HomeTabFrag.OnHomeTabFragListener,DashBoardFrag.OnDashBoardFragListener {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigation;
-    AlertDialog diagsettings;
+
 
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
@@ -64,28 +59,7 @@ public class MainActivity extends AppCompatActivity implements
 
         /** CALL    METHOD */
         initInstances();
-        final DBAdapter db = new DBAdapter(this);
 
-       /**  INITIALIZE VIEWS FOR ADD CAMP UI*/
-        final EditText txtcampname = (EditText) findViewById(R.id.editTextCampName);
-        final EditText txtcamploc = (EditText) findViewById(R.id.editTextcamplocation);
-        Button addButton = (Button) findViewById(R.id.buttonAddCamp);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /**  OPEN DB */
-                   db.openDB();
-                /**  INSERT INTO DB */
-                long result = db.add(txtcampname.getText().toString(),txtcamploc.getText().toString());
-                if(result >0){
-                    txtcampname.setText("");
-                    txtcamploc.setText("");
-
-                }else{
-                    Toast.makeText(getApplicationContext(),"FAILED TO INSERT TO DB",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
     }
 
@@ -98,21 +72,40 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, "GridView Item NO: ", Toast.LENGTH_LONG).show();
                 break;
             case 1:
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+                builderSingle.setIcon(R.drawable.ic_launcher);
+                builderSingle.setTitle("Select One Name:-");
+                //Create a String array of the course names
+                String[] names = new String[DadaabCamp.camps.length];
+                for (int i = 0; i < names.length; i++) {
+                    names[i] = DadaabCamp.camps[i].getName();
+                }
 
-                //INITIALIZE DB ADAPTER
-        final DBAdapter sqlDBAdapter = new DBAdapter(this);
-
-        //RETRIEVE CAMP NAMES FROM DB
-        camps.clear();
-        sqlDBAdapter.openDB();
-        Cursor c = sqlDBAdapter.getAllCampDetails();
-        while(c.moveToNext()){
-            // 1 is column index in the table
-            String campname = c.getString(1);
-            camps.add(campname);
-        }
-        //sqlDBAdapter.close();
-                //showDialogue();
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.select_dialog_singlechoice, names);
+                builderSingle.setAdapter(
+                        arrayAdapter,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String strName = arrayAdapter.getItem(which);
+                                AlertDialog.Builder builderInner = new AlertDialog.Builder(
+                                        MainActivity.this);
+                                builderInner.setMessage(strName);
+                                builderInner.setTitle("Your Selected Item is");
+                                builderInner.setPositiveButton(
+                                        "Ok",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(
+                                                    DialogInterface dialog,
+                                                    int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                builderInner.show();
+                            }
+                        });
+                builderSingle.show();
 
 
 //                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -137,64 +130,8 @@ public class MainActivity extends AppCompatActivity implements
                 //
                 break;
         }
-
-
-
-        //switch case statement
-        //INITIALIZE DB ADAPTER
-//        final DBAdapter sqlDBAdapter = new DBAdapter(this);
-//
-//        //RETRIEVE CAMP NAMES FROM DB
-//        camps.clear();
-//        sqlDBAdapter.openDB();
-//        Cursor c = sqlDBAdapter.getAllCampDetails();
-//        while(c.moveToNext()){
-//            // 1 is column index in the table
-//            String campname = c.getString(1);
-//            camps.add(campname);
-//        }
-//        sqlDBAdapter.close();
-
-        /** SHOW DIALOGUE*/
-//        if(this!= null){
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            int campNum = camps.size();
-//            String[] campnames = new String[campNum];
-//            for(int cm =0;cm <campNum; cm++){
-//                campnames[cm]= camps.get(cm);
-//            }
-//            //set items
-//            builder.setItems(campnames, this);
-//        }else{
-//            throw new RuntimeException(" CONTEXT IS NULL,");
-//        }
-
-
     }
 
-    public void showDialogue(){
-
-        if(this!= null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            int campNum = camps.size();
-            String[] campnames = new String[campNum];
-            for(int cm =0;cm <campNum; cm++){
-                campnames[cm]= camps.get(cm);
-            }
-            //set items
-            builder.setItems(campnames, this);
-            diagsettings.setTitle("CAMP NAMES");
-            diagsettings.show();
-
-        }else{
-            throw new RuntimeException(" CONTEXT IS NULL,");
-        }
-    }
-
-    @Override
-    public void onClick(DialogInterface dialogInterface, int position) {
-        Toast.makeText(this,camps.get(position), Toast.LENGTH_SHORT).show();
-    }
 
 
     public class ClassPagerAdapter extends FragmentPagerAdapter {
@@ -302,6 +239,10 @@ public class MainActivity extends AppCompatActivity implements
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.action_addcamp) {
+            Intent addcampIntent = new Intent(MainActivity.this, AddCampActivity.class);
+            startActivity(addcampIntent);
+
         }
 
         return super.onOptionsItemSelected(item);
