@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.alertdialogpro.AlertDialogPro;
 import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case 1:
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
-                builderSingle.setIcon(R.drawable.ic_launcher);
+                builderSingle.setIcon(R.drawable.ic_listcamps);
                 builderSingle.setTitle("Select One Name:-");
                 //Create a String array of the course names
                 String[] names = new String[DadaabCamp.camps.length];
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements
                     names[i] = DadaabCamp.camps[i].getName();
                 }
 
-                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.select_dialog_singlechoice, names);
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
                 builderSingle.setAdapter(
                         arrayAdapter,
                         new DialogInterface.OnClickListener() {
