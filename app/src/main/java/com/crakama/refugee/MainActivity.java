@@ -27,19 +27,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
         ServiceListFragment.OnGridItemFragInteractionListener,
-        HomeTabFrag.OnHomeTabFragListener,DashBoardFrag.OnDashBoardFragListener {
+        HomeTabFrag.OnHomeTabFragListener, DashBoardFrag.OnDashBoardFragListener {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigation;
 
+    ArrayList<String> camps = new ArrayList<String>();
 
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
     private ClassPagerAdapter adapter;
-
-
-    ArrayList<String> camps = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements
                     names[i] = DadaabCamp.camps[i].getName();
                 }
 
-                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
                 builderSingle.setAdapter(
                         arrayAdapter,
                         new DialogInterface.OnClickListener() {
@@ -107,16 +105,8 @@ public class MainActivity extends AppCompatActivity implements
                             }
                         });
                 builderSingle.show();
-
-
-//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                ServiceDetailsFragment camplistfragment = new ServiceDetailsFragment();
-//                ft.replace(R.id.fragment_container, camplistfragment);
-//                ft.addToBackStack(null);
-//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//                ft.commit();
-
                 break;
+
 
             case 3:
                 //
@@ -133,49 +123,9 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-
-
-    public class ClassPagerAdapter extends FragmentPagerAdapter {
-
-        private final String[] TITLES = {"Home", "Agency Services","Camp Notice Board"};
-        //Constructor class
-        public ClassPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        //get card fragment to display the cards(items) when different tabs are swipped
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return HomeTabFrag.newInstance(position);
-
-                case 1:
-
-                    return ServiceListFragment.newInstance(position);
-
-                case 2:
-                    return DashBoardFrag.newInstance(position);
-
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return TITLES.length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-          return TITLES[position];
-         }
-
-
-    }//End ClassPagerAdapter class
-
-    /** CODE FOR NAVIGATION DRAWER */
+    /**
+     * CODE FOR NAVIGATION DRAWER
+     */
 
     private void initInstances() {
         if (getSupportActionBar() != null) {
@@ -213,13 +163,12 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -240,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }else if(id == R.id.action_addcamp) {
+        } else if (id == R.id.action_addcamp) {
             Intent addcampIntent = new Intent(MainActivity.this, AddCampActivity.class);
             startActivity(addcampIntent);
 
@@ -248,14 +197,53 @@ public class MainActivity extends AppCompatActivity implements
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
     }
 
+    public class ClassPagerAdapter extends FragmentPagerAdapter {
+
+        private final String[] TITLES = {"Home", "Agency Services", "Camp Notice Board"};
+
+        //Constructor class
+        public ClassPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        //get card fragment to display the cards(items) when different tabs are swipped
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return HomeTabFrag.newInstance(position);
+
+                case 1:
+
+                    return ServiceListFragment.newInstance(position);
+
+                case 2:
+                    return DashBoardFrag.newInstance(position);
+
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return TITLES.length;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return TITLES[position];
+        }
 
 
+    }//End ClassPagerAdapter class
 
 
 }// Ends Main Class

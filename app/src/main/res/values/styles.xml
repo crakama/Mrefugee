@@ -14,13 +14,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!--<style name="dialogProTheme" >-->
-
-        <!--<item name="alertDialogProTheme">@style/Theme.AlertDialogPro.Material.Light</item>-->
-    <!--</style>-->
-    <style name="dialogstyle" parent="@android:style/Theme.Dialog">
-        <item name="android:windowTitleBackgroundStyle">#6495ED</item>
+    <style name="dialogProTheme">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorAccent</item>
     </style>
+
 
 </resources>
 

@@ -27,9 +27,6 @@ public class ServiceListFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
-
-
-    // TODO: Rename and change types of parameters
     private int position;
 
     private OnGridItemFragInteractionListener mListener;
@@ -64,6 +61,7 @@ public class ServiceListFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +73,10 @@ public class ServiceListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
+        // Inflate the fragment_dash_board for this fragment
             View rootView = inflater.inflate(R.layout.activity_gv_services, container, false);
 
-
-            // Here we inflate the layout we created above
+            // Here we inflate the fragment_dash_board we created above
             GridView gridView = (GridView) rootView.findViewById(R.id.gv_services);
             gridView.setAdapter(new GV_ServicesAdapter(getActivity().getApplicationContext(),gridViewString, gridViewImageId));
            //gridView.getOnItemClickListener(myOnItemClickListener);
@@ -94,26 +90,15 @@ public class ServiceListFragment extends Fragment {
                         throw new RuntimeException(getActivity().getApplicationContext().toString()
                                 + " GRID ITEM LISTENER IS NULL");
                     }
-
                 }
             });
             return rootView;
-
-
-
     }
+
     public void setListener(OnGridItemFragInteractionListener listener){
         mListener = listener;
 
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(long id) {
-//        if (mListener != null) {
-//            mListener.itemClicked(id);
-//        }
-//    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -7,6 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crakama.refugee.database.DBAccessManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddCampActivity extends AppCompatActivity {
     EditText txtcampname;
     EditText txtcamploc;
@@ -19,7 +24,7 @@ public class AddCampActivity extends AppCompatActivity {
 
 
 
-        final DBAdapter db = new DBAdapter(this);
+        //final DBAdapter db = new DBAdapter(this);
 
         /**  INITIALIZE VIEWS FOR ADD CAMP UI*/
         txtcampname = (EditText) findViewById(R.id.editTextCampName);
@@ -28,18 +33,22 @@ public class AddCampActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ArrayList<DadaabCamp> av = new ArrayList<DadaabCamp>();
+                DBAccessManager.getsInstance().saveCampData(AddCampActivity.this,av);
                 /**  OPEN DB */
-                db.openDB();
+               // db.openDB();
                 /**  INSERT INTO DB */
-                long result = db.add(txtcampname.getText().toString(),txtcamploc.getText().toString());
-                if(result >0){
-                    txtcampname.setText("");
-                    txtcamploc.setText("");
-
-                }else{
-                    Toast.makeText(getApplicationContext(),"FAILED TO INSERT TO DB",Toast.LENGTH_SHORT).show();
-                }
+//                DBAccessManager result = DBAccessManager.getsInstance(txtcampname.getText().toString(),txtcamploc.getText().toString());
+//                if(result >0){
+//                    txtcampname.setText("");
+//                    txtcamploc.setText("");
+//
+//                }else{
+//                    Toast.makeText(getApplicationContext(),"FAILED TO INSERT TO DB",Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }
+
+
 }

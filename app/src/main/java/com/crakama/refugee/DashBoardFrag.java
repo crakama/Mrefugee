@@ -10,7 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 //import com.crakama.mrefugee.R;
 
@@ -30,17 +36,22 @@ public class DashBoardFrag extends Fragment {
 
     // TODO: Rename and change types of parameters
     private int position;
-
     private OnDashBoardFragListener mListener;
 
+
     // Set grid view items titles and images
-    String[] gridViewString = {
+    String[] listviewTitle = {
             "PROTECTION", "CHILD REGISTRATION", "REPATRIATION", "RSD", "REFERRAL", "RESETTLEMENT",};
 
-    int[] gridViewImageId = {
+    int[] listviewImage = {
             R.drawable.protection, R.drawable.childregistration,
             R.drawable.repatriation, R.drawable.rsd,
             R.drawable.refferal, R.drawable.resettlement,};
+
+    String[] listviewShortDescription = new String[]{
+            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
+            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
+    };
 
     public DashBoardFrag() {
         // Required empty public constructor
@@ -49,10 +60,6 @@ public class DashBoardFrag extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * //@param param1 Parameter 1.
-     * //@param param2 Parameter 2.
-     * @return A new instance of fragment ServiceListFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static DashBoardFrag newInstance(int position) {
@@ -74,41 +81,34 @@ public class DashBoardFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the fragment_dash_board for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_dash_board, container, false);
 
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT);
+        ListView androidListView = (ListView) rootView.findViewById(R.id.list_view);
 
-        FrameLayout fl = new FrameLayout(getActivity());
-        fl.setLayoutParams(params);
+        List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
-        final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-                .getDisplayMetrics());
-        TextView v = new TextView(getActivity());
-        params.setMargins(margin, margin, margin, margin);
-        v.setLayoutParams(params);
-        v.setLayoutParams(params);
-        v.setGravity(Gravity.CENTER);
-        v.setBackgroundResource(R.drawable.background_card);
-        v.setText("CARD " + (position + 1));
+        for (int i = 0; i < 6; i++) {
+            HashMap<String, String> hm = new HashMap<String, String>();
+            hm.put("listview_title", listviewTitle[i]);
+            hm.put("listview_discription", listviewShortDescription[i]);
+            hm.put("listview_image", Integer.toString(listviewImage[i]));
+            aList.add(hm);
+        }
 
-        fl.addView(v);
-        return fl;
+        String[] from = {"listview_image", "listview_title", "listview_discription"};
+        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getApplicationContext(), aList, R.layout.fragment_dashboard_imagetext, from, to);
+
+        androidListView.setAdapter(simpleAdapter);
+
+        return rootView;
+
     }
-
-
 
     public void setListener(OnDashBoardFragListener listener){
-        mListener = listener;
-
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(long id) {
-//        if (mListener != null) {
-//            mListener.itemClicked(id);
-//        }
-//    }
+        mListener = listener; }
 
     @Override
     public void onAttach(Context context) {
@@ -121,6 +121,7 @@ public class DashBoardFrag extends Fragment {
         }
     }
 
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -129,22 +130,9 @@ public class DashBoardFrag extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        super.onActivityCreated(savedInstanceState); }
 
 
-    }
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public static interface OnDashBoardFragListener {
         // TODO: Update argument type and name
         void itemClicked(int p,long id);

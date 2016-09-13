@@ -45,9 +45,9 @@ public class ServiceDetailsFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         /**
-         * Inflate the layout for this fragment
-         * return inflater.inflate(R.layout.fragment_view_course, container, false);
-         * Calling the superclass onCreateView() method gives you the default layout
+         * Inflate the fragment_dash_board for this fragment
+         * return inflater.inflate(R.fragment_dash_board.fragment_view_course, container, false);
+         * Calling the superclass onCreateView() method gives you the default fragment_dash_board
          * for the ListFragment
          */
         //Create a String array of the course names
@@ -56,7 +56,7 @@ public class ServiceDetailsFragment extends ListFragment {
             names[i] = DadaabCamp.camps[i].getName();
         }
         /**
-         * simple_list_item_1 This is a built-in layout resource.
+         * simple_list_item_1 This is a built-in fragment_dash_board resource.
          * It tells the array adapter to display each item in the array in a single text view
          */
         View campview = inflater.inflate(R.layout.fragment_camp_list, container, false);

@@ -25,12 +25,9 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class HomeTabFrag extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
-
-
-    // TODO: Rename and change types of parameters
     private int position;
 
     private OnHomeTabFragListener mListener;
@@ -44,19 +41,9 @@ public class HomeTabFrag extends Fragment {
             R.drawable.repatriation, R.drawable.rsd,
             R.drawable.refferal, R.drawable.resettlement,};
 
-    public HomeTabFrag() {
-        // Required empty public constructor
+    public HomeTabFrag() { // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * //@param param1 Parameter 1.
-     * //@param param2 Parameter 2.
-     * @return A new instance of fragment ServiceListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomeTabFrag newInstance(int position) {
         HomeTabFrag fragment = new HomeTabFrag();
         Bundle args = new Bundle();
@@ -73,10 +60,12 @@ public class HomeTabFrag extends Fragment {
         }
     }
 
+    public void setListener(OnHomeTabFragListener listener){ mListener = listener; }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the fragment_dash_board for this fragment
 
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.MATCH_PARENT);
@@ -100,17 +89,7 @@ public class HomeTabFrag extends Fragment {
 
 
 
-    public void setListener(OnHomeTabFragListener listener){
-        mListener = listener;
 
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(long id) {
-//        if (mListener != null) {
-//            mListener.itemClicked(id);
-//        }
-//    }
 
     @Override
     public void onAttach(Context context) {
@@ -137,6 +116,7 @@ public class HomeTabFrag extends Fragment {
     }
 
 
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -147,6 +127,10 @@ public class HomeTabFrag extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+//    public static interface OnHomeTabFragListener {
+//        // TODO: Update argument type and name
+//        void itemClicked(int p,long id);
+//    }
     public static interface OnHomeTabFragListener {
         // TODO: Update argument type and name
         void itemClicked(int p,long id);
