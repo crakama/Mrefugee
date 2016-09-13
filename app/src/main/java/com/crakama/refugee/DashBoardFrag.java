@@ -88,7 +88,7 @@ public class DashBoardFrag extends Fragment {
 
         List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < listviewTitle.length; i++) {
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("listview_title", listviewTitle[i]);
             hm.put("listview_discription", listviewShortDescription[i]);

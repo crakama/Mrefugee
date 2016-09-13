@@ -4,18 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.crakama.refugee.MainActivity">
     <item
+        android:id="@+id/action_followup"
+        android:orderInCategory="50"
+        android:title="@string/action_followup"
+        android:icon="@mipmap/plus"
+        app:showAsAction="always|withText" />
+    <item
         android:id="@+id/action_addcamp"
-        android:orderInCategory="100"
+        android:orderInCategory="102"
         android:title="@string/action_addcamp"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="101"
+        android:orderInCategory="104"
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_logout"
-        android:orderInCategory="102"
+        android:orderInCategory="103"
         android:title="@string/action_logout"
         app:showAsAction="never" />
 

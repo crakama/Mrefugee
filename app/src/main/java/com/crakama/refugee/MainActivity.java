@@ -192,7 +192,11 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.action_addcamp) {
             Intent addcampIntent = new Intent(MainActivity.this, AddCampActivity.class);
             startActivity(addcampIntent);
+            return true;
 
+        }else if(id == R.id.action_followup){
+            startActivity(new Intent(this, IssueFollowUp.class));
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
