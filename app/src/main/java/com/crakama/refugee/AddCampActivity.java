@@ -1,40 +1,84 @@
 package com.crakama.refugee;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.crakama.refugee.database.DBAccessManager;
+import com.crakama.refugee.database.DBHelperAdapter;
+import com.crakama.refugee.database.DatabaseStructure;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AddCampActivity extends AppCompatActivity {
     EditText txtcampname;
     EditText txtcamploc;
-    Button addButton;
+    Button addButton,viewButton;
+    SQLiteDatabase db;
+    DBHelperAdapter dbhelperadapter;
+    //Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_camp);
+        final ArrayList<DadaabCamp> av = new ArrayList<DadaabCamp>();
 
 
-
+        dbhelperadapter = new DBHelperAdapter(this);
         //final DBAdapter db = new DBAdapter(this);
 
         /**  INITIALIZE VIEWS FOR ADD CAMP UI*/
         txtcampname = (EditText) findViewById(R.id.editTextCampName);
         txtcamploc = (EditText) findViewById(R.id.editTextcamplocation);
         addButton = (Button) findViewById(R.id.buttonAddCamp);
+        viewButton = (Button) findViewById(R.id.buttonViewCamps);
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String data = dbhelperadapter.getAllData();
+                Message.message(AddCampActivity.this, data);
+            }
+        });
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<DadaabCamp> av = new ArrayList<DadaabCamp>();
-                DBAccessManager.getsInstance().saveCampData(AddCampActivity.this,av);
+                String campname = txtcampname.getText().toString();
+                String location = txtcamploc.getText().toString();
+
+                if (dbhelperadapter != null) {
+                    long id=dbhelperadapter.insertData(campname,location);
+                    if(id<0){
+                        Message.message(AddCampActivity.this, "Unsuccessful");
+                    }else{
+                        Message.message(AddCampActivity.this, "Inserted a ROW");
+                    }
+                } else {
+                    Message.message(AddCampActivity.this, "DBHelperadapter IS NULLL");
+                }
+
+
+//                try {
+//                    db = new DBHelperAdapter(getBaseContext() ).getWritableDatabase();
+//                    db.beginTransaction();
+//                    for (DadaabCamp camp : av) {
+//                        ContentValues cv = new ContentValues();
+//                        cv.put(DatabaseStructure.CampTable.CAMPNAME, camp.getName());
+//                        cv.put(DatabaseStructure.CampTable.LOCATION, camp.getDescription());
+//
+//                        db.insert(DatabaseStructure.CampTable.TABLE_NAME, DatabaseStructure.CampTable.CAMPNAME, cv);
+//                    }
+//                    db.setTransactionSuccessful();
+//                    db.endTransaction();
+//                    db.close();
+//                } catch (Exception e) {
+//                    Message.message(getBaseContext(), "INSERT METHOD CALLED");
+//                }
+//                ArrayList<DadaabCamp> av = new ArrayList<DadaabCamp>();
+//                DBAccessManager.getsInstance().saveCampData(AddCampActivity.this,av);
                 /**  OPEN DB */
                // db.openDB();
                 /**  INSERT INTO DB */

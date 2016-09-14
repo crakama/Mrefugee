@@ -3,6 +3,7 @@ package com.crakama.refugee;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -20,8 +21,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.alertdialogpro.AlertDialogPro;
 import com.astuetz.PagerSlidingTabStrip;
+import com.crakama.refugee.database.DBHelperAdapter;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements
     NavigationView navigation;
 
     ArrayList<String> camps = new ArrayList<String>();
+    DBHelperAdapter dbHelper;
+    SQLiteDatabase sqLiteDatabase;
 
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //dbHelper = new DBHelperAdapter(this);
+        //sqLiteDatabase = dbHelper.getWritableDatabase();
 
         /** INITIALIZE TABS*/
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
@@ -59,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements
         /** CALL    METHOD */
         initInstances();
 
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 

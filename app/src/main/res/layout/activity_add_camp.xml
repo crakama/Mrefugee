@@ -50,4 +50,14 @@
         android:id="@+id/buttonAddCamp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Data"
+        android:id="@+id/buttonViewCamps"
+        android:layout_below="@+id/buttonAddCamp"
+        android:layout_toRightOf="@+id/textViewCampName"
+        android:layout_toEndOf="@+id/textViewCampName"
+        android:layout_marginTop="45dp" />
 </RelativeLayout>
