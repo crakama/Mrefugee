@@ -7,7 +7,7 @@
         android:id="@+id/action_followup"
         android:orderInCategory="50"
         android:title="@string/action_followup"
-        android:icon="@mipmap/plus"
+        android:icon="@mipmap/ic_medic"
         app:showAsAction="always|withText" />
     <item
         android:id="@+id/action_addcamp"

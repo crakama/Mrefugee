@@ -4,10 +4,10 @@
     <string name="action_logout">Logout</string>
     <string name="action_followup">Follow Up</string>
     <string name="welcome">Welcome to Mrefugee</string>
-    <string name="nav_view_item_1">ITEM ONE</string>
-    <string name="nav_view_item_2">ITEM TWO</string>
-    <string name="nav_view_item_3">ITEM THREE</string>
-    <string name="nav_view_item_4">ITEM FOUR</string>
+    <string name="nav_view_item_1">Login or Register</string>
+    <string name="nav_view_item_5">About App</string>
+    <string name="nav_view_item_3">Do Follow Up</string>
+    <string name="nav_view_item_4">Send feedback</string>
     <string name="nav_view_category_2">Second Category</string>
     <string name="action_addcamp"> Add Camp</string>
 

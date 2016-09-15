@@ -145,31 +145,77 @@ public class MainActivity extends AppCompatActivity implements
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.welcome, R.string.welcome);
         drawerLayout.addDrawerListener(drawerToggle);
+
+
+ //       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//
+//        if(islogin)
+//        {
+//            navigationView.getMenu().clear();
+//            navigationView.inflateMenu(R.menu.navigation_with_login);
+//        } else
+//        {
+//            navigationView.getMenu().clear();
+//            navigationView.inflateMenu(R.menu.navigation_with_logout);
+//        }
+
+
+
         //Initializing NavigationView
         navigation = (NavigationView) findViewById(R.id.navigation_view);
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                switch (id) {
-                    case R.id.navigation_item_1:
-                        //Do some thing here
-                        break;
-                    case R.id.navigation_item_2:
-                        //Do some thing here
-                        break;
-                    case R.id.navigation_item_3:
-                        //Do some thing here
-                        break;
-                    case R.id.navigation_item_4:
-                        //Do some thing here
-                        break;
+        boolean islogin;
+        if (islogin) {
+            navigation.getMenu().clear();
+            navigation.inflateMenu(R.menu.navigation_with_login);
+            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    int id = menuItem.getItemId();
+                    switch (id) {
+                        case R.id.navigation_item_1:
+                            //Do some thing here
+                            break;
+                        case R.id.navigation_item_5:
+                            //Do some thing here
+                            break;
+                        case R.id.navigation_item_3:
+                            //Do some thing here
+                            break;
+                        case R.id.navigation_item_4:
+                            //Do some thing here
+                            break;
 
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });//end oclick listener
+        } else {
+            navigation.getMenu().clear();
+            navigation.inflateMenu(R.menu.navigation_with_logout);
+            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    int id = menuItem.getItemId();
+                    switch (id) {
+                        case R.id.navigation_item_1:
+                            //Do some thing here
+                            break;
+                        case R.id.navigation_item_5:
+                            //Do some thing here
+                            break;
+                        case R.id.navigation_item_3:
+                            //Do some thing here
+                            break;
+                        case R.id.navigation_item_4:
+                            //Do some thing here
+                            break;
+
+                    }
+                    return false;
+                }
+            });//end oclick listener
+        }
 
     }
 
