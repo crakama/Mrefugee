@@ -22,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.crakama.refugee.Auth.LoginActivity;
+import com.crakama.refugee.Auth.RegisterActivity;
 import com.crakama.refugee.database.DBHelperAdapter;
 
 import java.util.ArrayList;
@@ -164,20 +166,23 @@ public class MainActivity extends AppCompatActivity implements
         //Initializing NavigationView
         navigation = (NavigationView) findViewById(R.id.navigation_view);
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-        boolean islogin;
-        if (islogin) {
-            navigation.getMenu().clear();
-            navigation.inflateMenu(R.menu.navigation_with_login);
-            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(MenuItem menuItem) {
                     int id = menuItem.getItemId();
                     switch (id) {
                         case R.id.navigation_item_1:
                             //Do some thing here
+                            Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(loginIntent);
                             break;
                         case R.id.navigation_item_5:
                             //Do some thing here
+                            break;
+                        case R.id.navigation_item_6:
+                            //Do some thing here
+                            Intent regIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                            startActivity(regIntent);
                             break;
                         case R.id.navigation_item_3:
                             //Do some thing here
@@ -190,32 +195,60 @@ public class MainActivity extends AppCompatActivity implements
                     return false;
                 }
             });//end oclick listener
-        } else {
-            navigation.getMenu().clear();
-            navigation.inflateMenu(R.menu.navigation_with_logout);
-            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(MenuItem menuItem) {
-                    int id = menuItem.getItemId();
-                    switch (id) {
-                        case R.id.navigation_item_1:
-                            //Do some thing here
-                            break;
-                        case R.id.navigation_item_5:
-                            //Do some thing here
-                            break;
-                        case R.id.navigation_item_3:
-                            //Do some thing here
-                            break;
-                        case R.id.navigation_item_4:
-                            //Do some thing here
-                            break;
 
-                    }
-                    return false;
-                }
-            });//end oclick listener
-        }
+
+
+//        if (islogin) {
+//            navigation.getMenu().clear();
+//            navigation.inflateMenu(R.menu.navigation_with_login);
+//            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                    int id = menuItem.getItemId();
+//                    switch (id) {
+//                        case R.id.navigation_item_1:
+//                            //Do some thing here
+//                            break;
+//                        case R.id.navigation_item_5:
+//                            //Do some thing here
+//                            break;
+//                        case R.id.navigation_item_3:
+//                            //Do some thing here
+//                            break;
+//                        case R.id.navigation_item_4:
+//                            //Do some thing here
+//                            break;
+//
+//                    }
+//                    return false;
+//                }
+//            });//end oclick listener
+//        } else {
+//            navigation.getMenu().clear();
+//            navigation.inflateMenu(R.menu.navigation_with_logout);
+//            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                    int id = menuItem.getItemId();
+//                    switch (id) {
+//                        case R.id.navigation_item_1:
+//                            //Do some thing here
+//                            break;
+//                        case R.id.navigation_item_5:
+//                            //Do some thing here
+//                            break;
+//                        case R.id.navigation_item_3:
+//                            //Do some thing here
+//                            break;
+//                        case R.id.navigation_item_4:
+//                            //Do some thing here
+//                            break;
+//
+//                    }
+//                    return false;
+//                }
+//            });//end oclick listener
+//        }
 
     }
 

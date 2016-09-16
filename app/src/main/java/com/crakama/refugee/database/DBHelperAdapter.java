@@ -17,48 +17,76 @@ import com.crakama.refugee.Message;
  */
 public class DBHelperAdapter extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "dadaab.db";
     private static final String TABLE_NAME = "login";
-    private static final String COL_ID = "login";
+    private static final String COL_ID = "id";
     private static final String COL_NAME = "name";
     private static final String COL_EMAIL = "email";
     private static final String COL_USERNAME = "username";
     private static final String COL_PASS = "pass";
-
-    private static final String CREATE_TABLE = "create table contacts (id integer primary key not null auto_increment , " +
-                                        "name text not null , email text not null , username text not null , pass text not null);";
+    private static final String CREATE_TABLE = "create table login (id integer primary key not null , " +
+            "username text not null , pass text not null , email text not null);";
 
     SQLiteDatabase db;
+    Context ctx;
 
     public DBHelperAdapter(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
+        this.ctx = context; }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
-        this.db = db;
+        this.db = db;}
 
+    public String searchPass(String uname) {
+        db = this.getReadableDatabase();
+        String query = "select username, pass from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(uname)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+        return b;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        String query = "DROP TABLE IF EXISTS "+ TABLE_NAME;
+        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(query);
         this.onCreate(db);
 
     }
 
-    public void insertUser(DB b){
+    public void insertUser(DB b) {
         db = this.getWritableDatabase();
+        db.beginTransaction();
         ContentValues values = new ContentValues();
+
+        String query = "select * from login";
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+
+        values.put(COL_ID, count);
         values.put(COL_USERNAME, b.getUsername());
         values.put(COL_EMAIL, b.getEmail());
         values.put(COL_PASS, b.getPass());
 
-        db.insert(TABLE_NAME, null , values);
+        db.insert(TABLE_NAME, null, values);
+        db.setTransactionSuccessful();
+        Message.message(ctx, "SUCCESSFULLY INSERTED");
     }
+   }
+
 
 
 //    Context ctx;
@@ -183,4 +211,4 @@ public class DBHelperAdapter extends SQLiteOpenHelper {
 
 
 
-}
+

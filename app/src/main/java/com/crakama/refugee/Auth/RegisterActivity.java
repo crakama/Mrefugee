@@ -1,5 +1,6 @@
 package com.crakama.refugee.Auth;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crakama.refugee.MainActivity;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.DB;
 import com.crakama.refugee.database.DBHelperAdapter;
@@ -43,7 +45,9 @@ public class RegisterActivity extends AppCompatActivity {
                     b.setEmail(emailStr);
                     b.setPass(passStr);
 
-                    helper.insertUser();
+                    helper.insertUser(b);
+                    Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(i);
                 }
             }
         });

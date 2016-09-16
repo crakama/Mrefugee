@@ -11,15 +11,15 @@ import com.crakama.refugee.Message;
  * Created by cate.rakama@gmail.com on 9/15/2016.
  */
 public class DB {
-    int id;
+    boolean bool;
     String name, email, username, pass;
 
-    public void setId(int id){
-        this.id = id;
+    public void setIsLogin(boolean bl){
+        this.bool = bl;
 
     }
-    public int getId(){
-        return this.id;
+    public boolean getIsLogin(){
+        return this.bool;
     }
 
     public void setEmail(String email){
