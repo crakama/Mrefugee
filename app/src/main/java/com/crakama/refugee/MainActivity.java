@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.astuetz.PagerSlidingTabStrip;
 import com.crakama.refugee.Auth.LoginActivity;
 import com.crakama.refugee.Auth.RegisterActivity;
+import com.crakama.refugee.Auth.ResetPasswordActivity;
 import com.crakama.refugee.database.DBHelperAdapter;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements
         ServiceListFragment.OnGridItemFragInteractionListener,
         HomeTabFrag.OnHomeTabFragListener, DashBoardFrag.OnDashBoardFragListener {
+
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -189,6 +191,11 @@ public class MainActivity extends AppCompatActivity implements
                             break;
                         case R.id.navigation_item_4:
                             //Do some thing here
+                            break;
+                        case R.id.navigation_item_7:
+                            //Do some thing here
+                            Intent resetIntent = new Intent(MainActivity.this, ResetPasswordActivity.class);
+                            startActivity(resetIntent);
                             break;
 
                     }

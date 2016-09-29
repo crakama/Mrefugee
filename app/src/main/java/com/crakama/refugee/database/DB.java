@@ -12,7 +12,7 @@ import com.crakama.refugee.Message;
  */
 public class DB {
     boolean bool;
-    String name, email, username, pass;
+    String name, email, username, pass, newsHead, newsBody;
 
     public void setIsLogin(boolean bl){
         this.bool = bl;
@@ -44,5 +44,22 @@ public class DB {
     }
     public String getPass(){
         return this.pass;
+    }
+
+    public void setNewsHead(String nws_name){
+        this.newsHead = nws_name;
+
+    }
+
+    public String getNewsHead() {
+        return newsHead;
+    }
+
+    public void setNewsBody(String newsBody) {
+        this.newsBody = newsBody;
+    }
+
+    public String getNewsBody() {
+        return newsBody;
     }
 }

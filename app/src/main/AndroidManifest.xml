@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.crakama.refugee" >
+    package="com.crakama.refugee">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".Mrefugee"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,10 +24,10 @@
         <activity
             android:name=".IssueFollowUp"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".database.Auth.LoginActivity" />
-        <activity android:name=".Auth.LoginActivity" />
-        <activity android:name=".Auth.RegisterActivity" >
-        </activity>
+        <activity android:name=".Auth.LoginActivity"></activity>
+        <activity android:name=".Auth.RegisterActivity"></activity>
+        <activity android:name=".Auth.ResetPasswordActivity"></activity>
+        <activity android:name=".Auth.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>
