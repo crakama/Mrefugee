@@ -15,6 +15,9 @@
     <string name="nav_view_item_7">Change Password</string>
     <string name="nav_view_category_2">Second Category</string>
     <string name="action_addcamp"> Add Camp</string>
+    <string name="updatenoticeboard"> Update Notice Board</string>
+    <string name="updatenews"> Update Notice Board</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -51,7 +54,7 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
 
 
-<!-- ADD NEWS-->
+    <!-- ADD NEWS-->
     <string name="hint_newsbody">News Description</string>
     <string name="hint_newshead">News Head</string>
 

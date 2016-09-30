@@ -10,7 +10,7 @@ import com.crakama.refugee.Message;
 /**
  * Created by cate.rakama@gmail.com on 9/15/2016.
  */
-public class DB {
+public class DBModel {
     boolean bool;
     String name, email, username, pass, newsHead, newsBody;
 

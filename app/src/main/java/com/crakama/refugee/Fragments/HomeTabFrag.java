@@ -1,7 +1,6 @@
-package com.crakama.refugee;
+package com.crakama.refugee.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
@@ -9,10 +8,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.TextView;
+
+import com.crakama.refugee.R;
 
 //import com.crakama.mrefugee.R;
 

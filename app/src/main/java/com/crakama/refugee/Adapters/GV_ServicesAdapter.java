@@ -1,4 +1,4 @@
-package com.crakama.refugee;
+package com.crakama.refugee.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.crakama.refugee.R;
 
 /**
  * Created by cate.rakama@gmail.com on 9/2/2016.

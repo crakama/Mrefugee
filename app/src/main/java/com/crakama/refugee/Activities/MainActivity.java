@@ -1,4 +1,4 @@
-package com.crakama.refugee;
+package com.crakama.refugee.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +25,12 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.crakama.refugee.Auth.LoginActivity;
 import com.crakama.refugee.Auth.RegisterActivity;
 import com.crakama.refugee.Auth.ResetPasswordActivity;
-import com.crakama.refugee.database.DBHelperAdapter;
+import com.crakama.refugee.DadaabCamp;
+import com.crakama.refugee.Fragments.DashBoardFrag;
+import com.crakama.refugee.Fragments.HomeTabFrag;
+import com.crakama.refugee.R;
+import com.crakama.refugee.Fragments.ServiceListFragment;
+import com.crakama.refugee.database.DBOperationsHelper;
 
 import java.util.ArrayList;
 
@@ -38,9 +43,6 @@ public class MainActivity extends AppCompatActivity implements
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigation;
 
-    ArrayList<String> camps = new ArrayList<String>();
-    DBHelperAdapter dbHelper;
-    SQLiteDatabase sqLiteDatabase;
 
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
@@ -50,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //dbHelper = new DBHelperAdapter(this);
-        //sqLiteDatabase = dbHelper.getWritableDatabase();
 
         /** INITIALIZE TABS*/
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
@@ -197,6 +197,16 @@ public class MainActivity extends AppCompatActivity implements
                             Intent resetIntent = new Intent(MainActivity.this, ResetPasswordActivity.class);
                             startActivity(resetIntent);
                             break;
+                        case R.id.navigation_item_2:
+                            //Do some thing here
+                            Intent noticeBoardIntent = new Intent(MainActivity.this, NoticeBoard.class);
+                            startActivity(noticeBoardIntent);
+                            break;
+                        case R.id.navigation_item_8:
+                            //Do some thing here
+                            Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
+                            startActivity(newsIntent);
+                            break;
 
                     }
                     return false;
@@ -286,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_addcamp) {
-            Intent addcampIntent = new Intent(MainActivity.this, AddCampActivity.class);
+            Intent addcampIntent = new Intent(MainActivity.this, UpdateNews.class);
             startActivity(addcampIntent);
             return true;
 

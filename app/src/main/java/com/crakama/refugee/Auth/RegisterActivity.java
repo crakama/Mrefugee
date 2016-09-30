@@ -11,16 +11,15 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.crakama.refugee.MainActivity;
+import com.crakama.refugee.Activities.MainActivity;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DBHelperAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
-//    DBHelperAdapter helper = new DBHelperAdapter(this);
+//    DBOperationsHelper helper = new DBOperationsHelper(this);
 //    Button btnregister;
 //    EditText txtUsername, txtEmail, txtPassword,txtConfirmPass;
    private EditText inputEmail, inputPassword;
@@ -126,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                   Toast pass = Toast.makeText(RegisterActivity.this,"Password did not match",Toast.LENGTH_SHORT);
 //                    pass.show();
 //                }else{
-//                    DB b = new DB();
+//                    DBModel b = new DBModel();
 //                    b.setUsername(nameStr);
 //                    b.setEmail(emailStr);
 //                    b.setPass(passStr);

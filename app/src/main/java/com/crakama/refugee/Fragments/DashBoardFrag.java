@@ -1,18 +1,19 @@
-package com.crakama.refugee;
+package com.crakama.refugee.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
+
+import com.crakama.refugee.Adapters.DBAdapter;
+import com.crakama.refugee.R;
+import com.crakama.refugee.database.DBOperationsHelper;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,9 +39,18 @@ public class DashBoardFrag extends Fragment {
     private int position;
     private OnDashBoardFragListener mListener;
 
+    /**
+     *
+     */
+    DatabaseReference db;
+    DBOperationsHelper dbOperationsHelper;
+    DBAdapter dbAdapter;
+    ListView newsListView;
+
+
 
     // Set grid view items titles and images
-    String[] listviewTitle = {
+  /**  String[] listviewTitle = {
             "PROTECTION", "CHILD REGISTRATION", "REPATRIATION", "RSD", "REFERRAL", "RESETTLEMENT",};
 
     int[] listviewImage = {
@@ -51,7 +61,7 @@ public class DashBoardFrag extends Fragment {
     String[] listviewShortDescription = new String[]{
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-    };
+    };*/
 
     public DashBoardFrag() {
         // Required empty public constructor
@@ -84,24 +94,32 @@ public class DashBoardFrag extends Fragment {
         // Inflate the fragment_dash_board for this fragment
         View rootView = inflater.inflate(R.layout.fragment_dash_board, container, false);
 
-        ListView androidListView = (ListView) rootView.findViewById(R.id.list_view);
+        newsListView = (ListView) rootView.findViewById(R.id.newslist_view);
 
-        List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
+//        List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
+//
+//        for (int i = 0; i < listviewTitle.length; i++) {
+//            HashMap<String, String> hm = new HashMap<String, String>();
+//            hm.put("listview_title", listviewTitle[i]);
+//            hm.put("listview_discription", listviewShortDescription[i]);
+//            hm.put("listview_image", Integer.toString(listviewImage[i]));
+//            aList.add(hm);
+//        }
+        db = FirebaseDatabase.getInstance().getReference();
+        dbOperationsHelper = new DBOperationsHelper(db);
 
-        for (int i = 0; i < listviewTitle.length; i++) {
-            HashMap<String, String> hm = new HashMap<String, String>();
-            hm.put("listview_title", listviewTitle[i]);
-            hm.put("listview_discription", listviewShortDescription[i]);
-            hm.put("listview_image", Integer.toString(listviewImage[i]));
-            aList.add(hm);
-        }
+        /**
+         * SET ADAPTER
+         */
+         dbAdapter = new DBAdapter(getActivity().getApplicationContext(),dbOperationsHelper.retrieveNews());
+         newsListView.setAdapter(dbAdapter);
 
-        String[] from = {"listview_image", "listview_title", "listview_discription"};
-        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
+//        String[] from = {"listview_image", "listview_title", "listview_discription"};
+//        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getApplicationContext(), aList, R.layout.fragment_dashboard_imagetext, from, to);
+      //  SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getApplicationContext(), aList, R.layout.fragment_dashboard_imagetext, from, to);
 
-        androidListView.setAdapter(simpleAdapter);
+     //   androidListView.setAdapter(simpleAdapter);
 
         return rootView;
 

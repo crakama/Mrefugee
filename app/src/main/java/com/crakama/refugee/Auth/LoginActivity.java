@@ -11,10 +11,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.crakama.refugee.MainActivity;
+import com.crakama.refugee.Activities.MainActivity;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DB;
-import com.crakama.refugee.database.DBHelperAdapter;
+import com.crakama.refugee.database.DBOperationsHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
    Button btnlogin;
     EditText txtusername,txtpassword;
-    DBHelperAdapter helper;
+    DBOperationsHelper helper;
 
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
