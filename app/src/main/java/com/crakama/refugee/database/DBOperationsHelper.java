@@ -18,7 +18,7 @@ import static android.content.ContentValues.TAG;
 public class DBOperationsHelper {
   DatabaseReference dbref;
     Boolean saved;
-    ArrayList<String> newsArraylist = new ArrayList<>();
+    ArrayList<DBModel> newsArraylist = new ArrayList<>();
 
 /**
  * DBModel REFERENCE
@@ -47,9 +47,9 @@ public class DBOperationsHelper {
     private void fetchData(DataSnapshot dataSnapshot){
         newsArraylist.clear();
         for(DataSnapshot ds : dataSnapshot.getChildren()){
-            String news = ds.getValue(DBModel.class).getNewsHead();
+            DBModel news = ds.getValue(DBModel.class);
             newsArraylist.add(news);
-            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(DBModel.class).getNewsHead());
+            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(DBModel.class));
         }
 
     }
@@ -57,7 +57,7 @@ public class DBOperationsHelper {
     /**
      * RETRIEVE NEWS
      */
-    public ArrayList<String> retrieveNews(){
+    public ArrayList<DBModel> retrieveNews(){
        dbref.addChildEventListener(new ChildEventListener() {
            @Override
            public void onChildAdded(DataSnapshot dataSnapshot, String s) {

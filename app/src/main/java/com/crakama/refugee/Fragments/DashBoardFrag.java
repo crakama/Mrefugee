@@ -109,13 +109,15 @@ public class DashBoardFrag extends Fragment {
          */
 
 
-         //dbAdapter = new DBAdapter(getActivity().getApplicationContext(),dbOperationsHelper.retrieveNews());
-        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,dbOperationsHelper.retrieveNews());
+         dbAdapter = new DBAdapter(getActivity().getApplicationContext(),dbOperationsHelper.retrieveNews());
+        //arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,dbOperationsHelper.retrieveNews());
 
         Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbOperationsHelper.retrieveNews());
 
+        newsListView.setAdapter(dbAdapter);
+
         //Toast.makeText(getActivity().getApplicationContext(), "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
-         newsListView.setAdapter(arrayAdapter);
+         //newsListView.setAdapter(arrayAdapter);
 
 
         return rootView;

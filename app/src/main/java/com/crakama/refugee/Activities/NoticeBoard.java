@@ -72,9 +72,9 @@ public class NoticeBoard extends AppCompatActivity {
 
                     //Toast.makeText(getActivity().getApplicationContext(), "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
                     //newsListView.setAdapter(arrayAdapter);
-                     //dbAdapter = new DBAdapter(NoticeBoard.this, dbOperationsHelper.retrieveNews());
+                     dbAdapter = new DBAdapter(NoticeBoard.this, dbOperationsHelper.retrieveNews());
                        //dbAdapter = new DBAdapter(NoticeBoard.this,dbOperationsHelper.retrieveNews());
-                       //newsListView.setAdapter(dbAdapter);
+                       newsListView.setAdapter(dbAdapter);
 
                 }else{
                     Toast.makeText(NoticeBoard.this, "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();

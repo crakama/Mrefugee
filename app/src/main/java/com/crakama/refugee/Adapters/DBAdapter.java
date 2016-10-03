@@ -1,6 +1,7 @@
 package com.crakama.refugee.Adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,12 @@ public class DBAdapter extends BaseAdapter{
         return position;
     }
 
+
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         if(convertView == null){
             convertView = LayoutInflater.from(cxt).inflate(R.layout.fragment_dashboard_imagetext,parent,false);
         }
@@ -69,4 +74,9 @@ public class DBAdapter extends BaseAdapter{
 
         return convertView;
     }
+
+
+
+
+
 }//Ends class DBAdapter
