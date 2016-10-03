@@ -1,12 +1,6 @@
 package com.crakama.refugee.Adapters;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +47,8 @@ public class DBAdapter extends BaseAdapter{
             convertView = LayoutInflater.from(cxt).inflate(R.layout.fragment_dashboard_imagetext,parent,false);
         }
 
-        TextView txtNewsHead = (TextView) convertView.findViewById(R.id.txtNewsHead);
-        TextView txtNewsBody = (TextView) convertView.findViewById(R.id.txtNewsBody);
+        TextView txtNewsHead = (TextView) convertView.findViewById(R.id.listview_item_title);
+        TextView txtNewsBody = (TextView) convertView.findViewById(R.id.listview_item_short_description);
 
         final DBModel dbModel = (DBModel) this.getItem(position);
 

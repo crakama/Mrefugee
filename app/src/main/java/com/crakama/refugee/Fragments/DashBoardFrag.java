@@ -3,14 +3,18 @@ package com.crakama.refugee.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.crakama.refugee.Adapters.DBAdapter;
 import com.crakama.refugee.R;
+import com.crakama.refugee.database.DBModel;
 import com.crakama.refugee.database.DBOperationsHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,15 +46,16 @@ public class DashBoardFrag extends Fragment {
     /**
      *
      */
-    DatabaseReference db;
+    DatabaseReference dbref;
     DBOperationsHelper dbOperationsHelper;
     DBAdapter dbAdapter;
+    ArrayAdapter<String> arrayAdapter;
     ListView newsListView;
 
 
 
     // Set grid view items titles and images
-  /**  String[] listviewTitle = {
+  /** String[] listviewTitle = {
             "PROTECTION", "CHILD REGISTRATION", "REPATRIATION", "RSD", "REFERRAL", "RESETTLEMENT",};
 
     int[] listviewImage = {
@@ -61,7 +66,7 @@ public class DashBoardFrag extends Fragment {
     String[] listviewShortDescription = new String[]{
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-    };*/
+    };
 
     public DashBoardFrag() {
         // Required empty public constructor
@@ -96,32 +101,27 @@ public class DashBoardFrag extends Fragment {
 
         newsListView = (ListView) rootView.findViewById(R.id.newslist_view);
 
-//        List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
-//
-//        for (int i = 0; i < listviewTitle.length; i++) {
-//            HashMap<String, String> hm = new HashMap<String, String>();
-//            hm.put("listview_title", listviewTitle[i]);
-//            hm.put("listview_discription", listviewShortDescription[i]);
-//            hm.put("listview_image", Integer.toString(listviewImage[i]));
-//            aList.add(hm);
-//        }
-        db = FirebaseDatabase.getInstance().getReference();
-        dbOperationsHelper = new DBOperationsHelper(db);
+        dbref = FirebaseDatabase.getInstance().getReference();
+        dbOperationsHelper = new DBOperationsHelper(dbref);
 
         /**
          * SET ADAPTER
          */
-         dbAdapter = new DBAdapter(getActivity().getApplicationContext(),dbOperationsHelper.retrieveNews());
-         newsListView.setAdapter(dbAdapter);
 
-//        String[] from = {"listview_image", "listview_title", "listview_discription"};
-//        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
 
-      //  SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getApplicationContext(), aList, R.layout.fragment_dashboard_imagetext, from, to);
+         //dbAdapter = new DBAdapter(getActivity().getApplicationContext(),dbOperationsHelper.retrieveNews());
+        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,dbOperationsHelper.retrieveNews());
 
-     //   androidListView.setAdapter(simpleAdapter);
+        Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbOperationsHelper.retrieveNews());
+
+        //Toast.makeText(getActivity().getApplicationContext(), "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
+         newsListView.setAdapter(arrayAdapter);
+
 
         return rootView;
+
+
+
 
     }
 

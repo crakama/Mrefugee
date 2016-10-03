@@ -31,6 +31,7 @@ import com.crakama.refugee.Fragments.HomeTabFrag;
 import com.crakama.refugee.R;
 import com.crakama.refugee.Fragments.ServiceListFragment;
 import com.crakama.refugee.database.DBOperationsHelper;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -167,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements
 
         //Initializing NavigationView
         navigation = (NavigationView) findViewById(R.id.navigation_view);
+
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -197,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements
                             Intent resetIntent = new Intent(MainActivity.this, ResetPasswordActivity.class);
                             startActivity(resetIntent);
                             break;
-                        case R.id.navigation_item_2:
+                        case R.id.nv_updatenoticeboard:
                             //Do some thing here
                             Intent noticeBoardIntent = new Intent(MainActivity.this, NoticeBoard.class);
                             startActivity(noticeBoardIntent);

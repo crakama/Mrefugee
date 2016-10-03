@@ -48,5 +48,8 @@
         app:itemTextColor="#333"
         app:menu="@menu/navigation_view_items" />
 
+
+
+
 </android.support.v4.widget.DrawerLayout>
 
