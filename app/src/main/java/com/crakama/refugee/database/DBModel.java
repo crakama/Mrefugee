@@ -12,7 +12,17 @@ import com.crakama.refugee.Message;
  */
 public class DBModel {
     boolean bool;
-    String name, email, username, pass, newsHead, newsBody;
+    String name, email, username, pass,image, newsHead, newsBody;
+
+
+    public DBModel() {
+    }
+
+    public DBModel(String newsHead, String image, String newsBody) {
+        this.newsHead = newsHead;
+        this.newsBody = newsBody;
+        this.image = image;
+    }
 
     public void setIsLogin(boolean bl){
         this.bool = bl;

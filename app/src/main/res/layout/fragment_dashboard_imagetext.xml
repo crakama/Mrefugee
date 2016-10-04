@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view = "http://schemas.android.com/apk/res-auto"
     android:id="@+id/android_list_view"
     android:layout_width="match_parent"
@@ -8,36 +8,59 @@
     android:orientation="horizontal"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="5dp"
-    android:padding="7dp">
+    card_view:cardBackgroundColor="@color/colorWhite"
+    android:padding="7dp"
+    >
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:orientation="horizontal"-->
+    <!--card_view:cardCornerRadius="5dp"-->
+    <!--card_view:cardElevation="5dp"-->
+    <!--card_view:cardBackgroundColor="@color/colorWhite"-->
 
-    <ImageView
-        android:id="@+id/listview_image"
-        android:layout_width="wrap_content"
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/android_card_view_example"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        android:contentDescription="@string/app_name"
-        android:padding="10dp" />
-
-    <LinearLayout
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="5dp"
+        card_view:cardBackgroundColor="@color/colorWhite">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="7dp">
+        <ImageView
+            android:id="@+id/listview_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp" />
 
         <TextView
             android:id="@+id/listview_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:textColor="@color/black"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/listview_image"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/listview_item_short_description"
             android:layout_width="wrap_content"
-            android:textColor="@color/black"
+            android:layout_below="@+id/listview_item_title"
+            android:layout_toRightOf="@+id/listview_image"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"/>
 
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

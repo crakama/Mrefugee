@@ -52,6 +52,7 @@ public class DBOperationsHelper {
             Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(DBModel.class));
         }
 
+
     }
 
     /**

@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/fragment_news_rv"/>
+
     <ListView
         android:id="@+id/newslist_view"
         android:layout_width="fill_parent"
