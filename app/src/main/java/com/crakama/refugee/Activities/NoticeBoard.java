@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.crakama.refugee.Adapters.DBAdapter;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DBModel;
+import com.crakama.refugee.database.NewsModel;
 import com.crakama.refugee.database.DBOperationsHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -52,7 +52,7 @@ public class NoticeBoard extends AppCompatActivity {
                 /**
                  * SET DATA
                  */
-                DBModel dbModel = new DBModel();
+                NewsModel dbModel = new NewsModel();
                 dbModel.setNewsHead(newsHead);
                 dbModel.setNewsBody(newsBody);
                 /**

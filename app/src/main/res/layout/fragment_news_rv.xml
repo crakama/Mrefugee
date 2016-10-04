@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activity_vertical_margin">
 
-    <view
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_noticeboard"
         class="android.support.v7.widget.RecyclerView"
         android:layout_width="match_parent"

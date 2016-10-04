@@ -24,7 +24,7 @@ public class DatabaseModel extends RecyclerView.ViewHolder{
         this.newsBody = (TextView) itemView.findViewById(R.id.listview_item_short_description);
         this.description = description;
         this.Image = Image;
-        mView = itemView;
+        //mView = itemView;
     }
 
 //    public void setNewsHead(String newsHead){

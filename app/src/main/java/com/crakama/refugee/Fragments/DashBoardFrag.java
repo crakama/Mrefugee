@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.AdapterDataObserver;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.crakama.refugee.Adapters.DBAdapter;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DBModel;
+import com.crakama.refugee.database.NewsModel;
 import com.crakama.refugee.database.DBOperationsHelper;
 import com.crakama.refugee.database.DatabaseModel;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -30,26 +29,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 //import com.crakama.mrefugee.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link //DashBoardFrag.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DashBoardFrag#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DashBoardFrag extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
-
-
-    // TODO: Rename and change types of parameters
     private int position;
     private OnDashBoardFragListener mListener;
 
@@ -57,28 +42,25 @@ public class DashBoardFrag extends Fragment {
      *
      */
     DatabaseReference dbref;
-    DBOperationsHelper dbOperationsHelper;
-    DBAdapter dbAdapter;
-    ArrayAdapter<String> arrayAdapter;
-    FirebaseListAdapter firebaseListAdapter;
-    FirebaseRecyclerAdapter firebaseRecyclerAdapter;
-    ListView newsListView;
-    ArrayList<DBModel> newsArraylist = new ArrayList<>();
+    FirebaseRecyclerAdapter<NewsModel,NewsModelVH> firebasenewsRecycleAdapter ;
+    RecyclerView newsrecyclerView;
+    LinearLayoutManager nwlinearLayoutManager;
+    ArrayList<NewsModel> newsArraylist = new ArrayList<>();
 
 
-    // Set grid view items titles and images
-  /** String[] listviewTitle = {
-            "PROTECTION", "CHILD REGISTRATION", "REPATRIATION", "RSD", "REFERRAL", "RESETTLEMENT",};
 
-    int[] listviewImage = {
-            R.drawable.protection, R.drawable.childregistration,
-            R.drawable.repatriation, R.drawable.rsd,
-            R.drawable.refferal, R.drawable.resettlement,};
+    public static class NewsModelVH extends RecyclerView.ViewHolder{
 
-    String[] listviewShortDescription = new String[]{
-            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-    };
+        public TextView newsHead, newsBody;
+
+        public NewsModelVH(View itemView) {
+            super(itemView);
+            this.newsHead = (TextView) itemView.findViewById(R.id.listview_item_title);
+            this.newsBody = (TextView) itemView.findViewById(R.id.listview_item_short_description);
+           }
+        }// End NewsModelVH class
+
+    public static final String NEWS= "NewsModel";
 
     public DashBoardFrag() {
         // Required empty public constructor
@@ -109,39 +91,72 @@ public class DashBoardFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the fragment_dash_board for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_dash_board, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_news_rv, container, false);
 
-        newsListView = (ListView) rootView.findViewById(R.id.newslist_view);
+        //newsListView = (ListView) rootView.findViewById(R.id.newslist_view);
+        newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_noticeboard);
+        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+        nwlinearLayoutManager.setStackFromEnd(true);
+        //newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
 
         dbref = FirebaseDatabase.getInstance().getReference();
-        dbOperationsHelper = new DBOperationsHelper(dbref);
+       // dbOperationsHelper = new DBOperationsHelper(dbref);
 
-        dbref.limitToLast(10).addChildEventListener(new ChildEventListener() {
+        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
+                NewsModel.class,
+                R.layout.fragment_dashboard_imagetext,
+                NewsModelVH.class,
+                dbref.child(NEWS)) {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                fetchData(dataSnapshot);
+            protected void populateViewHolder(NewsModelVH viewHolder, NewsModel model, int position) {
+                viewHolder.newsHead.setText(model.getNewsHead());
+                viewHolder.newsBody.setText(model.getNewsBody());
             }
+        };
 
+        firebasenewsRecycleAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver(){
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                fetchData(dataSnapshot);
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+             public void onItemRangeInserted(int positionStart, int itemCount){
+                super.onItemRangeInserted(positionStart, itemCount);
+                int newsCount = firebasenewsRecycleAdapter.getItemCount();
+                int lastVisiblePosition = nwlinearLayoutManager.findLastVisibleItemPosition();
+                if(lastVisiblePosition == -1 || (positionStart>= (newsCount -1) && lastVisiblePosition == (positionStart -1))){
+                    newsrecyclerView.scrollToPosition(positionStart);
+                }
             }
         });
+        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+        newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
+
+
+
+//
+//        dbref.limitToLast(10).addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                fetchData(dataSnapshot);
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                fetchData(dataSnapshot);
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
 
@@ -149,45 +164,12 @@ public class DashBoardFrag extends Fragment {
          * SET ADAPTER
          */
 
-//        firebaseListAdapter = new FirebaseListAdapter<DBModel>(getActivity(), DBModel.class, R.layout.fragment_dashboard_imagetext, dbref) {
-//            DBModel dbModel = new DBModel();
-//            @Override
-//            protected void populateView(View view, DBModel news, int position) {
-//                ((TextView)view.findViewById(R.id.listview_item_title)).setText(dbModel.getNewsHead());
-//                ((TextView)view.findViewById(R.id.listview_item_short_description)).setText(dbModel.getNewsBody());
-//
-//            }
-//        };
-//        newsListView.setAdapter(firebaseListAdapter);
-        // Initialize recycler view
-        RecyclerView newsrecycler = (RecyclerView) rootView.findViewById(R.id.rv_noticeboard);
-        newsrecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        //newsrecycler.setHasFixedSize(true);
-
-
         ProgressBar newsprogressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         newsprogressBar.setVisibility(View.VISIBLE);
 
 
 
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<DBModel, DatabaseModel>(DBModel.class, R.layout.fragment_dashboard_imagetext, DatabaseModel.class, dbref) {
-            @Override
-            public void populateViewHolder(final  DatabaseModel newsMessageViewHolder, DBModel news, int position) {
-                newsMessageViewHolder.newsHead.setText(news.getNewsHead());
-                newsMessageViewHolder.newsBody.setText(news.getNewsBody());
-            }
-        };
-        firebaseRecyclerAdapter.notifyDataSetChanged();
-        newsrecycler.setAdapter(firebaseRecyclerAdapter);
-         //dbAdapter = new DBAdapter(getActivity().getApplicationContext(),dbOperationsHelper.retrieveNews());
-        //arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, R.layout.fragment_dashboard_imagetext,dbOperationsHelper.retrieveNews());
-
-        Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbOperationsHelper.retrieveNews());
-
-        //newsListView.setAdapter(dbAdapter);
-
-        //Toast.makeText(getActivity().getApplicationContext(), "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
-         //newsListView.setAdapter(arrayAdapter);
+        Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbref);
 
         return rootView;
 
@@ -196,9 +178,9 @@ public class DashBoardFrag extends Fragment {
     private void fetchData(DataSnapshot dataSnapshot){
         newsArraylist.clear();
         for(DataSnapshot ds : dataSnapshot.getChildren()){
-            DBModel news = ds.getValue(DBModel.class);
+            NewsModel news = ds.getValue(NewsModel.class);
             newsArraylist.add(news);
-            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(DBModel.class));
+            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(NewsModel.class));
         }
        // tell the adapter that we changed its data
         //firebaseRecyclerAdapter.notifyDataSetChanged();

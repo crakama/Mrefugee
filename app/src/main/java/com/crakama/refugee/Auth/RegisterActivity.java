@@ -125,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                   Toast pass = Toast.makeText(RegisterActivity.this,"Password did not match",Toast.LENGTH_SHORT);
 //                    pass.show();
 //                }else{
-//                    DBModel b = new DBModel();
+//                    NewsModel b = new NewsModel();
 //                    b.setUsername(nameStr);
 //                    b.setEmail(emailStr);
 //                    b.setPass(passStr);

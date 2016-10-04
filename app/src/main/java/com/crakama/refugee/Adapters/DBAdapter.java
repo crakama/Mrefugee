@@ -1,7 +1,6 @@
 package com.crakama.refugee.Adapters;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DBModel;
+import com.crakama.refugee.database.NewsModel;
 
 import java.util.ArrayList;
 
@@ -20,9 +19,9 @@ import java.util.ArrayList;
 public class DBAdapter extends BaseAdapter{
 
    Context cxt;
-    ArrayList<DBModel> newsArraylist;
+    ArrayList<NewsModel> newsArraylist;
 
-    public DBAdapter(Context c, ArrayList<DBModel> newsArraylist) {
+    public DBAdapter(Context c, ArrayList<NewsModel> newsArraylist) {
         this.cxt =c;
         this.newsArraylist = newsArraylist;
     }
@@ -55,7 +54,7 @@ public class DBAdapter extends BaseAdapter{
         TextView txtNewsHead = (TextView) convertView.findViewById(R.id.listview_item_title);
         TextView txtNewsBody = (TextView) convertView.findViewById(R.id.listview_item_short_description);
 
-        final DBModel dbModel = (DBModel) this.getItem(position);
+        final NewsModel dbModel = (NewsModel) this.getItem(position);
 
         txtNewsHead.setText(dbModel.getNewsHead());
         txtNewsBody.setText(dbModel.getNewsBody());

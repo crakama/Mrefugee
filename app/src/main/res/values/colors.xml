@@ -60,7 +60,7 @@
     <color name="lightcyan">#E0FFFF</color>
     <color name="burlywood">#DEB887</color>
     <color name="plum">#DDA0DD</color>
-    <color name="gainsboro">#DCDCDC</color>
+    <color name="gainsboro">#eeeeee</color>
     <color name="crimson">#DC143C</color>
     <color name="palevioletred">#DB7093</color>
     <color name="goldenrod">#DAA520</color>

@@ -10,30 +10,28 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by cate.rakama@gmail.com on 9/12/2016.
  */
 public class DBOperationsHelper {
   DatabaseReference dbref;
     Boolean saved;
-    ArrayList<DBModel> newsArraylist = new ArrayList<>();
+    ArrayList<NewsModel> newsArraylist = new ArrayList<>();
 
 /**
- * DBModel REFERENCE
+ * NewsModel REFERENCE
  */
 
     public DBOperationsHelper(DatabaseReference db){
         this.dbref = db;
     }
 
-    public Boolean save(DBModel news){
+    public Boolean save(NewsModel news){
         if(news == null){
             saved = false;
         }else{
             try {
-                dbref.child("DBModel").push().setValue(news);
+                dbref.child("NewsModel").push().setValue(news);
                 saved = true;
             } catch (DatabaseException e) {
 
@@ -47,9 +45,9 @@ public class DBOperationsHelper {
     private void fetchData(DataSnapshot dataSnapshot){
         newsArraylist.clear();
         for(DataSnapshot ds : dataSnapshot.getChildren()){
-            DBModel news = ds.getValue(DBModel.class);
+            NewsModel news = ds.getValue(NewsModel.class);
             newsArraylist.add(news);
-            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(DBModel.class));
+            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(NewsModel.class));
         }
 
 
@@ -58,7 +56,7 @@ public class DBOperationsHelper {
     /**
      * RETRIEVE NEWS
      */
-    public ArrayList<DBModel> retrieveNews(){
+    public ArrayList<NewsModel> retrieveNews(){
        dbref.addChildEventListener(new ChildEventListener() {
            @Override
            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
