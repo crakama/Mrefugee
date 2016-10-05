@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class NoticeBoard extends AppCompatActivity {
-    EditText txtNewsHead,txtNewsBody;
+    EditText txtNewsHead,txtNewsBody,txtnewsorganization;
     DatabaseReference db;
     DBOperationsHelper dbOperationsHelper;
     DBAdapter dbAdapter;
@@ -38,6 +38,9 @@ public class NoticeBoard extends AppCompatActivity {
 
         txtNewsHead = (EditText) findViewById(R.id.txtNewsHead);
         txtNewsBody = (EditText) findViewById(R.id.txtNewsBody);
+        txtnewsorganization = (EditText) findViewById(R.id.txtnewsorganization);
+
+
         Button btnNewsUpdate = (Button) findViewById(R.id.btn_add_notice);
 
         btnNewsUpdate.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +51,7 @@ public class NoticeBoard extends AppCompatActivity {
                  */
                 String newsHead = txtNewsHead.getText().toString();
                 String newsBody = txtNewsBody.getText().toString();
+                String newsorganization = txtnewsorganization.getText().toString();
 
                 /**
                  * SET DATA
@@ -55,6 +59,7 @@ public class NoticeBoard extends AppCompatActivity {
                 NewsModel dbModel = new NewsModel();
                 dbModel.setNewsHead(newsHead);
                 dbModel.setNewsBody(newsBody);
+                dbModel.setOrganization(newsorganization);
                 /**
                  * SIMPLE VALIDATION
                  */
@@ -68,6 +73,8 @@ public class NoticeBoard extends AppCompatActivity {
                      */
                     txtNewsHead.setText("");
                     txtNewsBody.setText("");
+                    txtnewsorganization.setText("");
+
                     //arrayAdapter = new ArrayAdapter<String>(NoticeBoard.this, android.R.layout.simple_list_item_1,dbOperationsHelper.retrieveNews());
 
                     //Toast.makeText(getActivity().getApplicationContext(), "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();

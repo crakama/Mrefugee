@@ -5,26 +5,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.AdapterDataObserver;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.crakama.refugee.Adapters.DBAdapter;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.NewsModel;
-import com.crakama.refugee.database.DBOperationsHelper;
-import com.crakama.refugee.database.DatabaseModel;
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -45,18 +36,20 @@ public class DashBoardFrag extends Fragment {
     FirebaseRecyclerAdapter<NewsModel,NewsModelVH> firebasenewsRecycleAdapter ;
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
+    ProgressBar newsprogressBar;
     ArrayList<NewsModel> newsArraylist = new ArrayList<>();
 
 
 
     public static class NewsModelVH extends RecyclerView.ViewHolder{
 
-        public TextView newsHead, newsBody;
+        public TextView newsHead, newsBody,newsOrganization;
 
         public NewsModelVH(View itemView) {
             super(itemView);
             this.newsHead = (TextView) itemView.findViewById(R.id.listview_item_title);
             this.newsBody = (TextView) itemView.findViewById(R.id.listview_item_short_description);
+            this.newsOrganization = (TextView) itemView.findViewById(R.id.listview_item_organization);
            }
         }// End NewsModelVH class
 
@@ -92,16 +85,11 @@ public class DashBoardFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the fragment_dash_board for this fragment
         View rootView = inflater.inflate(R.layout.fragment_news_rv, container, false);
-
-        //newsListView = (ListView) rootView.findViewById(R.id.newslist_view);
         newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_noticeboard);
         nwlinearLayoutManager = new LinearLayoutManager(getActivity());
         nwlinearLayoutManager.setStackFromEnd(true);
-        //newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
 
         dbref = FirebaseDatabase.getInstance().getReference();
-       // dbOperationsHelper = new DBOperationsHelper(dbref);
-
         firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
                 NewsModel.class,
                 R.layout.fragment_dashboard_imagetext,
@@ -111,6 +99,7 @@ public class DashBoardFrag extends Fragment {
             protected void populateViewHolder(NewsModelVH viewHolder, NewsModel model, int position) {
                 viewHolder.newsHead.setText(model.getNewsHead());
                 viewHolder.newsBody.setText(model.getNewsBody());
+                viewHolder.newsOrganization.setText(model.getOrganization());
             }
         };
 
@@ -128,46 +117,12 @@ public class DashBoardFrag extends Fragment {
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
 
-
-
-//
-//        dbref.limitToLast(10).addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                fetchData(dataSnapshot);
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                fetchData(dataSnapshot);
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
-
         /**
          * SET ADAPTER
          */
 
-        ProgressBar newsprogressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+        newsprogressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         newsprogressBar.setVisibility(View.VISIBLE);
-
-
 
         Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbref);
 
@@ -195,6 +150,8 @@ public class DashBoardFrag extends Fragment {
         super.onAttach(context);
         if (context instanceof OnDashBoardFragListener) {
             mListener = (OnDashBoardFragListener) context;
+
+            //newsprogressBar.setVisibility(View.GONE);
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");

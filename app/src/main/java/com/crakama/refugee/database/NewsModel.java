@@ -11,15 +11,28 @@ import com.crakama.refugee.Message;
  * Created by cate.rakama@gmail.com on 9/15/2016.
  */
 public class NewsModel {
-    String email, username, pass, newsHead, newsBody;
+    String newsHead;
+    String newsBody;
+    String newsorganization;
+
+    public void setOrganization(String newsorganization) {
+        this.newsorganization = newsorganization;
+    }
+
+
+
+    public String getOrganization() {
+        return newsorganization;
+    }
 
 
     public NewsModel() {
     }
 
-    public NewsModel(String newsHead, String newsBody) {
+    public NewsModel(String newsHead, String newsBody, String newsorganization) {
         this.newsHead = newsHead;
         this.newsBody = newsBody;
+        this.newsorganization = newsorganization;
 
     }
 

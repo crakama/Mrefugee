@@ -57,5 +57,9 @@
     <!-- ADD NEWS-->
     <string name="hint_newsbody">News Description</string>
     <string name="hint_newshead">News Head</string>
+    <string name="hint_newsorg">Organization</string>
+
+    <string name="read_more"><u>Read More</u></string>
+
 
 </resources>

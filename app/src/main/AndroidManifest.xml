@@ -28,7 +28,8 @@
         <activity android:name=".Auth.RegisterActivity" />
         <activity android:name=".Auth.ResetPasswordActivity" />
         <activity android:name=".Auth.ChangePasswordActivity" />
-        <activity android:name=".Activities.NoticeBoard"></activity>
+        <activity android:name=".Activities.NoticeBoard" />
+        <activity android:name=".Activities.NoticeDetails"></activity>
     </application>
 
 </manifest>

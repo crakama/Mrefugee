@@ -53,11 +53,13 @@ public class DBAdapter extends BaseAdapter{
 
         TextView txtNewsHead = (TextView) convertView.findViewById(R.id.listview_item_title);
         TextView txtNewsBody = (TextView) convertView.findViewById(R.id.listview_item_short_description);
+        TextView txtNewsOrg= (TextView) convertView.findViewById(R.id.listview_item_organization);
 
         final NewsModel dbModel = (NewsModel) this.getItem(position);
 
         txtNewsHead.setText(dbModel.getNewsHead());
         txtNewsBody.setText(dbModel.getNewsBody());
+        txtNewsOrg.setText(dbModel.getOrganization());
 
         /**
          * ON ITEM CLICK
