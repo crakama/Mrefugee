@@ -1,6 +1,7 @@
 package com.crakama.refugee.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,19 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import com.crakama.refugee.Activities.NoticeDetails;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.NewsModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
+import static android.content.ContentValues.TAG;
 
 //import com.crakama.mrefugee.R;
 
-public class DashBoardFrag extends Fragment {
+public class NoticeBoardFrag extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
     private int position;
@@ -37,25 +37,26 @@ public class DashBoardFrag extends Fragment {
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
-    ArrayList<NewsModel> newsArraylist = new ArrayList<>();
-
 
 
     public static class NewsModelVH extends RecyclerView.ViewHolder{
 
         public TextView newsHead, newsBody,newsOrganization;
+        View mView;
 
         public NewsModelVH(View itemView) {
             super(itemView);
-            this.newsHead = (TextView) itemView.findViewById(R.id.listview_item_title);
-            this.newsBody = (TextView) itemView.findViewById(R.id.listview_item_short_description);
-            this.newsOrganization = (TextView) itemView.findViewById(R.id.listview_item_organization);
+            this.mView = itemView;
+            this.newsHead = (TextView) mView.findViewById(R.id.listview_item_title);
+            this.newsBody = (TextView) mView.findViewById(R.id.listview_item_short_description);
+            this.newsOrganization = (TextView) mView.findViewById(R.id.listview_item_organization);
            }
+
         }// End NewsModelVH class
 
     public static final String NEWS= "NewsModel";
 
-    public DashBoardFrag() {
+    public NoticeBoardFrag() {
         // Required empty public constructor
     }
 
@@ -64,8 +65,8 @@ public class DashBoardFrag extends Fragment {
      * this fragment using the provided parameters.
      */
     // TODO: Rename and change types and number of parameters
-    public static DashBoardFrag newInstance(int position) {
-        DashBoardFrag fragment = new DashBoardFrag();
+    public static NoticeBoardFrag newInstance(int position) {
+        NoticeBoardFrag fragment = new NoticeBoardFrag();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION,position);
         fragment.setArguments(args);
@@ -83,8 +84,8 @@ public class DashBoardFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the fragment_dash_board for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_news_rv, container, false);
+        // Inflate the fragment_dash_boardxxx for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_notice_rv, container, false);
         newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_noticeboard);
         nwlinearLayoutManager = new LinearLayoutManager(getActivity());
         nwlinearLayoutManager.setStackFromEnd(true);
@@ -96,10 +97,28 @@ public class DashBoardFrag extends Fragment {
                 NewsModelVH.class,
                 dbref.child(NEWS)) {
             @Override
-            protected void populateViewHolder(NewsModelVH viewHolder, NewsModel model, int position) {
+            protected void populateViewHolder(NewsModelVH viewHolder, final NewsModel model, final int position) {
                 viewHolder.newsHead.setText(model.getNewsHead());
                 viewHolder.newsBody.setText(model.getNewsBody());
                 viewHolder.newsOrganization.setText(model.getOrganization());
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.w(TAG, "You clicked on "+ position);
+                        //firebasenewsRecycleAdapter.getRef(position).removeValue();
+                        openNewsDetailActivity(model.getNewsHead(), model.getNewsBody(),model.getOrganization());
+                    }
+                });
+            }
+
+            private void openNewsDetailActivity(String...details) {
+                Intent newsIntent = new Intent(getActivity(), NoticeDetails.class);
+                newsIntent.putExtra("TTTLE_KEY", details[0]);
+                newsIntent.putExtra("DESC_KEY", details[1]);
+                newsIntent.putExtra("ORG_KEY", details[2]);
+
+                startActivity(newsIntent);
             }
         };
 
@@ -114,6 +133,7 @@ public class DashBoardFrag extends Fragment {
                 }
             }
         });
+
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
 
@@ -127,18 +147,6 @@ public class DashBoardFrag extends Fragment {
         Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbref);
 
         return rootView;
-
-    }
-    /**IMPLEMENT FETCH FUNCTION THAT FILLS THE ARRAYLIST  */
-    private void fetchData(DataSnapshot dataSnapshot){
-        newsArraylist.clear();
-        for(DataSnapshot ds : dataSnapshot.getChildren()){
-            NewsModel news = ds.getValue(NewsModel.class);
-            newsArraylist.add(news);
-            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(NewsModel.class));
-        }
-       // tell the adapter that we changed its data
-        //firebaseRecyclerAdapter.notifyDataSetChanged();
 
     }
 

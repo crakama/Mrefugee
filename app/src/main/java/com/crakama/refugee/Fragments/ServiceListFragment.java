@@ -72,10 +72,10 @@ public class ServiceListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the fragment_dash_board for this fragment
+        // Inflate the fragment_dash_boardxxx for this fragment
             View rootView = inflater.inflate(R.layout.activity_gv_services, container, false);
 
-            // Here we inflate the fragment_dash_board we created above
+            // Here we inflate the fragment_dash_boardxxx we created above
             GridView gridView = (GridView) rootView.findViewById(R.id.gv_services);
             gridView.setAdapter(new GV_ServicesAdapter(getActivity().getApplicationContext(),gridViewString, gridViewImageId));
            //gridView.getOnItemClickListener(myOnItemClickListener);

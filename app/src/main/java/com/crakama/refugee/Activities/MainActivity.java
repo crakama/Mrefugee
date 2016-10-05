@@ -3,7 +3,6 @@ package com.crakama.refugee.Activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -26,18 +25,14 @@ import com.crakama.refugee.Auth.LoginActivity;
 import com.crakama.refugee.Auth.RegisterActivity;
 import com.crakama.refugee.Auth.ResetPasswordActivity;
 import com.crakama.refugee.DadaabCamp;
-import com.crakama.refugee.Fragments.DashBoardFrag;
+import com.crakama.refugee.Fragments.NoticeBoardFrag;
 import com.crakama.refugee.Fragments.HomeTabFrag;
 import com.crakama.refugee.R;
 import com.crakama.refugee.Fragments.ServiceListFragment;
-import com.crakama.refugee.database.DBOperationsHelper;
-import com.melnykov.fab.FloatingActionButton;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
         ServiceListFragment.OnGridItemFragInteractionListener,
-        HomeTabFrag.OnHomeTabFragListener, DashBoardFrag.OnDashBoardFragListener {
+        HomeTabFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener {
 
 
     DrawerLayout drawerLayout;
@@ -337,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements
                     return ServiceListFragment.newInstance(position);
 
                 case 2:
-                    return DashBoardFrag.newInstance(position);
+                    return NoticeBoardFrag.newInstance(position);
 
                 default:
                     return null;

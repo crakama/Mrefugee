@@ -5,6 +5,8 @@
 <color name="colorAccent">#FF3F80</color>
     <color name="colorAccentLight">#FF80AB</color>
 <color name="colorWhite">#FFFFFF</color>
+    <color name="colorPrimaryGrey">#C5CAE9</color>
+
 
     <color name="xx">#FF666666</color>
     <color name="white">#FFFFFF</color>
@@ -68,6 +70,8 @@
     <color name="orchid">#DA70D6</color>
     <color name="thistle">#D8BFD8</color>
     <color name="lightgrey">#D3D3D3</color>
+    <color name="bluegrey">#607D8B</color>
+    <color name="grey">#757575</color>
     <color name="tan">#D2B48C</color>
     <color name="chocolate">#D2691E</color>
     <color name="peru">#CD853F</color>

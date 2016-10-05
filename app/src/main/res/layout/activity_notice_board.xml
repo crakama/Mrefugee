@@ -17,7 +17,7 @@
     <!--android:layout_marginBottom="20dp"-->
     <!--android:visibility="gone" />-->
 
-    <include layout="@layout/fragment_dash_board"/>
+    <!--<include layout="@layout/fragment_dash_boardxxx"/>-->
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -78,7 +78,7 @@
                 android:layout_marginTop="20dp"
                 android:minLines="2"
                 android:maxLines="5"
-                android:hint="@string/hint_newsbody"
+                android:hint="@string/hint_newsorg"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:selectAllOnFocus="true" />
