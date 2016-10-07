@@ -1,49 +1,21 @@
 package com.crakama.refugee.database;
 
-import android.content.Context;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import com.crakama.refugee.Message;
-
 /**
- * Created by cate.rakama@gmail.com on 9/15/2016.
+ * Created by User on 10/6/2016.
  */
+
 public class NewsModel {
-    String newsHead;
-    String newsBody;
-    String newsorganization;
 
-    public void setOrganization(String newsorganization) {
-        this.newsorganization = newsorganization;
-    }
-
-
-
-    public String getOrganization() {
-        return newsorganization;
-    }
-
-
-    public NewsModel() {
-    }
-
-    public NewsModel(String newsHead, String newsBody, String newsorganization) {
-        this.newsHead = newsHead;
-        this.newsBody = newsBody;
-        this.newsorganization = newsorganization;
-
-    }
 
     public String getNewsHead() {
         return newsHead;
     }
 
-    public void setNewsHead(String nws_name){
-        this.newsHead = nws_name;
-
+    public void setNewsHead(String newsHead) {
+        this.newsHead = newsHead;
     }
+
+    String newsHead;
 
     public String getNewsBody() {
         return newsBody;
@@ -53,5 +25,15 @@ public class NewsModel {
         this.newsBody = newsBody;
     }
 
+    String newsBody;
 
+    public String getNewsorganization() {
+        return newsorganization;
+    }
+
+    public void setNewsorganization(String newsorganization) {
+        this.newsorganization = newsorganization;
+    }
+
+    String newsorganization;
 }

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.NewsModel;
+import com.crakama.refugee.database.NoticeBoardModel;
 
 import java.util.ArrayList;
 
@@ -19,9 +19,9 @@ import java.util.ArrayList;
 public class DBAdapter extends BaseAdapter{
 
    Context cxt;
-    ArrayList<NewsModel> newsArraylist;
+    ArrayList<NoticeBoardModel> newsArraylist;
 
-    public DBAdapter(Context c, ArrayList<NewsModel> newsArraylist) {
+    public DBAdapter(Context c, ArrayList<NoticeBoardModel> newsArraylist) {
         this.cxt =c;
         this.newsArraylist = newsArraylist;
     }
@@ -55,7 +55,7 @@ public class DBAdapter extends BaseAdapter{
         TextView txtNewsBody = (TextView) convertView.findViewById(R.id.listview_item_short_description);
         TextView txtNewsOrg= (TextView) convertView.findViewById(R.id.listview_item_organization);
 
-        final NewsModel dbModel = (NewsModel) this.getItem(position);
+        final NoticeBoardModel dbModel = (NoticeBoardModel) this.getItem(position);
 
         txtNewsHead.setText(dbModel.getNewsHead());
         txtNewsBody.setText(dbModel.getNewsBody());

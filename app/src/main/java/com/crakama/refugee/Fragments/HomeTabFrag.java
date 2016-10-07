@@ -1,17 +1,30 @@
 package com.crakama.refugee.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.crakama.refugee.Activities.NoticeDetails;
 import com.crakama.refugee.R;
+import com.crakama.refugee.database.NewsModel;
+import com.crakama.refugee.database.NoticeBoardModel;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static android.content.ContentValues.TAG;
 
 //import com.crakama.mrefugee.R;
 
@@ -32,13 +45,31 @@ public class HomeTabFrag extends Fragment {
     private OnHomeTabFragListener mListener;
 
     // Set grid view items titles and images
-    String[] gridViewString = {
-            "PROTECTION", "CHILD REGISTRATION", "REPATRIATION", "RSD", "REFERRAL", "RESETTLEMENT",};
+    DatabaseReference dbref;
+    FirebaseRecyclerAdapter<NewsModel,HomeTabFrag.NewsModelVH> firebasenewsRecycleAdapter ;
+    RecyclerView newsrecyclerView;
+    LinearLayoutManager nwlinearLayoutManager;
+    ProgressBar newsprogressBar;
 
-    int[] gridViewImageId = {
-            R.drawable.protection, R.drawable.childregistration,
-            R.drawable.repatriation, R.drawable.rsd,
-            R.drawable.refferal, R.drawable.resettlement,};
+    public static class NewsModelVH extends RecyclerView.ViewHolder{
+
+        public TextView newsHead, newsBody,newsOrganization;
+        View mView;
+
+        public NewsModelVH(View itemView) {
+            super(itemView);
+            this.mView = itemView;
+            this.newsHead = (TextView) mView.findViewById(R.id.listview_item_title);
+            this.newsBody = (TextView) mView.findViewById(R.id.listview_item_short_description);
+            this.newsOrganization = (TextView) mView.findViewById(R.id.listview_item_organization);
+        }
+
+    }// End NewsModelVH class
+
+    public static final String NEWS= "NewsModel";
+
+
+
 
     public HomeTabFrag() { // Required empty public constructor
     }
@@ -64,26 +95,94 @@ public class HomeTabFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the fragment_dash_boardxxx for this fragment
 
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.MATCH_PARENT);
+        View rootView = inflater.inflate(R.layout.fragment_notice_rv, container, false);
+        newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_noticeboard);
+        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+        nwlinearLayoutManager.setStackFromEnd(true);
 
-            FrameLayout fl = new FrameLayout(getActivity());
-            fl.setLayoutParams(params);
+        dbref = FirebaseDatabase.getInstance().getReference();
+        newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
+        newsprogressBar.setVisibility(View.VISIBLE);
 
-            final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-                    .getDisplayMetrics());
-            TextView v = new TextView(getActivity());
-            params.setMargins(margin, margin, margin, margin);
-            v.setLayoutParams(params);
-            v.setLayoutParams(params);
-            v.setGravity(Gravity.CENTER);
-            v.setBackgroundResource(R.drawable.background_card);
-            v.setText("CARD " + (position + 1));
+        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
+                NewsModel.class,
+                R.layout.fragment_dashboard_imagetext,
+                NewsModelVH.class,
+                dbref.child(NEWS)) {
+            @Override
+            protected void populateViewHolder(NewsModelVH viewHolder, final NewsModel model, final int position) {
+                viewHolder.newsHead.setText(model.getNewsHead());
+                viewHolder.newsBody.setText(model.getNewsBody());
+                viewHolder.newsOrganization.setText(model.getNewsorganization());
+                newsprogressBar.setVisibility(View.GONE);
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.w(TAG, "You clicked on "+ position);
+                        //firebasenewsRecycleAdapter.getRef(position).removeValue();
+                        openNewsDetailActivity(model.getNewsHead(), model.getNewsBody(),model.getNewsorganization());
+                    }
+                });
+            }
 
-            fl.addView(v);
-            return fl;
+            private void openNewsDetailActivity(String...details) {
+                Intent newsIntent = new Intent(getActivity(), NoticeDetails.class);
+                newsIntent.putExtra("TTTLE_KEY", details[0]);
+                newsIntent.putExtra("DESC_KEY", details[1]);
+                newsIntent.putExtra("ORG_KEY", details[2]);
+
+                startActivity(newsIntent);
+            }
+        };
+
+        firebasenewsRecycleAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver(){
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount){
+                super.onItemRangeInserted(positionStart, itemCount);
+                int newsCount = firebasenewsRecycleAdapter.getItemCount();
+                int lastVisiblePosition = nwlinearLayoutManager.findLastVisibleItemPosition();
+                if(lastVisiblePosition == -1 || (positionStart>= (newsCount -1) && lastVisiblePosition == (positionStart -1))){
+                    newsrecyclerView.scrollToPosition(positionStart);
+                }
+            }
+        });
+
+        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+        newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
+
+        /**
+         * SET ADAPTER
+         */
+
+
+        Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbref);
+
+        return rootView;
+
+
+
+
+
+
+//            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+//                    FrameLayout.LayoutParams.MATCH_PARENT);
+//
+//            FrameLayout fl = new FrameLayout(getActivity());
+//            fl.setLayoutParams(params);
+//
+//            final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
+//                    .getDisplayMetrics());
+//            TextView v = new TextView(getActivity());
+//            params.setMargins(margin, margin, margin, margin);
+//            v.setLayoutParams(params);
+//            v.setLayoutParams(params);
+//            v.setGravity(Gravity.CENTER);
+//            v.setBackgroundResource(R.drawable.background_card);
+//            v.setText("CARD " + (position + 1));
+//
+//            fl.addView(v);
+//            return fl;
         }
 
 

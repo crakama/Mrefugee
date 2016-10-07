@@ -16,22 +16,22 @@ import java.util.ArrayList;
 public class DBOperationsHelper {
   DatabaseReference dbref;
     Boolean saved;
-    ArrayList<NewsModel> newsArraylist = new ArrayList<>();
+    ArrayList<NoticeBoardModel> newsArraylist = new ArrayList<>();
 
 /**
- * NewsModel REFERENCE
+ * NoticeBoardModel REFERENCE
  */
 
     public DBOperationsHelper(DatabaseReference db){
         this.dbref = db;
     }
 
-    public Boolean save(NewsModel news){
+    public Boolean save(NoticeBoardModel news){
         if(news == null){
             saved = false;
         }else{
             try {
-                dbref.child("NewsModel").push().setValue(news);
+                dbref.child("NoticeBoardModel").push().setValue(news);
                 saved = true;
             } catch (DatabaseException e) {
 
@@ -45,9 +45,9 @@ public class DBOperationsHelper {
     private void fetchData(DataSnapshot dataSnapshot){
         newsArraylist.clear();
         for(DataSnapshot ds : dataSnapshot.getChildren()){
-            NewsModel news = ds.getValue(NewsModel.class);
+            NoticeBoardModel news = ds.getValue(NoticeBoardModel.class);
             newsArraylist.add(news);
-            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(NewsModel.class));
+            Log.v("FIREBASE RETRIEVE", "index=" + ds.getValue(NoticeBoardModel.class));
         }
 
 
@@ -56,7 +56,7 @@ public class DBOperationsHelper {
     /**
      * RETRIEVE NEWS
      */
-    public ArrayList<NewsModel> retrieveNews(){
+    public ArrayList<NoticeBoardModel> retrieveNews(){
        dbref.addChildEventListener(new ChildEventListener() {
            @Override
            public void onChildAdded(DataSnapshot dataSnapshot, String s) {

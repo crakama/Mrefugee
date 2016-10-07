@@ -2,6 +2,7 @@ package com.crakama.refugee.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import com.crakama.refugee.Adapters.DBAdapter;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.NewsModel;
+import com.crakama.refugee.database.NoticeBoardModel;
 import com.crakama.refugee.database.DBOperationsHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,7 +23,7 @@ public class NoticeBoard extends AppCompatActivity {
     DatabaseReference db;
     DBOperationsHelper dbOperationsHelper;
     DBAdapter dbAdapter;
-    ListView newsListView;
+    RecyclerView newsrecyclerView;
     ArrayAdapter<String> arrayAdapter;
 
     @Override
@@ -34,7 +35,7 @@ public class NoticeBoard extends AppCompatActivity {
         dbOperationsHelper = new DBOperationsHelper(db);
 
 
-        newsListView = (ListView) findViewById(R.id.newslist_view);
+        newsrecyclerView =(RecyclerView)findViewById(R.id.rv_noticeboard);
 
         txtNewsHead = (EditText) findViewById(R.id.txtNewsHead);
         txtNewsBody = (EditText) findViewById(R.id.txtNewsBody);
@@ -56,7 +57,7 @@ public class NoticeBoard extends AppCompatActivity {
                 /**
                  * SET DATA
                  */
-                NewsModel dbModel = new NewsModel();
+                NoticeBoardModel dbModel = new NoticeBoardModel();
                 dbModel.setNewsHead(newsHead);
                 dbModel.setNewsBody(newsBody);
                 dbModel.setOrganization(newsorganization);
@@ -79,9 +80,9 @@ public class NoticeBoard extends AppCompatActivity {
 
                     //Toast.makeText(getActivity().getApplicationContext(), "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
                     //newsListView.setAdapter(arrayAdapter);
-                     dbAdapter = new DBAdapter(NoticeBoard.this, dbOperationsHelper.retrieveNews());
+                     //dbAdapter = new DBAdapter(NoticeBoard.this, dbOperationsHelper.retrieveNews());
                        //dbAdapter = new DBAdapter(NoticeBoard.this,dbOperationsHelper.retrieveNews());
-                       newsListView.setAdapter(dbAdapter);
+                    //newsrecyclerView.setAdapter(dbAdapter);
 
                 }else{
                     Toast.makeText(NoticeBoard.this, "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();

@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.crakama.refugee.Activities.NoticeDetails;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.NewsModel;
+import com.crakama.refugee.database.NoticeBoardModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,18 +33,18 @@ public class NoticeBoardFrag extends Fragment {
      *
      */
     DatabaseReference dbref;
-    FirebaseRecyclerAdapter<NewsModel,NewsModelVH> firebasenewsRecycleAdapter ;
+    FirebaseRecyclerAdapter<NoticeBoardModel,NoticeBoardModelVH> firebasenewsRecycleAdapter ;
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
 
 
-    public static class NewsModelVH extends RecyclerView.ViewHolder{
+    public static class NoticeBoardModelVH extends RecyclerView.ViewHolder{
 
         public TextView newsHead, newsBody,newsOrganization;
         View mView;
 
-        public NewsModelVH(View itemView) {
+        public NoticeBoardModelVH(View itemView) {
             super(itemView);
             this.mView = itemView;
             this.newsHead = (TextView) mView.findViewById(R.id.listview_item_title);
@@ -54,7 +54,7 @@ public class NoticeBoardFrag extends Fragment {
 
         }// End NewsModelVH class
 
-    public static final String NEWS= "NewsModel";
+    public static final String Notice = "NoticeBoardModel";
 
     public NoticeBoardFrag() {
         // Required empty public constructor
@@ -91,17 +91,20 @@ public class NoticeBoardFrag extends Fragment {
         nwlinearLayoutManager.setStackFromEnd(true);
 
         dbref = FirebaseDatabase.getInstance().getReference();
-        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
-                NewsModel.class,
+        newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
+        newsprogressBar.setVisibility(View.VISIBLE);
+
+        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NoticeBoardModel, NoticeBoardModelVH>(
+                NoticeBoardModel.class,
                 R.layout.fragment_dashboard_imagetext,
-                NewsModelVH.class,
-                dbref.child(NEWS)) {
+                NoticeBoardModelVH.class,
+                dbref.child(Notice)) {
             @Override
-            protected void populateViewHolder(NewsModelVH viewHolder, final NewsModel model, final int position) {
+            protected void populateViewHolder(NoticeBoardModelVH viewHolder, final NoticeBoardModel model, final int position) {
                 viewHolder.newsHead.setText(model.getNewsHead());
                 viewHolder.newsBody.setText(model.getNewsBody());
                 viewHolder.newsOrganization.setText(model.getOrganization());
-
+                newsprogressBar.setVisibility(View.GONE);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -141,14 +144,14 @@ public class NoticeBoardFrag extends Fragment {
          * SET ADAPTER
          */
 
-        newsprogressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-        newsprogressBar.setVisibility(View.VISIBLE);
 
         Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbref);
 
         return rootView;
 
     }
+
+
 
     public void setListener(OnDashBoardFragListener listener){
         mListener = listener; }
@@ -173,9 +176,25 @@ public class NoticeBoardFrag extends Fragment {
         mListener = null;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+
+
+
+    }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState); }
+        super.onActivityCreated(savedInstanceState);
+
+    }
 
 
     public static interface OnDashBoardFragListener {

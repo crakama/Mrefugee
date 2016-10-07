@@ -17,7 +17,7 @@
     <!--android:layout_marginBottom="20dp"-->
     <!--android:visibility="gone" />-->
 
-    <!--<include layout="@layout/fragment_dash_boardxxx"/>-->
+    <include layout="@layout/fragment_notice_rv"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
