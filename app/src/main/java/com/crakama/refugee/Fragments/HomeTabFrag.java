@@ -25,6 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.firebase.client.ServerValue;
+
 
 //import com.crakama.mrefugee.R;
 
@@ -44,6 +48,8 @@ public class HomeTabFrag extends Fragment {
 
     private OnHomeTabFragListener mListener;
 
+
+
     // Set grid view items titles and images
     DatabaseReference dbref;
     FirebaseRecyclerAdapter<NewsModel,HomeTabFrag.NewsModelVH> firebasenewsRecycleAdapter ;
@@ -53,7 +59,7 @@ public class HomeTabFrag extends Fragment {
 
     public static class NewsModelVH extends RecyclerView.ViewHolder{
 
-        public TextView newsHead, newsBody,newsOrganization;
+        public TextView newsHead, newsBody,newsOrganization,newsDate;
         View mView;
 
         public NewsModelVH(View itemView) {
@@ -62,6 +68,9 @@ public class HomeTabFrag extends Fragment {
             this.newsHead = (TextView) mView.findViewById(R.id.listview_item_title);
             this.newsBody = (TextView) mView.findViewById(R.id.listview_item_short_description);
             this.newsOrganization = (TextView) mView.findViewById(R.id.listview_item_organization);
+            this.newsDate = (TextView) mView.findViewById(R.id.lv_item_date);
+
+
         }
 
     }// End NewsModelVH class
@@ -107,7 +116,7 @@ public class HomeTabFrag extends Fragment {
 
         firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
                 NewsModel.class,
-                R.layout.fragment_dashboard_imagetext,
+                R.layout.live_news,
                 NewsModelVH.class,
                 dbref.child(NEWS)) {
             @Override
@@ -115,6 +124,7 @@ public class HomeTabFrag extends Fragment {
                 viewHolder.newsHead.setText(model.getNewsHead());
                 viewHolder.newsBody.setText(model.getNewsBody());
                 viewHolder.newsOrganization.setText(model.getNewsorganization());
+                viewHolder.newsDate.setText(String.valueOf(model.getCreatedTimestamp()));
                 newsprogressBar.setVisibility(View.GONE);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -162,27 +172,6 @@ public class HomeTabFrag extends Fragment {
 
 
 
-
-
-
-//            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-//                    FrameLayout.LayoutParams.MATCH_PARENT);
-//
-//            FrameLayout fl = new FrameLayout(getActivity());
-//            fl.setLayoutParams(params);
-//
-//            final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-//                    .getDisplayMetrics());
-//            TextView v = new TextView(getActivity());
-//            params.setMargins(margin, margin, margin, margin);
-//            v.setLayoutParams(params);
-//            v.setLayoutParams(params);
-//            v.setGravity(Gravity.CENTER);
-//            v.setBackgroundResource(R.drawable.background_card);
-//            v.setText("CARD " + (position + 1));
-//
-//            fl.addView(v);
-//            return fl;
         }
 
 
