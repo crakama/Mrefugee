@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.crakama.refugee.Fragments.AgencyServicesFragment">
 
-    <!-- TODO: Update blank fragment fragment_dash_boardxxx -->
+    <!-- TODO: Update blank fragment fragment_repatriation_services_cv -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

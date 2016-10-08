@@ -30,7 +30,7 @@
         <activity android:name=".Auth.ChangePasswordActivity" />
         <activity android:name=".Activities.UpdateNoticeBoard" />
         <activity android:name=".Activities.ShowNoticeDetails" />
-        <activity android:name=".Activities.RepatriationData"></activity>
+        <activity android:name=".Activities.UpdateRepatriationData"></activity>
     </application>
 
 </manifest>

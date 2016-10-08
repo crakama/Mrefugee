@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.crakama.refugee.Fragments.ServiceListFragment">
+    tools:context="com.crakama.refugee.Fragments.RepatriationFrag">
 
-    <!-- TODO: Update blank fragment fragment_dash_boardxxx -->
+    <!-- TODO: Update blank fragment fragment_repatriation_services_cv -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

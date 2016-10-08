@@ -66,7 +66,7 @@ public class CampDetailsFragment extends Fragment {
         if(savedInstanceState != null){
             campId = savedInstanceState.getLong("campId");
         }
-        // Inflate the fragment_dash_boardxxx for this fragment
+        // Inflate the fragment_repatriation_services_cv for this fragment
         return inflater.inflate(R.layout.fragment_camp_details, container, false);
     }
 

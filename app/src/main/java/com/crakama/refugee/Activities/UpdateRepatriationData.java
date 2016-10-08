@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.crakama.refugee.R;
 
-public class RepatriationData extends AppCompatActivity {
+public class UpdateRepatriationData extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

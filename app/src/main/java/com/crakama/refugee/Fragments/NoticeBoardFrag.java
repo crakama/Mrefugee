@@ -84,7 +84,7 @@ public class NoticeBoardFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the fragment_dash_boardxxx for this fragment
+        // Inflate the fragment_repatriation_services_cv for this fragment
         View rootView = inflater.inflate(R.layout.fragment_notice_rv, container, false);
         newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_noticeboard);
         nwlinearLayoutManager = new LinearLayoutManager(getActivity());

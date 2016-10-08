@@ -61,6 +61,12 @@
     <string name="notice_read_more"><u>Read More</u></string>
 
 
+    <!-- ADD REPATRIATION DATA-->
+    <string name="hint_RepStagesInvolved">Brief Intro Info of repatriation</string>
+    <string name="hint_RepCountryInfo"> Add Heading</string>
+    <string name="hint_RepWelcomeMsg">Organization</string>
+
+
     <!-- ADD NEWS-->
     <string name="hint_newsbody">News Description</string>
     <string name="hint_newshead">News Head</string>

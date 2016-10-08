@@ -14,9 +14,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -28,10 +30,10 @@ import com.crakama.refugee.DadaabCamp;
 import com.crakama.refugee.Fragments.NoticeBoardFrag;
 import com.crakama.refugee.Fragments.LiveNewsFrag;
 import com.crakama.refugee.R;
-import com.crakama.refugee.Fragments.ServiceListFragment;
+import com.crakama.refugee.Fragments.RepatriationFrag;
 
 public class MainActivity extends AppCompatActivity implements
-        ServiceListFragment.OnGridItemFragInteractionListener,
+        RepatriationFrag.OnGridItemFragInteractionListener,
         LiveNewsFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener {
 
 
@@ -313,7 +315,9 @@ public class MainActivity extends AppCompatActivity implements
 
     public class ClassPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = {"Home", "Agency Services", "Camp Notice Board"};
+        private final String[] TITLES = {"Home", "Repatriation", "Camp Notice Board"};
+
+        SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
         //Constructor class
         public ClassPagerAdapter(FragmentManager fm) {
@@ -329,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements
 
                 case 1:
 
-                    return ServiceListFragment.newInstance(position);
+                    return RepatriationFrag.newInstance(position);
 
                 case 2:
                     return NoticeBoardFrag.newInstance(position);
@@ -350,6 +354,44 @@ public class MainActivity extends AppCompatActivity implements
         }
 
 
+        /**
+         * On each Fragment instantiation we are saving the reference of that Fragment in a Map
+         * It will help us to retrieve the Fragment by position
+         *
+         * @param container
+         * @param position
+         * @return
+         */
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Fragment fragment = (Fragment) super.instantiateItem(container, position);
+            registeredFragments.put(position, fragment);
+            return fragment;
+        }
+
+        /**
+         * Remove the saved reference from our Map on the Fragment destroy
+         *
+         * @param container
+         * @param position
+         * @param object
+         */
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            registeredFragments.remove(position);
+            super.destroyItem(container, position, object);
+        }
+
+
+        /**
+         * Get the Fragment by position
+         *
+         * @param position tab position of the fragment
+         * @return
+         */
+        public Fragment getRegisteredFragment(int position) {
+            return registeredFragments.get(position);
+        }
     }//End ClassPagerAdapter class
 
 
