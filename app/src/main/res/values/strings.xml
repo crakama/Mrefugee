@@ -54,12 +54,16 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
 
 
+    <!-- ADD NOTICE BORD OPPORTUNITIES-->
+    <string name="hint_noticebody">Add Description</string>
+    <string name="hint_noticehead"> Add Heading</string>
+    <string name="hint_noticeorg">Organization</string>
+    <string name="notice_read_more"><u>Read More</u></string>
+
+
     <!-- ADD NEWS-->
     <string name="hint_newsbody">News Description</string>
     <string name="hint_newshead">News Head</string>
     <string name="hint_newsorg">Organization</string>
-
     <string name="read_more"><u>Read More</u></string>
-
-
 </resources>

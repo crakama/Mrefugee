@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/lightgrey"
     android:fitsSystemWindows="true"
-    tools:context="com.crakama.refugee.Activities.NoticeBoard">
+    tools:context="com.crakama.refugee.Activities.UpdateNoticeBoard">
 
     <!--<ProgressBar-->
     <!--android:id="@+id/progressBar"-->
@@ -33,12 +33,12 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtNewsHead"
+                android:id="@+id/txtNoticeHead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="20dp"
-                android:hint="@string/hint_newshead"
+                android:hint="@string/hint_noticehead"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:minLines="1"
@@ -51,14 +51,14 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtNewsBody"
+                android:id="@+id/txtNoticeBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="20dp"
                 android:minLines="2"
                 android:maxLines="5"
-                android:hint="@string/hint_newsbody"
+                android:hint="@string/hint_noticebody"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:selectAllOnFocus="true" />
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtnewsorganization"
+                android:id="@+id/txtnoticeorganization"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"

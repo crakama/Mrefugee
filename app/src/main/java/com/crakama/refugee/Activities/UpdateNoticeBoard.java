@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.crakama.refugee.Adapters.DBAdapter;
@@ -18,13 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class NoticeBoard extends AppCompatActivity {
-    EditText txtNewsHead,txtNewsBody,txtnewsorganization;
+public class UpdateNoticeBoard extends AppCompatActivity {
+    EditText noticeHead,noticeBody,noticeOrganization;
     DatabaseReference db;
     DBOperationsHelper dbOperationsHelper;
-    DBAdapter dbAdapter;
     RecyclerView newsrecyclerView;
-    ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +34,9 @@ public class NoticeBoard extends AppCompatActivity {
 
         newsrecyclerView =(RecyclerView)findViewById(R.id.rv_noticeboard);
 
-        txtNewsHead = (EditText) findViewById(R.id.txtNewsHead);
-        txtNewsBody = (EditText) findViewById(R.id.txtNewsBody);
-        txtnewsorganization = (EditText) findViewById(R.id.txtnewsorganization);
+        noticeHead = (EditText) findViewById(R.id.txtNoticeHead);
+        noticeBody = (EditText) findViewById(R.id.txtNoticeBody);
+        noticeOrganization = (EditText) findViewById(R.id.txtnoticeorganization);
 
 
         Button btnNewsUpdate = (Button) findViewById(R.id.btn_add_notice);
@@ -50,42 +47,34 @@ public class NoticeBoard extends AppCompatActivity {
                 /**
                  * GET DATA
                  */
-                String newsHead = txtNewsHead.getText().toString();
-                String newsBody = txtNewsBody.getText().toString();
-                String newsorganization = txtnewsorganization.getText().toString();
+                String newNoticeHead = noticeHead.getText().toString();
+                String newNoticeBody = noticeBody.getText().toString();
+                String newNoticeorganization = noticeOrganization.getText().toString();
 
                 /**
                  * SET DATA
                  */
                 NoticeBoardModel dbModel = new NoticeBoardModel();
-                dbModel.setNewsHead(newsHead);
-                dbModel.setNewsBody(newsBody);
-                dbModel.setOrganization(newsorganization);
+                dbModel.setNewsHead(newNoticeHead);
+                dbModel.setNewsBody(newNoticeBody);
+                dbModel.setOrganization(newNoticeorganization);
                 /**
                  * SIMPLE VALIDATION
                  */
-                if(newsHead != null && newsHead.length() > 0){
+                if(newNoticeHead != null && newNoticeHead.length() > 0){
                     /**
                      * THEN SAVE
                      */
-                if(dbOperationsHelper.save(dbModel)){
+                if(dbOperationsHelper.saveNotice(dbModel)){
                     /**
                      * IF NEWS SAVED, CLEAR EDIT TEXT
                      */
-                    txtNewsHead.setText("");
-                    txtNewsBody.setText("");
-                    txtnewsorganization.setText("");
-
-                    //arrayAdapter = new ArrayAdapter<String>(NoticeBoard.this, android.R.layout.simple_list_item_1,dbOperationsHelper.retrieveNews());
-
-                    //Toast.makeText(getActivity().getApplicationContext(), "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
-                    //newsListView.setAdapter(arrayAdapter);
-                     //dbAdapter = new DBAdapter(NoticeBoard.this, dbOperationsHelper.retrieveNews());
-                       //dbAdapter = new DBAdapter(NoticeBoard.this,dbOperationsHelper.retrieveNews());
-                    //newsrecyclerView.setAdapter(dbAdapter);
+                    noticeHead.setText("");
+                    noticeBody.setText("");
+                    noticeOrganization.setText("");
 
                 }else{
-                    Toast.makeText(NoticeBoard.this, "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateNoticeBoard.this, "MUST NOT BE EMPTY", Toast.LENGTH_SHORT).show();
                 }
                 }
             }

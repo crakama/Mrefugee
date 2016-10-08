@@ -7,27 +7,20 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.crakama.refugee.Activities.NoticeDetails;
+import com.crakama.refugee.Activities.ShowNoticeDetails;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.NewsModel;
-import com.crakama.refugee.database.NoticeBoardModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.firebase.client.ServerValue;
 
 
 //import com.crakama.mrefugee.R;
@@ -35,31 +28,31 @@ import com.firebase.client.ServerValue;
 /**
  * //A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link //HomeTabFrag.OnFragmentInteractionListener} interface
+ * {@link //LiveNewsFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * //Use the {@link HomeTabFrag#newInstance} factory method to
+ * //Use the {@link LiveNewsFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeTabFrag extends Fragment {
+public class LiveNewsFrag extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
     private int position;
 
     private OnHomeTabFragListener mListener;
-
+    //private NewsModel newModel = NewsModel.getInstance();
 
 
     // Set grid view items titles and images
     DatabaseReference dbref;
-    FirebaseRecyclerAdapter<NewsModel,HomeTabFrag.NewsModelVH> firebasenewsRecycleAdapter ;
+    FirebaseRecyclerAdapter<NewsModel,LiveNewsFrag.NewsModelVH> firebasenewsRecycleAdapter ;
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
 
     public static class NewsModelVH extends RecyclerView.ViewHolder{
 
-        public TextView newsHead, newsBody,newsOrganization,newsDate;
+        public final TextView newsHead, newsBody,newsOrganization,newsDate;
         View mView;
 
         public NewsModelVH(View itemView) {
@@ -80,11 +73,11 @@ public class HomeTabFrag extends Fragment {
 
 
 
-    public HomeTabFrag() { // Required empty public constructor
+    public LiveNewsFrag() { // Required empty public constructor
     }
 
-    public static HomeTabFrag newInstance(int position) {
-        HomeTabFrag fragment = new HomeTabFrag();
+    public static LiveNewsFrag newInstance(int position) {
+        LiveNewsFrag fragment = new LiveNewsFrag();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION,position);
         fragment.setArguments(args);
@@ -116,15 +109,16 @@ public class HomeTabFrag extends Fragment {
 
         firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
                 NewsModel.class,
-                R.layout.live_news,
+                R.layout.fragment_live_news,
                 NewsModelVH.class,
                 dbref.child(NEWS)) {
+            //NewsModel dbModel = NewsModel. .getInstance();
             @Override
             protected void populateViewHolder(NewsModelVH viewHolder, final NewsModel model, final int position) {
                 viewHolder.newsHead.setText(model.getNewsHead());
                 viewHolder.newsBody.setText(model.getNewsBody());
                 viewHolder.newsOrganization.setText(model.getNewsorganization());
-                viewHolder.newsDate.setText(String.valueOf(model.getCreatedTimestamp()));
+                //viewHolder.newsDate.setText(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()));
                 newsprogressBar.setVisibility(View.GONE);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -137,7 +131,7 @@ public class HomeTabFrag extends Fragment {
             }
 
             private void openNewsDetailActivity(String...details) {
-                Intent newsIntent = new Intent(getActivity(), NoticeDetails.class);
+                Intent newsIntent = new Intent(getActivity(), ShowNoticeDetails.class);
                 newsIntent.putExtra("TTTLE_KEY", details[0]);
                 newsIntent.putExtra("DESC_KEY", details[1]);
                 newsIntent.putExtra("ORG_KEY", details[2]);

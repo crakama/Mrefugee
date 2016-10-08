@@ -26,7 +26,7 @@ public class DBOperationsHelper {
         this.dbref = db;
     }
 
-    public Boolean save(NoticeBoardModel news){
+    public Boolean saveNotice(NoticeBoardModel news){
         if(news == null){
             saved = false;
         }else{
@@ -41,6 +41,24 @@ public class DBOperationsHelper {
         }
         return saved;
     }
+
+    public Boolean saveNews(NewsModel news){
+        if(news == null){
+            saved = false;
+        }else{
+            try {
+                dbref.child("NoticeBoardModel").push().setValue(news);
+                saved = true;
+            } catch (DatabaseException e) {
+
+                e.printStackTrace();
+                saved = false;
+            }
+        }
+        return saved;
+    }
+
+
    /**IMPLEMENT FETCH FUNCTION THAT FILLS THE ARRAYLIST  */
     private void fetchData(DataSnapshot dataSnapshot){
         newsArraylist.clear();

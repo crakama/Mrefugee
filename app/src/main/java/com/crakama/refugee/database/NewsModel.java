@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firebase.client.ServerValue;
 
+import java.util.Map;
+
 /**
  * Created by User on 10/6/2016.
  */
@@ -11,9 +13,17 @@ import com.firebase.client.ServerValue;
 public class NewsModel {
 
 
+    public Object getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Object dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     @JsonProperty
-    private Object dateCreated;
-    String newsHead,newsBody,newsorganization;
+    protected Object dateCreated;
+    private String newsHead,newsBody,newsorganization;
 
 
 
@@ -21,23 +31,25 @@ public class NewsModel {
 
     }
 
-    public NewsModel(String newsHead, String newsBody,String newsorganization) {
-        this.newsHead = newsHead;
-
-        this.newsBody = newsBody;
-        this.newsorganization = newsorganization;
-        this.dateCreated = ServerValue.TIMESTAMP;
+//    public NewsModel(String newsHead, String newsBody,String newsorganization, Object timestamp) {
+//        this.newsHead = newsHead;
+//
+//        this.newsBody = newsBody;
+//        this.newsorganization = newsorganization;
+//        this.dateCreated = timestamp;
+//    }
+    public Object getTimestamp() {
+        return dateCreated;
     }
-
-    @JsonIgnore
-    public Long getCreatedTimestamp() {
-        if (dateCreated instanceof Long) {
-            return (Long) dateCreated;
-        }
-        else {
-            return null;
-        }
-    }
+//    @JsonIgnore
+//    public Long getCreatedTimestamp() {
+//        if (dateCreated instanceof Long) {
+//            return (Long) dateCreated;
+//        }
+//        else {
+//            return null;
+//        }
+//    }
 
 
     public String getNewsHead() {

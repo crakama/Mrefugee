@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.crakama.refugee.Activities.NoticeDetails;
+import com.crakama.refugee.Activities.ShowNoticeDetails;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.NoticeBoardModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -116,7 +116,7 @@ public class NoticeBoardFrag extends Fragment {
             }
 
             private void openNewsDetailActivity(String...details) {
-                Intent newsIntent = new Intent(getActivity(), NoticeDetails.class);
+                Intent newsIntent = new Intent(getActivity(), ShowNoticeDetails.class);
                 newsIntent.putExtra("TTTLE_KEY", details[0]);
                 newsIntent.putExtra("DESC_KEY", details[1]);
                 newsIntent.putExtra("ORG_KEY", details[2]);

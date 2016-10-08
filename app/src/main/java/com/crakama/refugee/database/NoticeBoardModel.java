@@ -11,9 +11,9 @@ import com.crakama.refugee.Message;
  * Created by cate.rakama@gmail.com on 9/15/2016.
  */
 public class NoticeBoardModel {
-    String newsHead;
-    String newsBody;
-    String newsorganization;
+    private String newsHead;
+    private String newsBody;
+    private String newsorganization;
 
     public void setOrganization(String newsorganization) {
         this.newsorganization = newsorganization;

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.crakama.refugee.R;
 
-public class NoticeDetails extends AppCompatActivity {
+public class ShowNoticeDetails extends AppCompatActivity {
 
  TextView txtTitle, txtDesc, txtOrganization;
     @Override

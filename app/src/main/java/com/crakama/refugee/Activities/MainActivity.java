@@ -26,13 +26,13 @@ import com.crakama.refugee.Auth.RegisterActivity;
 import com.crakama.refugee.Auth.ResetPasswordActivity;
 import com.crakama.refugee.DadaabCamp;
 import com.crakama.refugee.Fragments.NoticeBoardFrag;
-import com.crakama.refugee.Fragments.HomeTabFrag;
+import com.crakama.refugee.Fragments.LiveNewsFrag;
 import com.crakama.refugee.R;
 import com.crakama.refugee.Fragments.ServiceListFragment;
 
 public class MainActivity extends AppCompatActivity implements
         ServiceListFragment.OnGridItemFragInteractionListener,
-        HomeTabFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener {
+        LiveNewsFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener {
 
 
     DrawerLayout drawerLayout;
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements
                             break;
                         case R.id.nv_updatenoticeboard:
                             //Do some thing here
-                            Intent noticeBoardIntent = new Intent(MainActivity.this, NoticeBoard.class);
+                            Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
                             startActivity(noticeBoardIntent);
                             break;
                         case R.id.navigation_item_8:
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity implements
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return HomeTabFrag.newInstance(position);
+                    return LiveNewsFrag.newInstance(position);
 
                 case 1:
 
