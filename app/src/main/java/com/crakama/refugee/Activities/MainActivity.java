@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.crakama.refugee.Auth.LoginActivity;
 import com.crakama.refugee.Auth.RegisterActivity;
 import com.crakama.refugee.Auth.ResetPasswordActivity;
@@ -361,86 +360,6 @@ public class MainActivity extends AppCompatActivity implements
         drawerToggle.syncState();
     }
 
-//    public class ClassPagerAdapter extends FragmentPagerAdapter {
-//
-//        private final String[] TITLES = {"Home", "Repatriation", "Camp Notice Board"};
-//
-//        SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
-//
-//        //Constructor class
-//        public ClassPagerAdapter(FragmentManager fm) {
-//            super(fm);
-//        }
-//
-//        //get card fragment to display the cards(items) when different tabs are swipped
-//        @Override
-//        public Fragment getItem(int position) {
-//            switch (position) {
-//                case 0:
-//                    return LiveNewsFrag.newInstance(position);
-//
-//                case 1:
-//
-//                    return RepatriationRootFrag.newInstance(position);
-//
-//                case 2:
-//                    return NoticeBoardFrag.newInstance(position);
-//
-//                default:
-//                    return null;
-//            }
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return TITLES.length;
-//        }
-//
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            return TITLES[position];
-//        }
-//
-//
-//        /**
-//         * On each Fragment instantiation we are saving the reference of that Fragment in a Map
-//         * It will help us to retrieve the Fragment by position
-//         *
-//         * @param container
-//         * @param position
-//         * @return
-//         */
-//        @Override
-//        public Object instantiateItem(ViewGroup container, int position) {
-//            Fragment fragment = (Fragment) super.instantiateItem(container, position);
-//            registeredFragments.put(position, fragment);
-//            return fragment;
-//        }
-//
-//        /**
-//         * Remove the saved reference from our Map on the Fragment destroy
-//         *
-//         * @param container
-//         * @param position
-//         * @param object
-//         */
-//        @Override
-//        public void destroyItem(ViewGroup container, int position, Object object) {
-//            registeredFragments.remove(position);
-//            super.destroyItem(container, position, object);
-//        }
-//
-//
-//        /**
-//         * Get the Fragment by position
-//         *
-//         * @param position tab position of the fragment
-//         * @return
-//         */
-//        public Fragment getRegisteredFragment(int position) {
-//            return registeredFragments.get(position);
-//        }
-//    }//End ClassPagerAdapter class
 
 
 }// Ends Main Class

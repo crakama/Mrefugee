@@ -33,26 +33,21 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     //get card fragment to display the cards(items) when different tabs are swipped
     @Override
     public Fragment getItem(int position) {
-        final Fragment result;
+
         switch (position) {
             case 0:
-                //return LiveNewsFrag.newInstance(position);
-                result = new LiveNewsFrag();
-                break;
+                return LiveNewsFrag.newInstance(position);
+
             case 1:
 
-//                return RepatriationRootFrag.newInstance(position);
-                result = new RepatriationRootFrag();
-                break;
+                return RepatriationRootFrag.newInstance(position);
+
             case 2:
-                //return NoticeBoardFrag.newInstance(position);
-                result = new NoticeBoardFrag();
-                break;
+                return NoticeBoardFrag.newInstance(position);
+
             default:
-                result = null;
-                break;
+                return null;
         }
-        return result;
     }
 
     @Override

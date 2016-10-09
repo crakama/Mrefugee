@@ -112,6 +112,7 @@ public class RepatriationRootFrag extends RootFragment {
         RepatriationChildFrag repatriationChildFrag = new RepatriationChildFrag();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.addToBackStack(null);
+
         transaction.replace(R.id.fragment_mainLayout, repatriationChildFrag).commit();
     }
 
