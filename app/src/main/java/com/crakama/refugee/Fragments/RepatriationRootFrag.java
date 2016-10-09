@@ -2,7 +2,6 @@ package com.crakama.refugee.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 /**
  * A simple {@link //Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RepatriationRootFrag.OnGridItemFragInteractionListener} interface
+ * {@link //RepatriationRootFrag.OnGridItemFragInteractionListener} interface
  * to handle interaction events.
  * Use the {@link //RepatriationRootFrag#newInstance} factory method to
  * create an instance of this fragment.
@@ -111,13 +110,6 @@ public class RepatriationRootFrag extends RootFragment {
             return rootView;
     }
 
-    private void enterNextFragment() {
-        RepatriationChildFrag repatriationChildFrag = new RepatriationChildFrag();
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.addToBackStack(null);
-
-        transaction.replace(R.id.fragment_mainLayout, repatriationChildFrag).commit();
-    }
 
 
     public void setListener(OnRepartButtonClickedListener listener){
@@ -146,42 +138,6 @@ public class RepatriationRootFrag extends RootFragment {
         super.onActivityCreated(savedInstanceState);
 
 //
-//        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
-//        nwlinearLayoutManager.setStackFromEnd(true);
-//        RepatriationModel repatriationModel = new RepatriationModel();
-//
-//        newsprogressBar.setVisibility(View.VISIBLE);
-//        dbref = FirebaseDatabase.getInstance().getReference();
-//
-//        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<RepatriationModel, RepatriationModelVH>(
-//                RepatriationModel.class,
-//                R.layout.fragment_repatriation_child_cv,
-//                RepatriationModelVH.class,
-//                dbref.child(NEWS)) {
-//            //NewsModel dbModel = NewsModel. .getInstance();
-//            @Override
-//            protected void populateViewHolder(RepatriationModelVH viewHolder, final RepatriationModel model, final int position) {
-//
-////                model.setCountryInfo("KENYA");
-////                model.setStagesInvolved("jjsdjhdfsjfdjsfjkdsfjdfss");
-////                model.setWelcomeMessage("WELCOME");
-//                viewHolder.repWelcomeMsg.setText(model.getWelcomeMessage());
-//                viewHolder.repStages.setText(model.getStagesInvolved());
-//                viewHolder.repCountryInfo.setText(model.getCountryInfo());
-//                //viewHolder.newsDate.setText(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()));
-//                newsprogressBar.setVisibility(View.GONE);
-//                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Log.w(TAG, "You clicked on "+ position);
-//                       //TO DO
-//                    }
-//                });
-//            }
-//
-//        };
-//        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
-//        newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
 
 
     }
@@ -202,12 +158,5 @@ public class RepatriationRootFrag extends RootFragment {
         // TODO: Update argument type and name
         void onRepartBtnClick(int p);
     }
-
-
-//    public void onRepartBtnClick(View v, int position){
-//        // Notify the parent activity of selected item
-//        mListener.onRepartBtnClick(position);
-//
-//    }
 
 }

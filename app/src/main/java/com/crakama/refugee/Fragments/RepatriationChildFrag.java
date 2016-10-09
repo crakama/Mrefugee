@@ -228,60 +228,6 @@ public class RepatriationChildFrag extends RootFragment  {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
-//        nwlinearLayoutManager.setStackFromEnd(true);
-//
-//        dbref = FirebaseDatabase.getInstance().getReference();
-//
-//        newsprogressBar.setVisibility(View.VISIBLE);
-//
-//        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
-//                NewsModel.class,
-//                R.layout.fragment_repatriation_child_cv,
-//                NewsModelVH.class,
-//                dbref.child(NEWS)) {
-//            //NewsModel dbModel = NewsModel. .getInstance();
-//            @Override
-//            protected void populateViewHolder(NewsModelVH viewHolder, final NewsModel model, final int position) {
-//                viewHolder.newsHead.setText(model.getNewsHead());
-//                viewHolder.newsBody.setText(model.getNewsBody());
-//                viewHolder.newsOrganization.setText(model.getNewsorganization());
-//                //viewHolder.newsDate.setText(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()));
-//                newsprogressBar.setVisibility(View.GONE);
-//                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Log.w(TAG, "You clicked on "+ position);
-//                        //firebasenewsRecycleAdapter.getRef(position).removeValue();
-//                        //openNewsDetailActivity(model.getNewsHead(), model.getNewsBody(),model.getNewsorganization());
-//                    }
-//                });
-//            }
-//
-////            private void openNewsDetailActivity(String...details) {
-////                Intent newsIntent = new Intent(getActivity(), ShowNoticeDetails.class);
-////                newsIntent.putExtra("TTTLE_KEY", details[0]);
-////                newsIntent.putExtra("DESC_KEY", details[1]);
-////                newsIntent.putExtra("ORG_KEY", details[2]);
-////
-////                startActivity(newsIntent);
-////            }
-//        };
-//
-//        firebasenewsRecycleAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver(){
-//            @Override
-//            public void onItemRangeInserted(int positionStart, int itemCount){
-//                super.onItemRangeInserted(positionStart, itemCount);
-//                int newsCount = firebasenewsRecycleAdapter.getItemCount();
-//                int lastVisiblePosition = nwlinearLayoutManager.findLastVisibleItemPosition();
-//                if(lastVisiblePosition == -1 || (positionStart>= (newsCount -1) && lastVisiblePosition == (positionStart -1))){
-//                    newsrecyclerView.scrollToPosition(positionStart);
-//                }
-//            }
-//        });
-//
-//        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
-//        newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
     }
 
     /**

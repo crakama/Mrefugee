@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,8 +13,8 @@ import android.view.MenuItem;
 import com.crakama.refugee.Auth.LoginActivity;
 import com.crakama.refugee.Auth.RegisterActivity;
 import com.crakama.refugee.Auth.ResetPasswordActivity;
-import com.crakama.refugee.Fragments.NoticeBoardFrag;
 import com.crakama.refugee.Fragments.LiveNewsFrag;
+import com.crakama.refugee.Fragments.NoticeBoardFrag;
 import com.crakama.refugee.Fragments.RepatriationChildFrag;
 import com.crakama.refugee.Fragments.RepatriationRootFrag;
 import com.crakama.refugee.Fragments.TabsFragment;
@@ -32,32 +31,12 @@ public class MainActivity extends AppCompatActivity implements
     NavigationView navigation;
 
     private TabsFragment tabsFragment;
-//    private PagerSlidingTabStrip tabs;
-//    private ViewPager pager;
-//    private ClassPagerAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        if (savedInstanceState == null) {
-//            // withholding the previously created fragment from being created again
-//            // On orientation change, it will prevent fragment recreation
-//            // its necessary to reserving the fragment stack inside each tab
-//            initScreen();
-//
-//        } else {
-//            // restoring the previously created fragment
-//            // and getting the reference
-//            tabsFragment = (TabsFragment) getSupportFragmentManager().getFragments().get(0);
-//        }
-//
-//
-//
-//        /** CALL    METHOD */
-//        initInstances();
-
 
 
         // Check whether the activity is using the layout version with
@@ -86,17 +65,6 @@ public class MainActivity extends AppCompatActivity implements
         initInstances();
 
     }
-//
-//    private void initScreen() {
-//
-//        // Creating the ViewPager container fragment once
-//        tabsFragment = new TabsFragment();
-//
-//        final FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction()
-//                .replace(R.id.container, tabsFragment)
-//                .commit();
-//    }
 
     /**
      * Retrieve the currently visible Tab Fragment and propagate the onBackPressed callback
@@ -138,65 +106,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void itemClicked(int pos, long id) {
-
-
-//
-//        switch (pos) {
-//            case 0:
-//                //do
-//                Toast.makeText(this, "GridView Item NO: ", Toast.LENGTH_LONG).show();
-//                break;
-//            case 1:
-//                AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
-//                builderSingle.setIcon(R.drawable.ic_listcamps);
-//                builderSingle.setTitle("Select One Name:-");
-//                //Create a String array of the course names
-//                String[] names = new String[DadaabCamp.camps.length];
-//                for (int i = 0; i < names.length; i++) {
-//                    names[i] = DadaabCamp.camps[i].getName();
-//                }
-//
-//                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
-//                builderSingle.setAdapter(
-//                        arrayAdapter,
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                String strName = arrayAdapter.getItem(which);
-//                                AlertDialog.Builder builderInner = new AlertDialog.Builder(
-//                                        MainActivity.this);
-//                                builderInner.setMessage(strName);
-//                                builderInner.setTitle("Your Selected Item is");
-//                                builderInner.setPositiveButton(
-//                                        "Ok",
-//                                        new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(
-//                                                    DialogInterface dialog,
-//                                                    int which) {
-//                                                dialog.dismiss();
-//                                            }
-//                                        });
-//                                builderInner.show();
-//                            }
-//                        });
-//                builderSingle.show();
-//                break;
-//
-//
-//            case 3:
-//                //
-//                break;
-//            case 4:
-//                //
-//                break;
-//            case 5:
-//                //
-//                break;
-//            case 6:
-//                //
-//                break;
-//        }
+        /*
+        *  USAGES: LiveNewsFrag & NoticeBoardFrag
+         */
     }
 
     /**
@@ -211,19 +123,6 @@ public class MainActivity extends AppCompatActivity implements
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.welcome, R.string.welcome);
         drawerLayout.addDrawerListener(drawerToggle);
-
-
- //       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//
-//        if(islogin)
-//        {
-//            navigationView.getMenu().clear();
-//            navigationView.inflateMenu(R.menu.navigation_with_login);
-//        } else
-//        {
-//            navigationView.getMenu().clear();
-//            navigationView.inflateMenu(R.menu.navigation_with_logout);
-//        }
 
 
 
@@ -278,57 +177,6 @@ public class MainActivity extends AppCompatActivity implements
 
 
 
-//        if (islogin) {
-//            navigation.getMenu().clear();
-//            navigation.inflateMenu(R.menu.navigation_with_login);
-//            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                    int id = menuItem.getItemId();
-//                    switch (id) {
-//                        case R.id.navigation_item_1:
-//                            //Do some thing here
-//                            break;
-//                        case R.id.navigation_item_5:
-//                            //Do some thing here
-//                            break;
-//                        case R.id.navigation_item_3:
-//                            //Do some thing here
-//                            break;
-//                        case R.id.navigation_item_4:
-//                            //Do some thing here
-//                            break;
-//
-//                    }
-//                    return false;
-//                }
-//            });//end oclick listener
-//        } else {
-//            navigation.getMenu().clear();
-//            navigation.inflateMenu(R.menu.navigation_with_logout);
-//            navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                    int id = menuItem.getItemId();
-//                    switch (id) {
-//                        case R.id.navigation_item_1:
-//                            //Do some thing here
-//                            break;
-//                        case R.id.navigation_item_5:
-//                            //Do some thing here
-//                            break;
-//                        case R.id.navigation_item_3:
-//                            //Do some thing here
-//                            break;
-//                        case R.id.navigation_item_4:
-//                            //Do some thing here
-//                            break;
-//
-//                    }
-//                    return false;
-//                }
-//            });//end oclick listener
-//        }
 
     }
 
