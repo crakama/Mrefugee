@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import com.crakama.refugee.Fragments.TabsFragment;
 import com.crakama.refugee.R;
 
 public class MainActivity extends AppCompatActivity implements
-        RepatriationRootFrag.OnGridItemFragInteractionListener,
+        RepatriationRootFrag.OnRepartButtonClickedListener,
         LiveNewsFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener ,
         RepatriationChildFrag.RepatriationChildFragListener{
 
@@ -40,46 +41,62 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            // withholding the previously created fragment from being created again
-            // On orientation change, it will prevent fragment recreation
-            // its necessary to reserving the fragment stack inside each tab
-            initScreen();
+//        if (savedInstanceState == null) {
+//            // withholding the previously created fragment from being created again
+//            // On orientation change, it will prevent fragment recreation
+//            // its necessary to reserving the fragment stack inside each tab
+//            initScreen();
+//
+//        } else {
+//            // restoring the previously created fragment
+//            // and getting the reference
+//            tabsFragment = (TabsFragment) getSupportFragmentManager().getFragments().get(0);
+//        }
+//
+//
+//
+//        /** CALL    METHOD */
+//        initInstances();
 
-        } else {
-            // restoring the previously created fragment
-            // and getting the reference
-            tabsFragment = (TabsFragment) getSupportFragmentManager().getFragments().get(0);
+
+
+        // Check whether the activity is using the layout version with
+        // the fragment_container FrameLayout. If so, we must add the first fragment
+        if (findViewById(R.id.container) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            // Create an instance of ExampleFragment
+            tabsFragment = new TabsFragment();
+
+            // In case this activity was started with special instructions from an Intent,
+            // pass the Intent's extras to the fragment as arguments
+            tabsFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, tabsFragment).commit();
         }
 
-        /** INITIALIZE TABS*/
-//        tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-//        pager = (ViewPager) findViewById(R.id.pager);
-//        adapter = new ClassPagerAdapter(getSupportFragmentManager());
-//        pager.setAdapter(adapter);
-//        final int pageMargin = (int)
-//                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4,
-//                        getResources().getDisplayMetrics());
-//        pager.setPageMargin(pageMargin);
-//        tabs.setViewPager(pager);
-//        tabs.setIndicatorColor(Color.parseColor("#3f51B5"));
-
-        /** CALL    METHOD */
         initInstances();
 
-
     }
-
-    private void initScreen() {
-
-        // Creating the ViewPager container fragment once
-        tabsFragment = new TabsFragment();
-
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, tabsFragment)
-                .commit();
-    }
+//
+//    private void initScreen() {
+//
+//        // Creating the ViewPager container fragment once
+//        tabsFragment = new TabsFragment();
+//
+//        final FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.container, tabsFragment)
+//                .commit();
+//    }
 
     /**
      * Retrieve the currently visible Tab Fragment and propagate the onBackPressed callback
@@ -361,5 +378,39 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+    @Override
+    public void onRepartBtnClick(int position) {
+        // The user selected the headline of an article from the HeadlinesFragment
 
+        // Capture the article fragment from the activity layout
+        RepatriationChildFrag repatriationChildFrag = (RepatriationChildFrag)
+                getSupportFragmentManager().findFragmentById(R.id.repartDetails_fragment);
+
+        if (repatriationChildFrag != null) {
+            // If article frag is available, we're in two-pane layout...
+
+            // Call a method in the ArticleFragment to update its content
+            repatriationChildFrag.updateArticleView(position);
+
+        } else {
+            // If the frag is not available, we're in the one-pane layout and must swap frags...
+
+            // Create fragment and give it an argument for the selected article
+            RepatriationChildFrag repatriationChildFrag1 = new RepatriationChildFrag();
+            Bundle args = new Bundle();
+            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
+            repatriationChildFrag1.setArguments(args);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack so the user can navigate back
+            transaction.replace(R.id.container, repatriationChildFrag1);
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }
+
+
+    }
 }// Ends Main Class

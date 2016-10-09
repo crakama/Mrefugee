@@ -93,6 +93,7 @@ public class TabsFragment extends Fragment {
         viewPager.setPageMargin(pageMargin);
         tabs.setViewPager(viewPager);
         tabs.setIndicatorColor(Color.parseColor("#3f51B5"));
+
     }
 
     /**

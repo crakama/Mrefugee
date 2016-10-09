@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -31,14 +32,14 @@ public class RepatriationRootFrag extends RootFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
     private int position;
-
-    private OnGridItemFragInteractionListener mListener;
+    private OnRepartButtonClickedListener mListener;
 
     DatabaseReference dbref;
     FirebaseRecyclerAdapter<RepatriationModel,RepatriationModelVH> firebasenewsRecycleAdapter ;
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
+    Button buttonRepart;
 
     public RepatriationRootFrag() {
         // Required empty public constructor
@@ -98,10 +99,12 @@ public class RepatriationRootFrag extends RootFragment {
             View rootView = inflater.inflate(R.layout.fragment_repatriation_root_frag, container, false);
             //newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriationServices);
             //newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
+
            rootView.findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enterNextFragment();
+                // Notify the parent activity of the button being clicked
+                mListener.onRepartBtnClick(position);
             }
         });
 
@@ -117,15 +120,15 @@ public class RepatriationRootFrag extends RootFragment {
     }
 
 
-    public void setListener(OnGridItemFragInteractionListener listener){
+    public void setListener(OnRepartButtonClickedListener listener){
         mListener = listener;
 
     }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnGridItemFragInteractionListener) {
-            mListener = (OnGridItemFragInteractionListener) context;
+        if (context instanceof OnRepartButtonClickedListener) {
+            mListener = (OnRepartButtonClickedListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -194,10 +197,17 @@ public class RepatriationRootFrag extends RootFragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public static interface OnGridItemFragInteractionListener {
+    /** Called by RepartRootFrag when a button is clicked */
+    public static interface OnRepartButtonClickedListener {
         // TODO: Update argument type and name
-        void itemClicked(int p,long id);
+        void onRepartBtnClick(int p);
     }
 
+
+//    public void onRepartBtnClick(View v, int position){
+//        // Notify the parent activity of selected item
+//        mListener.onRepartBtnClick(position);
+//
+//    }
 
 }

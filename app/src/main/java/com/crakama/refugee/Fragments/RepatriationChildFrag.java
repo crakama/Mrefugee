@@ -29,14 +29,15 @@ import static com.crakama.refugee.R.id.pager;
  * Activities that contain this fragment must implement the
  * {@link //RepatriationChildFrag.//OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RepatriationChildFrag#newInstance} factory method to
+ * Use the {@link RepatriationChildFrag#//newInstance} factory method to
  * create an instance of this fragment.
  */
 public class RepatriationChildFrag extends RootFragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
+    public final static String ARG_POSITION = "position";
+    int mCurrentPosition = -1;
 
     // Set grid view items titles and images
     DatabaseReference dbref;
@@ -76,10 +77,10 @@ public class RepatriationChildFrag extends RootFragment  {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param //param1 Parameter 1.
+     * @param //param2 Parameter 2.
      * @return A new instance of fragment RepatriationChildFrag.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static RepatriationChildFrag newInstance(String param1, String param2) {
         RepatriationChildFrag fragment = new RepatriationChildFrag();
@@ -88,7 +89,7 @@ public class RepatriationChildFrag extends RootFragment  {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
+    } */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,13 @@ public class RepatriationChildFrag extends RootFragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // If activity recreated (such as from screen rotate), restore
+        // the previous article selection set by onSaveInstanceState().
+        // This is primarily necessary when in the two-pane layout.
+        if (savedInstanceState != null) {
+            mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
+        }
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_repatriation_child, container, false);
         View rootView = inflater.inflate(R.layout.fragment_repatriation_child_rv, container, false);
@@ -138,8 +146,27 @@ public class RepatriationChildFrag extends RootFragment  {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onStart() {
+        super.onStart();
+        // During startup, check if there are arguments passed to the fragment.
+        // onStart is a good place to do this because the layout has already been
+        // applied to the fragment at this point so we can safely call the method
+        // below that sets the article text.
+        Bundle args = getArguments();
+        if (args != null) {
+            // Set article based on argument passed in
+            updateArticleView(args.getInt(ARG_POSITION));
+        } else if (mCurrentPosition != -1) {
+            // Set article based on saved instance state defined during onCreateView
+            updateArticleView(mCurrentPosition);
+        }
+
+    }
+
+
+    public void updateArticleView(int position) {
+
+
 
         nwlinearLayoutManager = new LinearLayoutManager(getActivity());
         nwlinearLayoutManager.setStackFromEnd(true);
@@ -197,6 +224,66 @@ public class RepatriationChildFrag extends RootFragment  {
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+//        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+//        nwlinearLayoutManager.setStackFromEnd(true);
+//
+//        dbref = FirebaseDatabase.getInstance().getReference();
+//
+//        newsprogressBar.setVisibility(View.VISIBLE);
+//
+//        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
+//                NewsModel.class,
+//                R.layout.fragment_repatriation_child_cv,
+//                NewsModelVH.class,
+//                dbref.child(NEWS)) {
+//            //NewsModel dbModel = NewsModel. .getInstance();
+//            @Override
+//            protected void populateViewHolder(NewsModelVH viewHolder, final NewsModel model, final int position) {
+//                viewHolder.newsHead.setText(model.getNewsHead());
+//                viewHolder.newsBody.setText(model.getNewsBody());
+//                viewHolder.newsOrganization.setText(model.getNewsorganization());
+//                //viewHolder.newsDate.setText(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()));
+//                newsprogressBar.setVisibility(View.GONE);
+//                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Log.w(TAG, "You clicked on "+ position);
+//                        //firebasenewsRecycleAdapter.getRef(position).removeValue();
+//                        //openNewsDetailActivity(model.getNewsHead(), model.getNewsBody(),model.getNewsorganization());
+//                    }
+//                });
+//            }
+//
+////            private void openNewsDetailActivity(String...details) {
+////                Intent newsIntent = new Intent(getActivity(), ShowNoticeDetails.class);
+////                newsIntent.putExtra("TTTLE_KEY", details[0]);
+////                newsIntent.putExtra("DESC_KEY", details[1]);
+////                newsIntent.putExtra("ORG_KEY", details[2]);
+////
+////                startActivity(newsIntent);
+////            }
+//        };
+//
+//        firebasenewsRecycleAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver(){
+//            @Override
+//            public void onItemRangeInserted(int positionStart, int itemCount){
+//                super.onItemRangeInserted(positionStart, itemCount);
+//                int newsCount = firebasenewsRecycleAdapter.getItemCount();
+//                int lastVisiblePosition = nwlinearLayoutManager.findLastVisibleItemPosition();
+//                if(lastVisiblePosition == -1 || (positionStart>= (newsCount -1) && lastVisiblePosition == (positionStart -1))){
+//                    newsrecyclerView.scrollToPosition(positionStart);
+//                }
+//            }
+//        });
+//
+//        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+//        newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -209,6 +296,14 @@ public class RepatriationChildFrag extends RootFragment  {
      */
     public static interface RepatriationChildFragListener {
         // TODO: Update argument type and name
-        void itemClicked(int p,long lng);
+        void onRepartBtnClick(int p);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Save the current article selection in case we need to recreate the fragment
+        outState.putInt(ARG_POSITION, mCurrentPosition);
     }
 }
