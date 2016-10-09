@@ -9,6 +9,8 @@
 
 
     <color name="xx">#FF666666</color>
+
+    <color name="mix">#424242</color>
     <color name="white">#FFFFFF</color>
     <color name="ivory">#FFFFF0</color>
     <color name="lightyellow">#FFFFE0</color>

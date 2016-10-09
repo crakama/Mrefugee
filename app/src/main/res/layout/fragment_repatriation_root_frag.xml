@@ -9,8 +9,92 @@
     android:id="@+id/fragment_mainLayout">
 
     <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:id="@+id/scrollLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fillViewport="true"
+        >
 
-    <Button
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ddd"
+        android:padding="5dp"
+        android:orientation="vertical"
+        >
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/android_card_view_example"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:elevation="4dp"
+
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/cardview_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/somaliarefugees"
+            android:text="Welcome to Repatriation Services"
+            android:fontFamily="sans-serif-large"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold|italic"
+            android:textColor="@color/mix"
+            android:textAlignment="center"
+                />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/android_card_view_example1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:padding="16dp"
+                android:elevation="4dp">
+
+
+                <TextView
+                    android:id="@+id/cardview_list_title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:text="Repatriation is a procedure whereby citizens and their families are voluntarily returned to their country of citizenship. To get you started, this service gets you informed on...."
+                    android:textSize="24sp"
+                    android:fontFamily="sans-serif-large"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/mix"
+                    android:textAlignment="center"
+                    />
+
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <Button
         android:id="@+id/next_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,9 +102,165 @@
         android:onClick="onRepartBtnClick"
         android:text="CLICK TO SEE NEXT FRAG"/>
 
-    <ImageView
-        android:layout_width="373dp"
-        android:layout_height="310dp"
-        android:id="@+id/ImgVrepatriation" />
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayout"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
 
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:stretchColumns="*"-->
+        <!--&gt;-->
+        <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
+            <!--&lt;!&ndash;xmlns:tools="http://schemas.android.com/tools"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/item_detail"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="?android:attr/textAppearanceLarge"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:padding="16dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textIsSelectable="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;tools:context=".ItemDetailFragment"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/picture"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_margin="20dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:src="@drawable/somaliarefugees"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_alignParentTop="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;/>&ndash;&gt;-->
+        <!--<TableLayout-->
+
+            <!--android:id="@+id/tableLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="3"-->
+
+            <!--android:stretchColumns="*">-->
+
+            <!--&lt;!&ndash; Table Row 0 &ndash;&gt;-->
+            <!--<TableRow-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/tableRow0">-->
+                <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/ImgVrepatriation"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:src="@drawable/somaliarefugees"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="string A"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:focusable="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:cursorVisible="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:longClickable="false"/>&ndash;&gt;-->
+                <!--<EditText-->
+                    <!--android:id="@+id/priWeaponEditText0"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:text="Welcome to Repatriation Services"-->
+                    <!--android:fontFamily="sans-serif-large"-->
+                    <!--android:background="@drawable/somaliarefugees"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                    <!--android:textStyle="bold|italic"-->
+                    <!--android:textColor="@color/mix"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:gravity="start"-->
+                    <!--android:focusable="false"-->
+                    <!--android:cursorVisible="false"-->
+                    <!--android:longClickable="false"/>-->
+            <!--</TableRow>-->
+            <!--&lt;!&ndash; Table Row 1 &ndash;&gt;-->
+            <!--<TableRow-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/tableRow1">-->
+
+                <!--<EditText-->
+                <!--android:id="@+id/priWeaponEditText"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="string b"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:gravity="center"-->
+                <!--android:focusable="false"-->
+                <!--android:cursorVisible="false"-->
+                <!--android:longClickable="false"/>-->
+
+            <!--</TableRow>-->
+            <!--&lt;!&ndash; Table Row 2 &ndash;&gt;-->
+            <!--<TableRow-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/tableRow2">-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/priWeaponEditText2"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+
+                    <!--android:text="string c"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:gravity="center"-->
+                    <!--android:focusable="false"-->
+                    <!--android:cursorVisible="false"-->
+                    <!--android:longClickable="false"/>-->
+            <!--</TableRow>-->
+        <!--</TableLayout>-->
+        <!--&lt;!&ndash;<TableLayout&ndash;&gt;-->
+
+            <!--&lt;!&ndash;android:id="@+id/tableLayout"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:stretchColumns="1, 2">&ndash;&gt;-->
+
+            <!--&lt;!&ndash;&lt;!&ndash; Table Row 0 &ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<TableRow&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/tableRow0">&ndash;&gt;-->
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/priWeapon"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="priWeapon" &ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#000" &ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:gravity="left"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="5dp"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/priWeaponEditText"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="string b" &ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp" &ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:focusable="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:cursorVisible="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:longClickable="false"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</TableRow>&ndash;&gt;-->
+        <!--&lt;!&ndash;</TableLayout>&ndash;&gt;-->
+        <!--<Button-->
+            <!--android:id="@+id/next_button"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:onClick="onRepartBtnClick"-->
+            <!--android:text="CLICK TO SEE NEXT FRAG"/>-->
+    <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+    </ScrollView>
 </FrameLayout>
