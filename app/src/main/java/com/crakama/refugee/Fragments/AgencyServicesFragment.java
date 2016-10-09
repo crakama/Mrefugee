@@ -66,7 +66,7 @@ public class AgencyServicesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the fragment_repatriation_services_cv for this fragment
+        // Inflate the fragment_repatriation_child_cv for this fragment
         return inflater.inflate(R.layout.fragment_agency_services, container, false);
     }
 

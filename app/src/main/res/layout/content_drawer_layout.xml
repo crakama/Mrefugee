@@ -7,22 +7,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.crakama.refugee.Activities.MainActivity">
 
-
-    <FrameLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container" >
-        <!--tools:context="com.crakama.refugee.Fragments.TabsFragment-->
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        android:layout_height="match_parent">
+
+        <com.astuetz.PagerSlidingTabStrip
+            android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="48dp"
+            android:background="@drawable/background_tabs"
+            />
 
-        <!--<include layout="@layout/content_drawer_layout"/>-->
-
-    </FrameLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tabs"
+            tools:context=".Activities.MainActivity" />
+    </RelativeLayout>
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
@@ -50,10 +52,4 @@
 
 
 </android.support.v4.widget.DrawerLayout>
-
-
-
-
-
-
 
