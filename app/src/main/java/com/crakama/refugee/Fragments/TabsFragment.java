@@ -23,7 +23,7 @@ import com.crakama.refugee.R;
  * Use the {@link TabsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TabsFragment extends Fragment {
+public class TabsFragment extends RootFragment {
     protected ViewPager viewPager;
     private PagerSlidingTabStrip tabs;
     private ViewPagerAdapter viewPagerAdapter;

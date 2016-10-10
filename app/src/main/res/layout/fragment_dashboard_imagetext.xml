@@ -8,7 +8,7 @@
     android:orientation="horizontal"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="5dp"
-    card_view:cardBackgroundColor="#ECEFF1"
+
     android:background="@color/colorPrimaryGrey"
     app:cardUseCompatPadding="true">
 

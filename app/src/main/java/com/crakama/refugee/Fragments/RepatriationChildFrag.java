@@ -173,7 +173,7 @@ public class RepatriationChildFrag extends RootFragment  {
 
         dbref = FirebaseDatabase.getInstance().getReference();
 
-        newsprogressBar.setVisibility(View.VISIBLE);
+        //newsprogressBar.setVisibility(View.VISIBLE);
 
         firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
                 NewsModel.class,
@@ -187,7 +187,7 @@ public class RepatriationChildFrag extends RootFragment  {
                 viewHolder.newsBody.setText(model.getNewsBody());
                 viewHolder.newsOrganization.setText(model.getNewsorganization());
                 //viewHolder.newsDate.setText(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()));
-                newsprogressBar.setVisibility(View.GONE);
+                //newsprogressBar.setVisibility(View.GONE);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
