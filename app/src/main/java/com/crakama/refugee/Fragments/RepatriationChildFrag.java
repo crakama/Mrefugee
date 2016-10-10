@@ -249,7 +249,7 @@ public class RepatriationChildFrag extends RootFragment  {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        // Save the current article selection in case we need to recreate the fragment
+        // Save the current RepatriationChildFrag selection in case we need to recreate the fragment
         outState.putInt(ARG_POSITION, mCurrentPosition);
     }
 }

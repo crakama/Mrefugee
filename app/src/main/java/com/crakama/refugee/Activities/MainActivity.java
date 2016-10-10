@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements
     NavigationView navigation;
 
     private TabsFragment tabsFragment;
+    Fragment mfragment;
 
 
     @Override
@@ -49,7 +51,9 @@ public class MainActivity extends AppCompatActivity implements
             // then we don't need to do anything and should return or else
             // we could end up with overlapping fragments.
             if (savedInstanceState != null) {
-                return;
+                //return;
+                //Restore the fragment's instance
+                mfragment = getSupportFragmentManager().getFragment(savedInstanceState, "mfragment");
             }
 
             // Create an instance of TabsFragment
@@ -245,8 +249,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
+//        drawerToggle.syncState();
     }
+
 
 
     @Override
@@ -302,39 +307,23 @@ public class MainActivity extends AppCompatActivity implements
         }
 
 
-//         Capture the article fragment from the activity layout
-//        RepatriationChildFrag repatriationChildFrag = (RepatriationChildFrag)
-//                getSupportFragmentManager().findFragmentById(R.id.repartDetails_fragment);
-//        RepatriationChildFrag repatriationChildFrag = (RepatriationChildFrag)
-//                getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-//
-//        if (repatriationChildFrag != null) {
-//            // If article frag is available, we're in two-pane layout...
-//
-//            //Call TabsFragment to display tabs
-//
-//            // Call a method in the ArticleFragment to update its content
-//            repatriationChildFrag.updateArticleView(position);
-//
-//        } else {
-//            // If the frag is not available, we're in the one-pane layout and must swap frags...
-//
-//            // Create fragment and give it an argument for the selected article
-//            RepatriationChildFrag repatriationChildFrag1 = new RepatriationChildFrag();
-//            Bundle args = new Bundle();
-//            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
-//            repatriationChildFrag1.setArguments(args);
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//
-//            // Replace whatever is in the fragment_container view with this fragment,
-//            // and add the transaction to the back stack so the user can navigate back
-//            transaction.replace(R.id.container, repatriationChildFrag1);
-//            transaction.addToBackStack(null);
-//
-//            // Commit the transaction
-//            transaction.commit();
-//        }
-
 
     }
+
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        onCreate(savedInstanceState);
+//
+//    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //Save the fragment's instance
+        getSupportFragmentManager().putFragment(outState, "mfragment", tabsFragment);
+    }
+
+
 }// Ends Main Class
