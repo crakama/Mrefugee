@@ -4,31 +4,14 @@ package com.crakama.refugee;
  * Created by cate.rakama@gmail.com on 9/3/2016.
  */
 public class DadaabCamp {
-    private String name;
-    private String description;
 
-    public static final DadaabCamp[] camps = {
-
-            new DadaabCamp("IFO ONE","Camp one"),
-            new DadaabCamp("IFO TWO","camp two "),
-            new DadaabCamp("IFO THREE", "Camp three"),
-            new DadaabCamp("KAMBIOS", "Camp four"),
-            new DadaabCamp("DAGAHALEY","Camp five")
+    static String[] Repatriation = {
+            "Get Repatriation Process done in 4 steps!\n" +
+                    "\n" +
+                    "1. Get HelpDesk Support\n\nGet to know the current status of your country of citizenship",
+                    "2. Do Head screening\n\nThis process involves screening of your heads also known as headcount",
+                    "3. Registration\n\nGet registered by UNHRC and DRA",
+                    "4. Get your scope card\n\nThis is the last stage of the process where you are issued with scope card and travel details "
     };
-    //Each course has a name and description
-    public DadaabCamp(String name, String description) {
 
-        this.name = name;
-        this.description = description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription(){ return description; }
-    //The string representation of a Course is its name
-    public  String toString(){
-        return  this.name;
-    }
 }

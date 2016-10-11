@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -84,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements
             tabsFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'container' FrameLayout
-           getSupportFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, tabsFragment).commit();
-              initInstances();
+            initInstances();
         }
 
 
@@ -158,49 +159,49 @@ public class MainActivity extends AppCompatActivity implements
 
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(MenuItem menuItem) {
-                    int id = menuItem.getItemId();
-                    switch (id) {
-                        case R.id.navigation_item_1:
-                            //Do some thing here
-                            Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivity(loginIntent);
-                            break;
-                        case R.id.navigation_item_5:
-                            //Do some thing here
-                            break;
-                        case R.id.navigation_item_6:
-                            //Do some thing here
-                            Intent regIntent = new Intent(MainActivity.this, RegisterActivity.class);
-                            startActivity(regIntent);
-                            break;
-                        case R.id.navigation_item_3:
-                            //Do some thing here
-                            break;
-                        case R.id.navigation_item_4:
-                            //Do some thing here
-                            break;
-                        case R.id.navigation_item_7:
-                            //Do some thing here
-                            Intent resetIntent = new Intent(MainActivity.this, ResetPasswordActivity.class);
-                            startActivity(resetIntent);
-                            break;
-                        case R.id.nv_updatenoticeboard:
-                            //Do some thing here
-                            Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
-                            startActivity(noticeBoardIntent);
-                            break;
-                        case R.id.navigation_item_8:
-                            //Do some thing here
-                            Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
-                            startActivity(newsIntent);
-                            break;
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.navigation_item_1:
+                        //Do some thing here
+                        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(loginIntent);
+                        break;
+                    case R.id.navigation_item_5:
+                        //Do some thing here
+                        break;
+                    case R.id.navigation_item_6:
+                        //Do some thing here
+                        Intent regIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                        startActivity(regIntent);
+                        break;
+                    case R.id.navigation_item_3:
+                        //Do some thing here
+                        break;
+                    case R.id.navigation_item_4:
+                        //Do some thing here
+                        break;
+                    case R.id.navigation_item_7:
+                        //Do some thing here
+                        Intent resetIntent = new Intent(MainActivity.this, ResetPasswordActivity.class);
+                        startActivity(resetIntent);
+                        break;
+                    case R.id.nv_updatenoticeboard:
+                        //Do some thing here
+                        Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
+                        startActivity(noticeBoardIntent);
+                        break;
+                    case R.id.navigation_item_8:
+                        //Do some thing here
+                        Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
+                        startActivity(newsIntent);
+                        break;
 
-                    }
-                    return false;
                 }
-            });//end oclick listener
+                return false;
+            }
+        });//end oclick listener
 
 
 

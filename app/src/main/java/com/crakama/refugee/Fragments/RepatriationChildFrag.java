@@ -198,28 +198,8 @@ public class RepatriationChildFrag extends RootFragment  {
                 });
             }
 
-//            private void openNewsDetailActivity(String...details) {
-//                Intent newsIntent = new Intent(getActivity(), ShowNoticeDetails.class);
-//                newsIntent.putExtra("TTTLE_KEY", details[0]);
-//                newsIntent.putExtra("DESC_KEY", details[1]);
-//                newsIntent.putExtra("ORG_KEY", details[2]);
 //
-//                startActivity(newsIntent);
-//            }
         };
-
-        firebasenewsRecycleAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver(){
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount){
-                super.onItemRangeInserted(positionStart, itemCount);
-                int newsCount = firebasenewsRecycleAdapter.getItemCount();
-                int lastVisiblePosition = nwlinearLayoutManager.findLastVisibleItemPosition();
-                if(lastVisiblePosition == -1 || (positionStart>= (newsCount -1) && lastVisiblePosition == (positionStart -1))){
-                    newsrecyclerView.scrollToPosition(positionStart);
-                }
-            }
-        });
-
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
     }

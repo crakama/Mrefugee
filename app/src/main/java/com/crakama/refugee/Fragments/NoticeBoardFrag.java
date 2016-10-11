@@ -14,10 +14,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.crakama.refugee.Activities.ShowNoticeDetails;
 import com.crakama.refugee.R;
+import com.crakama.refugee.RVDividerItemDecoration;
 import com.crakama.refugee.database.NoticeBoardModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import static android.content.ContentValues.TAG;
 
@@ -96,7 +98,7 @@ public class NoticeBoardFrag extends Fragment {
 
         firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NoticeBoardModel, NoticeBoardModelVH>(
                 NoticeBoardModel.class,
-                R.layout.fragment_dashboard_imagetext,
+                R.layout.fragment_notice_cv,
                 NoticeBoardModelVH.class,
                 dbref.child(Notice)) {
             @Override
@@ -125,19 +127,11 @@ public class NoticeBoardFrag extends Fragment {
             }
         };
 
-        firebasenewsRecycleAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver(){
-            @Override
-             public void onItemRangeInserted(int positionStart, int itemCount){
-                super.onItemRangeInserted(positionStart, itemCount);
-                int newsCount = firebasenewsRecycleAdapter.getItemCount();
-                int lastVisiblePosition = nwlinearLayoutManager.findLastVisibleItemPosition();
-                if(lastVisiblePosition == -1 || (positionStart>= (newsCount -1) && lastVisiblePosition == (positionStart -1))){
-                    newsrecyclerView.scrollToPosition(positionStart);
-                }
-            }
-        });
 
-        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+       newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+        newsrecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity()).build());
+        //newsrecyclerView.addItemDecoration(new RVDividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
 
         /**
