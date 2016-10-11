@@ -140,17 +140,7 @@ public class LiveNewsFrag extends Fragment {
             }
         };
 
-        firebasenewsRecycleAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver(){
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount){
-                super.onItemRangeInserted(positionStart, itemCount);
-                int newsCount = firebasenewsRecycleAdapter.getItemCount();
-                int lastVisiblePosition = nwlinearLayoutManager.findLastVisibleItemPosition();
-                if(lastVisiblePosition == -1 || (positionStart>= (newsCount -1) && lastVisiblePosition == (positionStart -1))){
-                    newsrecyclerView.scrollToPosition(positionStart);
-                }
-            }
-        });
+
 
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);

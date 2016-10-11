@@ -238,6 +238,9 @@ public class MainActivity extends AppCompatActivity implements
             Intent addcampIntent = new Intent(MainActivity.this, UpdateNews.class);
             startActivity(addcampIntent);
             return true;
+        }else if(id == R.id.home){
+            onBackPressed();
+            return true;
 
         }else if(id == R.id.action_followup){
             startActivity(new Intent(this, IssueFollowUp.class));
@@ -250,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-//        drawerToggle.syncState();
+      drawerToggle.syncState();
     }
 
 
