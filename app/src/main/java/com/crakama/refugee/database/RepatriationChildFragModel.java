@@ -5,15 +5,15 @@ package com.crakama.refugee.database;
  */
 
 public class RepatriationChildFragModel {
-    private  String rvTitleText;
+    private  String rv_TitleText;
     private int rvImages;
 
     public String getRvTitleText() {
-        return rvTitleText;
+        return rv_TitleText;
     }
 
-    public void setRvTitleText(String rvTitleText) {
-        this.rvTitleText = rvTitleText;
+    public void setRvTitleText(String rv_TitleText) {
+        this.rv_TitleText = rv_TitleText;
     }
 
 

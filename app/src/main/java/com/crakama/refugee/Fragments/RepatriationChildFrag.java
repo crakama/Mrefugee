@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.crakama.refugee.Adapters.RepatriationChildFragAdapter;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.NewsModel;
+import com.crakama.refugee.database.RepatriationChildFragModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 
@@ -126,7 +128,7 @@ public class RepatriationChildFrag extends RootFragment  {
         //return inflater.inflate(R.layout.fragment_repatriation_child, container, false);
         View rootView = inflater.inflate(R.layout.fragment_repatriation_child_rv, container, false);
         newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriationServices);
-        newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
+        //newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
 
         return rootView;
     }
@@ -184,40 +186,22 @@ public class RepatriationChildFrag extends RootFragment  {
         nwlinearLayoutManager.setStackFromEnd(true);
 
 
-        ArrayList<>
-
-        //dbref = FirebaseDatabase.getInstance().getReference();
-
-        //newsprogressBar.setVisibility(View.VISIBLE);
-
-       /** firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter//<NewsModel, NewsModelVH>(
-                NewsModel.class,
-                R.layout.fragment_repatriation_child_cv,
-                NewsModelVH.class,
-                dbref.child(NEWS)) {
-            //NewsModel dbModel = NewsModel. .getInstance();
-            @Override
-            protected void populateViewHolder(NewsModelVH viewHolder, final NewsModel model, final int position) {
-                viewHolder.newsHead.setText(model.getNewsHead());
-                viewHolder.newsBody.setText(model.getNewsBody());
-                viewHolder.newsOrganization.setText(model.getNewsorganization());
-                //viewHolder.newsDate.setText(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()));
-                //newsprogressBar.setVisibility(View.GONE);
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.w(TAG, "You clicked on "+ position);
-                        //firebasenewsRecycleAdapter.getRef(position).removeValue();
-                        //openNewsDetailActivity(model.getNewsHead(), model.getNewsBody(),model.getNewsorganization());
-                    }
-                });
-            }
-        };*/
+        ArrayList<RepatriationChildFragModel> av = preparedData();
+        RepatriationChildFragAdapter repatriationChildFragAdapter = new RepatriationChildFragAdapter(getContext(),av);
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
-        newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
+        newsrecyclerView.setAdapter(repatriationChildFragAdapter);
     }
 
-
+    private  ArrayList<RepatriationChildFragModel> preparedData(){
+        ArrayList<RepatriationChildFragModel> av = new ArrayList<>();
+        for(int i = 0; i < rv_TitleText.length; i++ ){
+            RepatriationChildFragModel mRepatriationChildFragModel = new RepatriationChildFragModel();
+            mRepatriationChildFragModel.setRvTitleText(rv_TitleText[i]);
+            mRepatriationChildFragModel.setRvImages(rv_Images[i]);
+            av.add(mRepatriationChildFragModel);
+        }
+        return av;
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
