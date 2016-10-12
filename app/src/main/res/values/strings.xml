@@ -72,4 +72,9 @@
     <string name="hint_newshead">News Head</string>
     <string name="hint_newsorg">Organization</string>
     <string name="read_more"><u>Read More</u></string>
+
+    <!--Bullet points-->
+
+
+    <string name="text_with_bullet">Text with a \u25BA</string>
 </resources>
