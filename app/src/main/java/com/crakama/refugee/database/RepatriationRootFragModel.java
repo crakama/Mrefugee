@@ -4,16 +4,16 @@ package com.crakama.refugee.database;
  * Created by User on 10/8/2016.
  */
 
-public class RepatriationModel {
+public class RepatriationRootFragModel {
 
 
 
 
-    public RepatriationModel() {
+    public RepatriationRootFragModel() {
 
     }
 //
-//    public RepatriationModel(String welcomeMessage,String stagesInvolved,String countryInfo ) {
+//    public RepatriationRootFragModel(String welcomeMessage,String stagesInvolved,String countryInfo ) {
 //        setCountryInfo("COUNTRY INFO");
 //        setStagesInvolved("REPAT STAGES");
 //        setWelcomeMessage("setWelcomeMessage");

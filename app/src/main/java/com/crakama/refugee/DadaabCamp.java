@@ -5,7 +5,7 @@ package com.crakama.refugee;
  */
 public class DadaabCamp {
 
-    static String[] Repatriation = {
+    static String[] RepatriationSteps = {
             "Get Repatriation Process done in 4 steps!\n" +
                     "\n" +
                     "1. Get HelpDesk Support\n\nGet to know the current status of your country of citizenship",

@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.RepatriationModel;
+import com.crakama.refugee.database.RepatriationRootFragModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 
@@ -34,7 +34,7 @@ public class RepatriationRootFrag extends RootFragment {
     private OnRepartButtonClickedListener mListener;
 
     DatabaseReference dbref;
-    FirebaseRecyclerAdapter<RepatriationModel,RepatriationModelVH> firebasenewsRecycleAdapter ;
+    FirebaseRecyclerAdapter<RepatriationRootFragModel,RepatriationModelVH> firebasenewsRecycleAdapter ;
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
@@ -63,7 +63,7 @@ public class RepatriationRootFrag extends RootFragment {
 
     }// End NewsModelVH class
 
-    public static final String NEWS= "RepatriationModel";
+    public static final String NEWS= "RepatriationRootFragModel";
 
     /**
      * Use this factory method to create a new instance of

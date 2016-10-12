@@ -79,7 +79,6 @@
                 android:id="@+id/read_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:background="@null"
                 android:text="@string/read_more"
                 android:textStyle="italic"

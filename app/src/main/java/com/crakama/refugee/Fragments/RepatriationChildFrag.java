@@ -1,28 +1,22 @@
 package com.crakama.refugee.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.crakama.refugee.OnBackPressListener;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.NewsModel;
-import com.crakama.refugee.database.RepatriationModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import static android.content.ContentValues.TAG;
-import static com.crakama.refugee.R.id.pager;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,9 +59,27 @@ public class RepatriationChildFrag extends RootFragment  {
 
         }
 
-    }// End RepatriationModel class
+    }// End RepatriationRootFragModel class
 
     public static final String NEWS= "NewsModel";
+
+    final int rv_Images[] = {R.mipmap.ic_helpdesk,R.mipmap.ic_screening,R.mipmap.ic_registration,R.mipmap.ic_scopecard};
+
+    final String rv_TitleText[] = {"1. Get HelpDesk Support\n" +
+            "\n" +
+            "This service is offered by by NRC.\n" +
+            "\n" +
+            "At this stage you informed of the current status and facts about your country of origin",
+            "2. Do Head screening\n" +
+                    "\n" +
+                    "This process involves screening of your heads also known as headcount",
+            "3. Registration\n" +
+                    "\n" +
+                    "Get registered by UNHRC and DRA",
+            "4. Get your scope card\n" +
+                    "\n" +
+                    "This is the last stage of the process where you are issued with scope card and travel details"};
+
 
     public RepatriationChildFrag() {
         // Required empty public constructor
@@ -171,11 +183,14 @@ public class RepatriationChildFrag extends RootFragment  {
         nwlinearLayoutManager = new LinearLayoutManager(getActivity());
         nwlinearLayoutManager.setStackFromEnd(true);
 
-        dbref = FirebaseDatabase.getInstance().getReference();
+
+        ArrayList<>
+
+        //dbref = FirebaseDatabase.getInstance().getReference();
 
         //newsprogressBar.setVisibility(View.VISIBLE);
 
-        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<NewsModel, NewsModelVH>(
+       /** firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter//<NewsModel, NewsModelVH>(
                 NewsModel.class,
                 R.layout.fragment_repatriation_child_cv,
                 NewsModelVH.class,
@@ -197,12 +212,12 @@ public class RepatriationChildFrag extends RootFragment  {
                     }
                 });
             }
-
-//
-        };
+        };*/
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
     }
+
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
