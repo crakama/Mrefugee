@@ -38,6 +38,8 @@ public class RepatriationChildFragAdapter extends RecyclerView.Adapter<Repatriat
     public void onBindViewHolder(ViewHolder holder, int position) {
           holder.stepsImg.setImageResource(repatriationChildFragModels.get(position).getRvImages());
         holder.stepsTitle.setText(repatriationChildFragModels.get(position).getRvTitleText());
+        holder.stepsBody.setText(repatriationChildFragModels.get(position).getRv_StepsBody());
+        holder.stepsDesc.setText(repatriationChildFragModels.get(position).getRv_StepsDesc());
     }
 
     @Override
@@ -46,13 +48,15 @@ public class RepatriationChildFragAdapter extends RecyclerView.Adapter<Repatriat
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView stepsTitle;
+        private TextView stepsTitle, stepsBody, stepsDesc;
         private ImageView stepsImg;
 
         public ViewHolder(View itemView) {
             super(itemView);
             stepsImg = (ImageView) itemView.findViewById(R.id.lv_welcome_img);
             stepsTitle = (TextView) itemView.findViewById(R.id.lv_steps_ifo);
+            stepsBody = (TextView) itemView.findViewById(R.id.lv_steps_headline);
+            stepsDesc = (TextView) itemView.findViewById(R.id.lv_steps_desc);
         }
     }
 }

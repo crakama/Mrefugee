@@ -64,23 +64,16 @@ public class RepatriationChildFrag extends RootFragment  {
     }// End RepatriationRootFragModel class
 
     public static final String NEWS= "NewsModel";
+    final  String rv_StepsDesc[] = {"This service is offered by by NRC.At this stage you informed of the current status and facts about your country of origin","This process involves screening of your heads also known as headcount","Get registered by UNHRC and DRA","This is the last stage of the process where you are issued with scope card and travel details"};
+
+    final String rv_StepBody[] = {"Start Repatriation Process in just 3 Steps!","","",""};
 
     final int rv_Images[] = {R.mipmap.ic_helpdesk,R.mipmap.ic_screening,R.mipmap.ic_registration,R.mipmap.ic_scopecard};
 
-    final String rv_TitleText[] = {"1. Get HelpDesk Support\n" +
-            "\n" +
-            "This service is offered by by NRC.\n" +
-            "\n" +
-            "At this stage you informed of the current status and facts about your country of origin",
-            "2. Do Head screening\n" +
-                    "\n" +
-                    "This process involves screening of your heads also known as headcount",
-            "3. Registration\n" +
-                    "\n" +
-                    "Get registered by UNHRC and DRA",
-            "4. Get your scope card\n" +
-                    "\n" +
-                    "This is the last stage of the process where you are issued with scope card and travel details"};
+    final String rv_TitleText[] = {"1. Get HelpDesk Support",
+            "2. Do Head screening ",
+            "3. Registration",
+            "4. Get your scope card"};
 
 
     public RepatriationChildFrag() {
@@ -198,6 +191,8 @@ public class RepatriationChildFrag extends RootFragment  {
             RepatriationChildFragModel mRepatriationChildFragModel = new RepatriationChildFragModel();
             mRepatriationChildFragModel.setRvTitleText(rv_TitleText[i]);
             mRepatriationChildFragModel.setRvImages(rv_Images[i]);
+            mRepatriationChildFragModel.setRv_StepsBody(rv_StepBody[i]);
+            mRepatriationChildFragModel.setRv_StepsDesc(rv_StepsDesc[i]);
             av.add(mRepatriationChildFragModel);
         }
         return av;
