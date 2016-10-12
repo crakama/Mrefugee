@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.crakama.refugee.Activities.ShowNoticeDetails;
 import com.crakama.refugee.R;
-import com.crakama.refugee.RVDividerItemDecoration;
 import com.crakama.refugee.database.NoticeBoardModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -130,8 +130,6 @@ public class NoticeBoardFrag extends Fragment {
 
        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity()).build());
-        //newsrecyclerView.addItemDecoration(new RVDividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
 
         /**

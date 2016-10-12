@@ -1,12 +1,5 @@
 package com.crakama.refugee.database;
 
-import android.content.Context;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import com.crakama.refugee.Message;
-
 /**
  * Created by cate.rakama@gmail.com on 9/15/2016.
  */

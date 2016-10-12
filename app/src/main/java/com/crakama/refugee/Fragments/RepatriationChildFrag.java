@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crakama.refugee.Adapters.RepatriationChildFragAdapter;
+import com.crakama.refugee.OnRepChildItemClickListener;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.NewsModel;
 import com.crakama.refugee.database.RepatriationChildFragModel;
@@ -78,6 +80,7 @@ public class RepatriationChildFrag extends RootFragment  {
 
     public RepatriationChildFrag() {
         // Required empty public constructor
+
     }
 
     /**
@@ -183,6 +186,20 @@ public class RepatriationChildFrag extends RootFragment  {
         RepatriationChildFragAdapter repatriationChildFragAdapter = new RepatriationChildFragAdapter(getContext(),av);
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(repatriationChildFragAdapter);
+        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                switch (i){
+                    case 0:
+                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+        }));
+
     }
 
     private  ArrayList<RepatriationChildFragModel> preparedData(){
