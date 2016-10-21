@@ -171,22 +171,14 @@ public class MainActivity extends AppCompatActivity implements
                     case R.id.navigation_item_5:
                         //Do some thing here
                         break;
-                    case R.id.navigation_item_6:
-                        //Do some thing here
-                        Intent regIntent = new Intent(MainActivity.this, RegisterActivity.class);
-                        startActivity(regIntent);
-                        break;
+
                     case R.id.navigation_item_3:
                         //Do some thing here
                         break;
                     case R.id.navigation_item_4:
                         //Do some thing here
                         break;
-                    case R.id.navigation_item_7:
-                        //Do some thing here
-                        Intent resetIntent = new Intent(MainActivity.this, ResetPasswordActivity.class);
-                        startActivity(resetIntent);
-                        break;
+//
                     case R.id.nv_updatenoticeboard:
                         //Do some thing here
                         Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
@@ -242,9 +234,6 @@ public class MainActivity extends AppCompatActivity implements
             onBackPressed();
             return true;
 
-        }else if(id == R.id.action_followup){
-            startActivity(new Intent(this, IssueFollowUp.class));
-            return true;
         }
 
         return super.onOptionsItemSelected(item);

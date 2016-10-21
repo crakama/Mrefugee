@@ -57,7 +57,7 @@ public class UpdateNews extends AppCompatActivity {
                 NewsModel dbModel = new NewsModel();
                 dbModel.setNewsHead(newNoticeHead);
                 dbModel.setNewsBody(newNoticeBody);
-                dbModel.setDateCreated(ServerValue.TIMESTAMP);
+               // dbModel.setDateCreated(ServerValue.TIMESTAMP);
                // dbModel.setNewsorganization(newNoticeorganization);
                 /**
                  * SIMPLE VALIDATION

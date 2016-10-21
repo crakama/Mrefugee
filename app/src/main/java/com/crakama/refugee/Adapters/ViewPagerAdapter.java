@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.crakama.refugee.Fragments.LiveNewsFrag;
 import com.crakama.refugee.Fragments.NoticeBoardFrag;
+import com.crakama.refugee.Fragments.RepatriationChildFrag;
 import com.crakama.refugee.Fragments.RepatriationRootFrag;
 
 /**
@@ -40,7 +41,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
             case 1:
 
-                return RepatriationRootFrag.newInstance(position);
+                //return RepatriationRootFrag.newInstance(position);
+                return RepatriationChildFrag.newInstance(position);
 
             case 2:
                 return NoticeBoardFrag.newInstance(position);

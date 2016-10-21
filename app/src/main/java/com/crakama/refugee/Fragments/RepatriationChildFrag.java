@@ -68,7 +68,7 @@ public class RepatriationChildFrag extends RootFragment  {
     public static final String NEWS= "NewsModel";
     final  String rv_StepsDesc[] = {"This service is offered by by NRC.At this stage you informed of the current status and facts about your country of origin","This process involves screening of your heads also known as headcount","Get registered by UNHRC and DRA","This is the last stage of the process where you are issued with scope card and travel details"};
 
-    final String rv_StepBody[] = {"Start Repatriation Process in just 3 Steps!","","",""};
+    final String rv_StepBody[] = {"Start Repatriation Process in just 4 Steps!","","",""};
 
     final int rv_Images[] = {R.mipmap.ic_helpdesk,R.mipmap.ic_screening,R.mipmap.ic_registration,R.mipmap.ic_scopecard};
 
@@ -90,16 +90,15 @@ public class RepatriationChildFrag extends RootFragment  {
      * @param //param1 Parameter 1.
      * @param //param2 Parameter 2.
      * @return A new instance of fragment RepatriationChildFrag.
-
+*/
     // TODO: Rename and change types and number of parameters
-    public static RepatriationChildFrag newInstance(String param1, String param2) {
+    public static RepatriationChildFrag newInstance(int position) {
         RepatriationChildFrag fragment = new RepatriationChildFrag();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_POSITION,position);
         fragment.setArguments(args);
         return fragment;
-    } */
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

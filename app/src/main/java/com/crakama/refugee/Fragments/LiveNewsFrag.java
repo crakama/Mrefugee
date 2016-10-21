@@ -139,12 +139,8 @@ public class LiveNewsFrag extends Fragment {
                 startActivity(newsIntent);
             }
         };
-
-
-
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
-
         /**
          * SET ADAPTER
          */

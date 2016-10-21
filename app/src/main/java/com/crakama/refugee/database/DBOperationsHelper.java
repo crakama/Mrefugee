@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class DBOperationsHelper {
   DatabaseReference dbref;
-    Boolean saved;
+    Boolean savednews, savednotice;
     ArrayList<NoticeBoardModel> newsArraylist = new ArrayList<>();
 
 /**
@@ -28,34 +28,34 @@ public class DBOperationsHelper {
 
     public Boolean saveNotice(NoticeBoardModel news){
         if(news == null){
-            saved = false;
+            savednotice = false;
         }else{
             try {
                 dbref.child("NoticeBoardModel").push().setValue(news);
-                saved = true;
+                savednotice = true;
             } catch (DatabaseException e) {
 
                 e.printStackTrace();
-                saved = false;
+                savednotice = false;
             }
         }
-        return saved;
+        return savednotice;
     }
 
     public Boolean saveNews(NewsModel news){
         if(news == null){
-            saved = false;
+            savednews = false;
         }else{
             try {
-                dbref.child("NoticeBoardModel").push().setValue(news);
-                saved = true;
+                dbref.child("NewsdModel").push().setValue(news);
+                savednews = true;
             } catch (DatabaseException e) {
 
                 e.printStackTrace();
-                saved = false;
+                savednews = false;
             }
         }
-        return saved;
+        return savednews;
     }
 
 
