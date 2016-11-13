@@ -34,7 +34,7 @@ public class RepatriationRootFrag extends RootFragment {
     private OnRepartButtonClickedListener mListener;
 
     DatabaseReference dbref;
-    FirebaseRecyclerAdapter<RepatriationRootFragModel,RepatriationModelVH> firebasenewsRecycleAdapter ;
+    //FirebaseRecyclerAdapter<RepatriationRootFragModel,RepatriationModelVH> firebasenewsRecycleAdapter ;
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
@@ -45,23 +45,23 @@ public class RepatriationRootFrag extends RootFragment {
     }
 
 
-    public static class RepatriationModelVH extends RecyclerView.ViewHolder{
-
-        public final TextView repWelcomeMsg, repCountryInfo,repStages;
-        View mView;
-
-        public RepatriationModelVH(View itemView) {
-            super(itemView);
-            this.mView = itemView;
-            this.repWelcomeMsg = (TextView) mView.findViewById(R.id.lv_welcome_msg);
-            this.repCountryInfo = (TextView) mView.findViewById(R.id.lv_country_ifo);
-            this.repStages = (TextView) mView.findViewById(R.id.lv_repatriation_stages);
-            //this.newsDate = (TextView) mView.findViewById(R.id.lv_item_date);
-
-
-        }
-
-    }// End NewsModelVH class
+//    public static class RepatriationModelVH extends RecyclerView.ViewHolder{
+//
+//        public final TextView repWelcomeMsg, repCountryInfo,repStages;
+//        View mView;
+//
+//        public RepatriationModelVH(View itemView) {
+//            super(itemView);
+//            this.mView = itemView;
+//            this.repWelcomeMsg = (TextView) mView.findViewById(R.id.lv_welcome_msg);
+//            this.repCountryInfo = (TextView) mView.findViewById(R.id.lv_country_ifo);
+//            this.repStages = (TextView) mView.findViewById(R.id.lv_repatriation_stages);
+//            //this.newsDate = (TextView) mView.findViewById(R.id.lv_item_date);
+//
+//
+//        }
+//
+//    }// End NewsModelVH class
 
     public static final String NEWS= "RepatriationRootFragModel";
 
@@ -142,18 +142,6 @@ public class RepatriationRootFrag extends RootFragment {
 
     }
 
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /** Called by RepartRootFrag when a button is clicked */
     public static interface OnRepartButtonClickedListener {
         // TODO: Update argument type and name
         void onRepartBtnClick(int p);

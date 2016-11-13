@@ -1,96 +1,260 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:padding="3dp"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
-        card_view:cardElevation="5dp"
+<android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        card_view:cardCornerRadius="2dp"
-        card_view:contentPadding="5dp"
-        app:cardUseCompatPadding="true">
-
-        <!--android:layout_gravity="center"-->
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+        android:backgroundTint="@color/gray"
+        >
 
 
-            <TextView
-                android:id="@+id/lv_welcome_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:padding="10dp"
-                android:textStyle="bold|italic"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/grey" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_welcome_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/lv_country_ifo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:lines="6"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="30dp"
+
+            card_view:cardElevation="10dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:contentPadding="5dp"
+            >
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="30dp"
                 />
-
-
-            <TextView
-                android:id="@+id/lv_repatriation_stages"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold|italic"
-                android:paddingLeft="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true" />
+                android:background="#fff"
+                android:elevation="7dp"
+                android:paddingTop="10dp"
+                android:clickable="true">
+                <!--<ImageView-->
 
-            <TextView
-                android:id="@+id/lv_item_separator"
-                android:layout_width="wrap_content"
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:srcCompat="@mipmap/ic_helpdesk"-->
+                <!--android:id="@+id/img_helpdesk"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_gravity="top|center" />-->
+
+                <TextView
+                    android:id="@+id/headhealpdesk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. Information Desk Support."
+                    android:textStyle="bold|italic"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center"
+                    android:drawableTop="@mipmap/ic_helpdesk"
+                    android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/txthelpDesk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/headhealpdesk"
+                    android:padding="10dp"
+                    android:textStyle="italic"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/grey" />
+                <Button
+                    android:id="@+id/read_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@string/read_more"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/txthelpDesk"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:onClick="helpDeskSupport"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_country_ifo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cv_welcome_msg"
+            card_view:cardElevation="10dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="5dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="||"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold|italic"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/listview_item_organization" />
+                android:background="#fff"
+                android:elevation="4dp"
+                android:paddingTop="10dp">
+                <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:srcCompat="@mipmap/ic_screening"-->
+                <!--android:id="@+id/img_screening"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_gravity="center"/>-->
+                <TextView
+                    android:id="@+id/headmedicalScreening"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2. Medical Screening "
+                    android:drawableTop="@mipmap/ic_screening"
+                    android:textStyle="bold|italic"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center"
+                    android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/txtmedicalScreening"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/headmedicalScreening"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"></TextView>
+
+                <Button
+                    android:id="@+id/read_more2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@string/read_more"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/txtmedicalScreening"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:layout_centerInParent="true" />
+                />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
 
-            <TextView
-                android:id="@+id/lv_item_date"
-                android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_repatriation_stages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cv_country_ifo"
+            card_view:cardElevation="10dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="5dp"
+            >
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold|italic"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/lv_item_separator" />
-            <Button
-                android:id="@+id/read_more"
-                android:layout_width="wrap_content"
+                android:background="#fff"
+                android:elevation="4dp"
+                android:paddingTop="10dp">
+                <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:srcCompat="@mipmap/ic_registration"-->
+                <!--android:id="@+id/img_movementPass"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_gravity="center"/>-->
+                <TextView
+                    android:id="@+id/headmovementpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3. Process Movement Pass"
+                    android:drawableTop="@mipmap/ic_registration"
+
+                    android:textStyle="bold|italic"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/txtmovementPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/headmovementpass"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:paddingLeft="5dp"></TextView>
+
+                <Button
+                    android:id="@+id/read_more3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@string/read_more"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/txtmovementPass"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:layout_centerInParent="true" />
+                />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_repatriation_stages1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cv_repatriation_stages"
+            card_view:cardElevation="10dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="5dp"
+            >
+            <!--<Space-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="30dp"></Space>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:text="@string/read_more"
-                android:textStyle="italic"
-                android:textColor="@color/colorAccent"
-                android:layout_alignParentRight="true"
-                android:textAllCaps="false"
-                android:layout_alignParentBottom="true" />
-            <!--android:layout_marginTop="16dp"-->
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
-
-
+                android:background="#fff"
+                android:elevation="4dp"
+                android:paddingTop="10dp">
+                />
+                <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:srcCompat="@mipmap/ic_scopecard"-->
+                <!--android:id="@+id/img_departure"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_gravity="center"/>-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4. Departure "
+                    android:drawableTop="@mipmap/ic_scopecard"
+                    android:layout_gravity="center"
+                    android:textStyle="bold|italic"
+                    android:id="@+id/headdeparture"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/txtdeparture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:paddingLeft="5dp"
+                    android:layout_below="@+id/headdeparture" />
+                <Button
+                    android:id="@+id/read_more4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@string/read_more"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/txtdeparture"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

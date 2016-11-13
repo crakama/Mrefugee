@@ -244,6 +244,15 @@ public class MainActivity extends AppCompatActivity implements
         super.onPostCreate(savedInstanceState);
       drawerToggle.syncState();
     }
+//
+//    public void helpDeskSupport(View v) {
+//        Intent newsIntent = new Intent(this, HelpDeskSupport.class);
+//        newsIntent.putExtra("TTTLE_KEY", details[0]);
+//        //newsIntent.putExtra("DESC_KEY", details[1]);
+//        //newsIntent.putExtra("ORG_KEY", details[2]);
+//
+//        startActivity(newsIntent);
+//    }
 
 
 

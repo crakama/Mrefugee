@@ -1,6 +1,7 @@
 package com.crakama.refugee.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crakama.refugee.Activities.HelpDeskSupport;
 import com.crakama.refugee.Adapters.RepatriationChildFragAdapter;
 import com.crakama.refugee.OnRepChildItemClickListener;
 import com.crakama.refugee.R;
@@ -19,6 +21,7 @@ import com.crakama.refugee.database.NewsModel;
 import com.crakama.refugee.database.RepatriationChildFragModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -39,43 +42,52 @@ public class RepatriationChildFrag extends RootFragment  {
 
     // Set grid view items titles and images
     DatabaseReference dbref;
-    FirebaseRecyclerAdapter<NewsModel,RepatriationChildFrag.NewsModelVH> firebasenewsRecycleAdapter ;
+    //FirebaseRecyclerAdapter<NewsModel,RepatriationChildFrag.NewsModelVH> firebasenewsRecycleAdapter ;
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
 
     private RepatriationChildFragListener mListener;
+    public TextView helpDesk, medicalScreening,movementPass, departure;
 
-
-    public static class NewsModelVH extends RecyclerView.ViewHolder{
-
-        public final TextView newsHead, newsBody,newsOrganization;
-        View mView;
-
-        public NewsModelVH(View itemView) {
-            super(itemView);
-            this.mView = itemView;
-            this.newsHead = (TextView) mView.findViewById(R.id.lv_welcome_msg);
-            this.newsBody = (TextView) mView.findViewById(R.id.lv_country_ifo);
-            this.newsOrganization = (TextView) mView.findViewById(R.id.lv_repatriation_stages);
-           // this.newsDate = (TextView) mView.findViewById(R.id.lv_item_date);
-
-
-        }
-
-    }// End RepatriationRootFragModel class
+//    public static class NewsModelVH extends RecyclerView.ViewHolder{
+//
+//        //public final TextView newsHead, newsBody,newsOrganization;
+//        View mView;
+//
+//        public NewsModelVH(View itemView) {
+//            super(itemView);
+//            this.mView = itemView;
+//            this.newsHead = (TextView) mView.findViewById(R.id.lv_welcome_msg);
+//            this.newsBody = (TextView) mView.findViewById(R.id.lv_country_ifo);
+//            this.newsOrganization = (TextView) mView.findViewById(R.id.lv_repatriation_stages);
+//           // this.newsDate = (TextView) mView.findViewById(R.id.lv_item_date);
+//
+//
+//        }
+//
+//    }// End RepatriationRootFragModel class
 
     public static final String NEWS= "NewsModel";
-    final  String rv_StepsDesc[] = {"This service is offered by by NRC.At this stage you informed of the current status and facts about your country of origin","This process involves screening of your heads also known as headcount","Get registered by UNHRC and DRA","This is the last stage of the process where you are issued with scope card and travel details"};
+    //final  String rv_StepsDesc[] = {"This service is offered by by NRC.At this stage you informed of the current status and facts about your country of origin","This process involves screening of your heads also known as headcount","Get registered by UNHRC and DRA","This is the last stage of the process where you are issued with scope card and travel details"};
 
-    final String rv_StepBody[] = {"Start Repatriation Process in just 4 Steps!","","",""};
+    final  String rv_HelpDesk = "People expressing interest in returning to Somalia go to the UNHCR Return helpdesks in their respective camp " +
+            "where they get information and counselling on the voluntary return programme and get registered as persons with the intention to return." +
+            " NRC (Norwegian Refugee Council) provides information on the conditions in the return areas in Somalia (Country of origin information) at the UNHCR helpdesk.";
+    final  String rv_Screening ="Persons go through medical checks and get issued with medical clearances.";
 
-    final int rv_Images[] = {R.mipmap.ic_helpdesk,R.mipmap.ic_screening,R.mipmap.ic_registration,R.mipmap.ic_scopecard};
+    final  String rv_MovementPass ="Step 6. UNHCR generates movement passes and submits to RAS (Kenya Refugee Affairs Secretariat, the former DRA) for facilitation of exit formalities.\n" +
+            "Step 7. RAS takes movement passes to Kenya Immigration office for stamping\n ";
 
-    final String rv_TitleText[] = {"1. Get HelpDesk Support",
-            "2. Do Head screening ",
-            "3. Registration",
-            "4. Get your scope card"};
+    final  String rv_Departure ="Step 8. Individuals go to the UNHCR helpdesk in their respective camp and are transported to one of the Transit Centres (managed by DRC) in Dagahaley or Hagadera, where DRC and UNHCR perform a final verification based on the UNHCR-issued pre-manifest with the list of family members in each household that have expressed willingness to return to Somalia. By this point, around 30% of the initial number of refugees on the pre-manifest that have expressed willingness to return to Somalia do not show up for repatriation, either having given up or taking longer to further reflect on the decision.\n" +
+            "Refugees Selected or booked for travelling are accommodated at the transit centres a day before departure in the afternoon. Mobilization to the transit centres are done in four consecutive days of Sundays, Mondays, Tuesday and Wednesdays.\n" +
+            "\n" +
+            "At the Transit Centre, NRC distributes non-food items and are provided with food and shelter for the night.\n" +
+            "Step 9. On the morning of departure, refugees are transported to the Dadaab airstrip, where RAS delivers signed and stamped movement passes, and collects manual fingerprints (on paper) of adult returnees.\n" +
+            "DRC delivers UNHCR’s cash return grant and has the head of household sign (by way of manual fingerprint) the Voluntary Repatriation Form.\n" +
+            "Returnees board the aircraft to Mogadishu, other locations or the bus to Dobhley.\n";
+
+
 
 
     public RepatriationChildFrag() {
@@ -122,8 +134,33 @@ public class RepatriationChildFrag extends RootFragment  {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_repatriation_child, container, false);
         View rootView = inflater.inflate(R.layout.fragment_repatriation_child_rv, container, false);
-        newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriationServices);
+        newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriation);
+        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+        nwlinearLayoutManager.setStackFromEnd(true);
+        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+        //newsrecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity()).build());
+        //newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriationServices);
         //newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
+
+        helpDesk = (TextView) rootView.findViewById(R.id.txthelpDesk);
+        medicalScreening = (TextView) rootView.findViewById(R.id.txtmedicalScreening);
+        movementPass = (TextView) rootView.findViewById(R.id.txtmovementPass);
+        departure = (TextView) rootView.findViewById(R.id.txtdeparture);
+//        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int i) {
+//                switch (i){
+//                    case 0:
+//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+//                        openNewsDetailActivity(rv_HelpDesk);
+//
+//                        break;
+//                    case 1:
+//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+//                        break;
+//                }
+//            }
+//        }));
 
         return rootView;
     }
@@ -157,62 +194,95 @@ public class RepatriationChildFrag extends RootFragment  {
     @Override
     public void onStart() {
         super.onStart();
-        // During startup, check if there are arguments passed to the fragment.
+
+        helpDesk.setText(rv_HelpDesk);
+        medicalScreening.setText(rv_Screening);
+        movementPass.setText(rv_MovementPass);
+        departure.setText(rv_Departure);
+
+    }
+//
+//    public void onStart() {
+//        super.onStart();
+//        // During startup, check if there are arguments passed to the fragment.
+//        // onStart is a good place to do this because the layout has already been
+//        // applied to the fragment at this point so we can safely call the method
+//        // below that sets the article text.
+//        Bundle args = getArguments();
+//        if (args != null) {
+//            // Set article based on argument passed in
+//            updateArticleView(args.getInt(ARG_POSITION));
+//        } else if (mCurrentPosition != -1) {
+//            // Set article based on saved instance state defined during onCreateView
+//            updateArticleView(mCurrentPosition);
+//        }
+//
+//    }
+//
+//
+//    public void updateArticleView(int position) {
+//
+//
+//
+//        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+//        nwlinearLayoutManager.setStackFromEnd(true);
+//
+//
+//       // ArrayList<RepatriationChildFragModel> av = preparedData();
+//       // RepatriationChildFragAdapter repatriationChildFragAdapter = new RepatriationChildFragAdapter(getContext(),av);
+//        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+//       // newsrecyclerView.setAdapter(repatriationChildFragAdapter);
+//        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int i) {
+//                switch (i){
+//                    case 0:
+//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+//                        openNewsDetailActivity();
+//
+//                        break;
+//                    case 1:
+//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+//                        break;
+//                }
+//            }
+//        }));
+//
+//
+//    }
+//
+
+
+
+
+    private void openNewsDetailActivity(String rv_helpDesk) {
+
+        Intent newsIntent = new Intent(getActivity(), HelpDeskSupport.class);
+        newsIntent.putExtra("TTTLE_KEY", rv_helpDesk);
+        //newsIntent.putExtra("DESC_KEY", details[1]);
+        //newsIntent.putExtra("ORG_KEY", details[2]);
+
+        startActivity(newsIntent);
+    }
+
+    // During startup, check if there are arguments passed to the fragment.
         // onStart is a good place to do this because the layout has already been
         // applied to the fragment at this point so we can safely call the method
         // below that sets the article text.
-        Bundle args = getArguments();
-        if (args != null) {
-            // Set article based on argument passed in
-            updateArticleView(args.getInt(ARG_POSITION));
-        } else if (mCurrentPosition != -1) {
-            // Set article based on saved instance state defined during onCreateView
-            updateArticleView(mCurrentPosition);
-        }
-
-    }
-
-
-    public void updateArticleView(int position) {
+//        Bundle args = getArguments();
+//        if (args != null) {
+//            // Set article based on argument passed in
+//            updateArticleView(args.getInt(ARG_POSITION));
+//        } else if (mCurrentPosition != -1) {
+//            // Set article based on saved instance state defined during onCreateView
+//            updateArticleView(mCurrentPosition);
+//        }
 
 
 
-        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
-        nwlinearLayoutManager.setStackFromEnd(true);
 
 
-        ArrayList<RepatriationChildFragModel> av = preparedData();
-        RepatriationChildFragAdapter repatriationChildFragAdapter = new RepatriationChildFragAdapter(getContext(),av);
-        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
-        newsrecyclerView.setAdapter(repatriationChildFragAdapter);
-        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int i) {
-                switch (i){
-                    case 0:
-                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
-                        break;
-                    case 1:
-                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
-                        break;
-                }
-            }
-        }));
 
-    }
-
-    private  ArrayList<RepatriationChildFragModel> preparedData(){
-        ArrayList<RepatriationChildFragModel> av = new ArrayList<>();
-        for(int i = 0; i < rv_TitleText.length; i++ ){
-            RepatriationChildFragModel mRepatriationChildFragModel = new RepatriationChildFragModel();
-            mRepatriationChildFragModel.setRvTitleText(rv_TitleText[i]);
-            mRepatriationChildFragModel.setRvImages(rv_Images[i]);
-            mRepatriationChildFragModel.setRv_StepsBody(rv_StepBody[i]);
-            mRepatriationChildFragModel.setRv_StepsDesc(rv_StepsDesc[i]);
-            av.add(mRepatriationChildFragModel);
-        }
-        return av;
-    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -233,6 +303,7 @@ public class RepatriationChildFrag extends RootFragment  {
     public static interface RepatriationChildFragListener {
         // TODO: Update argument type and name
         void onRepartBtnClick(int p);
+        //void helpDeskSupport(View v,rv_HelpDesk);
     }
 
     @Override

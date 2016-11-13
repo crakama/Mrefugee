@@ -7,10 +7,10 @@
     <application
         android:name=".Mrefugee"
         android:allowBackup="true"
+        android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:configChanges="orientation|screenSize"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
@@ -31,7 +31,8 @@
         <activity android:name=".Auth.ChangePasswordActivity" />
         <activity android:name=".Activities.UpdateNoticeBoard" />
         <activity android:name=".Activities.ShowNoticeDetails" />
-        <activity android:name=".Activities.UpdateRepatriationData"></activity>
+        <activity android:name=".Activities.UpdateRepatriationData" />
+        <activity android:name=".Activities.HelpDeskSupport"></activity>
     </application>
 
 </manifest>
