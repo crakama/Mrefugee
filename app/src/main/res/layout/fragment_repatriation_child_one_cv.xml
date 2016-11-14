@@ -4,110 +4,67 @@
     xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:padding="2dp"
     android:layout_height="wrap_content">
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/card_view0"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--card_view:cardCornerRadius="2dp"-->
-        <!--app:cardUseCompatPadding="true">-->
-
-       <!---->
-
-
-        <!--</android.support.v7.widget.CardView>-->
-
+    <!--android:background="?android:attr/selectableItemBackground"-->
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="2dp"
-        android:padding="2dp"
-        app:cardUseCompatPadding="true">
+    android:id="@+id/cv_welcome_msg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardElevation="10dp"
+    card_view:cardCornerRadius="5dp"
+    card_view:contentPadding="5dp"
+    >
 
-        <!--android:layout_gravity="center"-->
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            <TextView
-                android:id="@+id/lv_steps_headline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:textAlignment="center"
-                android:layout_centerInParent="true"
-                android:layout_alignParentTop="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/mix"
-                android:textSize="24sp"
-                android:padding="5dp"
-                android:textStyle="bold"
-                ></TextView>
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    >
 
+        <ImageView
+            android:id="@+id/img_helpdesk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"></ImageView>
 
-            <ImageView
-                android:id="@+id/lv_welcome_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-
-                android:layout_below="@+id/lv_steps_headline"
-
-                 />
-
-            <TextView
-                android:id="@+id/lv_steps_ifo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lv_welcome_img"
-                android:fontFamily="sans-serif-thin"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/mix"
-                android:textStyle="bold|italic"
-
-                android:layout_centerInParent="true"
-
-                />
-
-            <TextView
-                android:id="@+id/lv_steps_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lv_steps_ifo"
-                android:fontFamily="sans-serif-thin"
-                android:textAlignment="center"
-                android:paddingTop="16dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/mix"
-                android:textStyle="italic"
-
-                android:layout_centerInParent="true"
-
-                />
-            <TextView
-                android:id="@+id/lv_steps_desc1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lv_steps_desc"
-                android:fontFamily="sans-serif-thin"
-                android:textAlignment="center"
-                android:text="Read More"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorAccentLight"
-                android:layout_alignParentRight="true"
-                android:textAllCaps="false"
-                android:textStyle="bold|italic"
-                android:layout_centerInParent="true"
-
-                />
+    <TextView
+    android:id="@+id/headhealpdesk"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="1. Information Desk Support."
+    android:textStyle="bold|italic"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:layout_gravity="center" android:layout_below="@id/img_helpdesk"
+        android:layout_centerInParent="true"
+    android:textAlignment="center" />
 
 
-        </RelativeLayout>
+    <TextView
+    android:id="@+id/txthelpDesk"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/headhealpdesk"
+    android:padding="10dp"
+    android:textStyle="italic"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textColor="@color/grey" />
+    <Button
+    android:id="@+id/read_more"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:text="@string/read_more"
+    android:textStyle="italic"
+    android:layout_below="@+id/txthelpDesk"
+    android:textColor="@color/colorAccent"
+    android:textAllCaps="true"
+    android:gravity="center"
+    android:onClick="helpDeskSupport"
+    android:layout_centerInParent="true" />
+    </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+    </LinearLayout>
 
 

@@ -11,19 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.crakama.refugee.Activities.HelpDeskSupport;
-import com.crakama.refugee.Adapters.RepatriationChildFragAdapter;
-import com.crakama.refugee.OnRepChildItemClickListener;
+import com.crakama.refugee.Adapters.RepatriationAdapter;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.NewsModel;
-import com.crakama.refugee.database.RepatriationChildFragModel;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.crakama.refugee.database.RepartChildModel;
 import com.google.firebase.database.DatabaseReference;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,27 +42,12 @@ public class RepatriationChildFrag extends RootFragment  {
     RecyclerView newsrecyclerView;
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
+    private List<RepartChildModel> repartModelList = new ArrayList<>();
+    private RepatriationAdapter repatriationAdapter;
 
     private RepatriationChildFragListener mListener;
     public TextView helpDesk, medicalScreening,movementPass, departure;
 
-//    public static class NewsModelVH extends RecyclerView.ViewHolder{
-//
-//        //public final TextView newsHead, newsBody,newsOrganization;
-//        View mView;
-//
-//        public NewsModelVH(View itemView) {
-//            super(itemView);
-//            this.mView = itemView;
-//            this.newsHead = (TextView) mView.findViewById(R.id.lv_welcome_msg);
-//            this.newsBody = (TextView) mView.findViewById(R.id.lv_country_ifo);
-//            this.newsOrganization = (TextView) mView.findViewById(R.id.lv_repatriation_stages);
-//           // this.newsDate = (TextView) mView.findViewById(R.id.lv_item_date);
-//
-//
-//        }
-//
-//    }// End RepatriationRootFragModel class
 
     public static final String NEWS= "NewsModel";
     //final  String rv_StepsDesc[] = {"This service is offered by by NRC.At this stage you informed of the current status and facts about your country of origin","This process involves screening of your heads also known as headcount","Get registered by UNHRC and DRA","This is the last stage of the process where you are issued with scope card and travel details"};
@@ -95,14 +76,6 @@ public class RepatriationChildFrag extends RootFragment  {
 
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param //param1 Parameter 1.
-     * @param //param2 Parameter 2.
-     * @return A new instance of fragment RepatriationChildFrag.
-*/
     // TODO: Rename and change types and number of parameters
     public static RepatriationChildFrag newInstance(int position) {
         RepatriationChildFrag fragment = new RepatriationChildFrag();
@@ -115,12 +88,28 @@ public class RepatriationChildFrag extends RootFragment  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        //        if (getArguments() != null) {
+        //            mParam1 = getArguments().getString(ARG_PARAM1);
+        //            mParam2 = getArguments().getString(ARG_PARAM2);
+        //        }
+        prepareRepartData();
+
     }
 
+
+    private void prepareRepartData() {
+        RepartChildModel model = new RepartChildModel("1. Information Desk Support.",rv_HelpDesk, R.mipmap.ic_helpdesk);
+        repartModelList.add(model);
+
+        model = new RepartChildModel("2. Medical Screening ",rv_Screening,R.mipmap.ic_screening);
+        repartModelList.add(model);
+
+        model = new RepartChildModel("3. Process Movement Pass",rv_MovementPass,R.mipmap.ic_registration);
+        repartModelList.add(model);
+
+        model = new RepartChildModel("4. Departure",rv_Departure,R.mipmap.ic_ifo);
+        repartModelList.add(model);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -135,17 +124,18 @@ public class RepatriationChildFrag extends RootFragment  {
         //return inflater.inflate(R.layout.fragment_repatriation_child, container, false);
         View rootView = inflater.inflate(R.layout.fragment_repatriation_child_rv, container, false);
         newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriation);
-        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
-        nwlinearLayoutManager.setStackFromEnd(true);
-        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
-        //newsrecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity()).build());
-        //newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriationServices);
-        //newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
 
-        helpDesk = (TextView) rootView.findViewById(R.id.txthelpDesk);
-        medicalScreening = (TextView) rootView.findViewById(R.id.txtmedicalScreening);
-        movementPass = (TextView) rootView.findViewById(R.id.txtmovementPass);
-        departure = (TextView) rootView.findViewById(R.id.txtdeparture);
+        repatriationAdapter = new RepatriationAdapter(repartModelList);
+        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+        //nwlinearLayoutManager.setStackFromEnd(true);
+        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+        newsrecyclerView.setAdapter(repatriationAdapter);
+
+//        helpDesk = (TextView) rootView.findViewById(R.id.txthelpDesk);
+//        medicalScreening = (TextView) rootView.findViewById(R.id.txtmedicalScreening);
+//        movementPass = (TextView) rootView.findViewById(R.id.txtmovementPass);
+//        departure = (TextView) rootView.findViewById(R.id.txtdeparture);
+
 //        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(View view, int i) {
@@ -195,10 +185,10 @@ public class RepatriationChildFrag extends RootFragment  {
     public void onStart() {
         super.onStart();
 
-        helpDesk.setText(rv_HelpDesk);
-        medicalScreening.setText(rv_Screening);
-        movementPass.setText(rv_MovementPass);
-        departure.setText(rv_Departure);
+//        helpDesk.setText(rv_HelpDesk);
+//        medicalScreening.setText(rv_Screening);
+//        movementPass.setText(rv_MovementPass);
+//        departure.setText(rv_Departure);
 
     }
 //
@@ -229,7 +219,7 @@ public class RepatriationChildFrag extends RootFragment  {
 //
 //
 //       // ArrayList<RepatriationChildFragModel> av = preparedData();
-//       // RepatriationChildFragAdapter repatriationChildFragAdapter = new RepatriationChildFragAdapter(getContext(),av);
+//       // RepatriationAdapter repatriationChildFragAdapter = new RepatriationAdapter(getContext(),av);
 //        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
 //       // newsrecyclerView.setAdapter(repatriationChildFragAdapter);
 //        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
