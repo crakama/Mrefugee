@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crakama.refugee.Activities.HelpDeskSupport;
 import com.crakama.refugee.Adapters.RepatriationAdapter;
+import com.crakama.refugee.OnRepChildItemClickListener;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.RepartChildModel;
 import com.google.firebase.database.DatabaseReference;
@@ -124,45 +126,11 @@ public class RepatriationChildFrag extends RootFragment  {
         //return inflater.inflate(R.layout.fragment_repatriation_child, container, false);
         View rootView = inflater.inflate(R.layout.fragment_repatriation_child_rv, container, false);
         newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_repatriation);
-
-        repatriationAdapter = new RepatriationAdapter(repartModelList);
-        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
-        //nwlinearLayoutManager.setStackFromEnd(true);
-        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
-        newsrecyclerView.setAdapter(repatriationAdapter);
-
-//        helpDesk = (TextView) rootView.findViewById(R.id.txthelpDesk);
-//        medicalScreening = (TextView) rootView.findViewById(R.id.txtmedicalScreening);
-//        movementPass = (TextView) rootView.findViewById(R.id.txtmovementPass);
-//        departure = (TextView) rootView.findViewById(R.id.txtdeparture);
-
-//        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int i) {
-//                switch (i){
-//                    case 0:
-//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
-//                        openNewsDetailActivity(rv_HelpDesk);
-//
-//                        break;
-//                    case 1:
-//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
-//                        break;
-//                }
-//            }
-//        }));
-
         return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
 
-//    public void onButtonPressed() {
-////        if (mListener != null) {
-////            mListener.RepatriationChildFragListener(p);
-////        }
-//
-   // }
 
     @Override
     public void onAttach(Context context) {
@@ -180,66 +148,51 @@ public class RepatriationChildFrag extends RootFragment  {
         super.onDetach();
         mListener = null;
     }
-
+    /*
+     *  During startup, check if there are arguments passed to the fragment.
+     *  onStart is a good place to do this because the layout has already been
+     *  applied to the fragment at this point so we can safely call the method
+     *  below that sets the article text.
+     */
     @Override
     public void onStart() {
         super.onStart();
 
-//        helpDesk.setText(rv_HelpDesk);
-//        medicalScreening.setText(rv_Screening);
-//        movementPass.setText(rv_MovementPass);
-//        departure.setText(rv_Departure);
+        Bundle args = getArguments();
+        if (args != null) {
+            // Set article based on argument passed in
+            updateArticleView(args.getInt(ARG_POSITION));
+        } else if (mCurrentPosition != -1) {
+            // Set article based on saved instance state defined during onCreateView
+            updateArticleView(mCurrentPosition);
+        }
 
     }
-//
-//    public void onStart() {
-//        super.onStart();
-//        // During startup, check if there are arguments passed to the fragment.
-//        // onStart is a good place to do this because the layout has already been
-//        // applied to the fragment at this point so we can safely call the method
-//        // below that sets the article text.
-//        Bundle args = getArguments();
-//        if (args != null) {
-//            // Set article based on argument passed in
-//            updateArticleView(args.getInt(ARG_POSITION));
-//        } else if (mCurrentPosition != -1) {
-//            // Set article based on saved instance state defined during onCreateView
-//            updateArticleView(mCurrentPosition);
-//        }
-//
-//    }
-//
-//
-//    public void updateArticleView(int position) {
-//
-//
-//
-//        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
-//        nwlinearLayoutManager.setStackFromEnd(true);
-//
-//
-//       // ArrayList<RepatriationChildFragModel> av = preparedData();
-//       // RepatriationAdapter repatriationChildFragAdapter = new RepatriationAdapter(getContext(),av);
-//        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
-//       // newsrecyclerView.setAdapter(repatriationChildFragAdapter);
-//        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int i) {
-//                switch (i){
-//                    case 0:
-//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
-//                        openNewsDetailActivity();
-//
-//                        break;
-//                    case 1:
-//                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
-//                        break;
-//                }
-//            }
-//        }));
-//
-//
-//    }
+
+    public void updateArticleView(int position) {
+
+        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+        repatriationAdapter = new RepatriationAdapter(repartModelList);
+        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+       newsrecyclerView.setAdapter(repatriationAdapter);
+        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                switch (i){
+                    case 0:
+                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+                        openNewsDetailActivity(rv_HelpDesk);
+
+                        break;
+                    case 1:
+                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+        }));
+
+
+    }
 //
 
 
@@ -254,24 +207,6 @@ public class RepatriationChildFrag extends RootFragment  {
 
         startActivity(newsIntent);
     }
-
-    // During startup, check if there are arguments passed to the fragment.
-        // onStart is a good place to do this because the layout has already been
-        // applied to the fragment at this point so we can safely call the method
-        // below that sets the article text.
-//        Bundle args = getArguments();
-//        if (args != null) {
-//            // Set article based on argument passed in
-//            updateArticleView(args.getInt(ARG_POSITION));
-//        } else if (mCurrentPosition != -1) {
-//            // Set article based on saved instance state defined during onCreateView
-//            updateArticleView(mCurrentPosition);
-//        }
-
-
-
-
-
 
 
     @Override

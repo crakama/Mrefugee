@@ -32,7 +32,8 @@
         <activity android:name=".Activities.UpdateNoticeBoard" />
         <activity android:name=".Activities.ShowNoticeDetails" />
         <activity android:name=".Activities.UpdateRepatriationData" />
-        <activity android:name=".Activities.HelpDeskSupport"></activity>
+        <activity android:name=".Activities.HelpDeskSupport" />
+        <activity android:name=".Activities.UpdateTownInfo"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mrefugee</string>
     <string name="action_settings">Settings</string>
+    <string name="action_helpdesk">UpdateHelpDesk</string>
     <string name="action_logout">Logout</string>
     <string name="action_followup">Follow Up</string>
     <string name="welcome">Welcome to Mrefugee</string>

@@ -19,6 +19,11 @@
         android:orderInCategory="103"
         android:title="@string/action_logout"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_helpdesk"
+        android:orderInCategory="104"
+        android:title="@string/action_helpdesk"
+        app:showAsAction="never" />
 
 </menu>
 

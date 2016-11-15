@@ -123,7 +123,6 @@ public class LiveNewsFrag extends Fragment {
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.w(TAG, "You clicked on "+ position);
                         //firebasenewsRecycleAdapter.getRef(position).removeValue();
                         openNewsDetailActivity(model.getNewsHead(), model.getNewsBody(),model.getNewsorganization());
                     }

@@ -234,8 +234,11 @@ public class MainActivity extends AppCompatActivity implements
             onBackPressed();
             return true;
 
+        }else if(id == R.id.action_helpdesk) {
+            Intent helpdeskIntent = new Intent(MainActivity.this, UpdateTownInfo.class);
+            startActivity(helpdeskIntent);
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
