@@ -3,6 +3,8 @@
     package="com.crakama.refugee">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".Mrefugee"
@@ -33,7 +35,9 @@
         <activity android:name=".Activities.ShowNoticeDetails" />
         <activity android:name=".Activities.UpdateRepatriationData" />
         <activity android:name=".Activities.HelpDeskSupport" />
-        <activity android:name=".Activities.UpdateTownInfo"></activity>
+        <activity android:name=".Activities.UpdateTownInfo"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            ></activity>
     </application>
 
 </manifest>

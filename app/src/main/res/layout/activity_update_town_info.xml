@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_update_town_info"
+    android:id="@+id/activity_upload_image"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,49 +11,76 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.crakama.refugee.Activities.UpdateTownInfo">
 
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine|textPersonName"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="61dp"
-        android:id="@+id/editTextSchoolInfo" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine|textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/editTextSchoolInfo"
-        android:layout_alignLeft="@+id/editTextSchoolInfo"
-        android:layout_alignStart="@+id/editTextSchoolInfo"
-        android:layout_marginTop="29dp"
-        android:id="@+id/editTextPopulationInfo" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine|textPersonName"
-        android:ems="10"
-        android:layout_marginTop="24dp"
-        android:id="@+id/editTextHospInfo"
-        android:layout_below="@+id/editTextPopulationInfo"
-        android:layout_alignLeft="@+id/editTextPopulationInfo"
-        android:layout_alignStart="@+id/editTextPopulationInfo" />
 
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:id="@+id/btnUpdateTownInfo"
-        android:layout_below="@+id/editTextHospInfo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <ImageButton
+                android:id="@+id/ImgBtnTowns"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@mipmap/ic_addimage"
+                android:layout_centerHorizontal="true" />
+            <ImageView
+                android:id="@+id/ImgBtn"
+                android:layout_below ="@+id/ImgBtnTowns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-</RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/SchoolInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below ="@+id/ImgBtn">
+
+                <EditText
+                    android:id="@+id/editTextSchoolInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:inputType="textMultiLine|textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/PopulationInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below ="@+id/SchoolInfo">
+
+            <EditText
+                android:id="@+id/editTextPopulationInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine|textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/HospInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below ="@+id/PopulationInfo">
+
+            <EditText
+                android:id="@+id/editTextHospInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine|textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnUpdateTownInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/HospInfo"
+                android:text="Send" />
+
+        </RelativeLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

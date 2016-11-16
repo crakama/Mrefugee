@@ -41,16 +41,26 @@ public class TownsModel {
         this.otherInfo = otherInfo;
     }
 
-    private String townName;
-    private String schoolInfo;
 
-    public TownsModel(String townName, String schoolInfo, String hospitalInfo) {
+
+    public TownsModel(String townName, String schoolInfo, String hospitalInfo, String townImgUrl) {
         this.townName = townName;
         this.schoolInfo = schoolInfo;
         this.hospitalInfo = hospitalInfo;
-        //this.otherInfo = otherInfo;
+        this.townImgUrl = townImgUrl;
+    }
+    public String getProductUrl() {
+        return townImgUrl;
     }
 
+    public void setProductUrl(String productUrl) {
+        this.townImgUrl = productUrl;
+    }
+
+    private String townImgUrl;
     private String hospitalInfo;
     private String otherInfo;
+    private String townName;
+    private String schoolInfo;
+
 }

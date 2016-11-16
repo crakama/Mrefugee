@@ -1,6 +1,10 @@
 package com.crakama.refugee.Activities;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -9,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,6 +31,12 @@ public class HelpDeskSupport extends AppCompatActivity {
     LinearLayoutManager nwlinearLayoutManager;
     ProgressBar newsprogressBar;
 
+    private ImageView mImageView;
+    private Bitmap mBitmap;
+
+    private Resources mResources;
+
+
     public static class TownsModelVH extends RecyclerView.ViewHolder{
 
         public final TextView townName, schoolInfo,hospitalInfo,otherInfo;
@@ -34,7 +45,7 @@ public class HelpDeskSupport extends AppCompatActivity {
         public TownsModelVH(View itemView) {
             super(itemView);
             this.mView = itemView;
-            this.townName = (TextView) mView.findViewById(R.id.listview_item_title);
+            this.townName = (TextView) mView.findViewById(R.id.txttown_name);
             this.schoolInfo = (TextView) mView.findViewById(R.id.listview_item_short_description);
             this.hospitalInfo = (TextView) mView.findViewById(R.id.listview_item_organization);
             this.otherInfo = (TextView) mView.findViewById(R.id.lv_item_date);
@@ -51,32 +62,25 @@ public class HelpDeskSupport extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_desk_support);
 
-
         //CardView helpdeskdetails = (CardView) findViewById(R.id.helpdeskdetails_cv);
-        TextView helpdeskdetails = (TextView) findViewById(R.id.txthelpDeskDetails);
+        //TextView helpdeskdetails = (TextView) findViewById(R.id.txthelpDeskDetails);
         //txtDesc = (TextView) findViewById(R.id.txtdescNewsOrganization);
         //txtOrganization = (TextView) findViewById(R.id.txtdescNewsBody);
 
-        /*
-        *GET INTENT
-        */
+        /* GET INTENT */
         Intent newsIntent = this.getIntent();
 
-        /*
-        * RECEIVE DATA
-         */
+        /* RECEIVE DATA */
         String title = newsIntent.getExtras().getString("TTTLE_KEY");
 
-
-        /*
-        * BIND DATA
-        */
-        helpdeskdetails.setText(title);
-
+        /* BIND DATA */
+       // helpdeskdetails.setText(title);
         townsInfo();
+        //mImageView = (ImageView) findViewById(R.id.cv_img_helpdesk);
 
 
     }
+
 
 
     public void townsInfo(){
