@@ -49,12 +49,13 @@ public class TownsModel {
         this.hospitalInfo = hospitalInfo;
         this.townImgUrl = townImgUrl;
     }
-    public String getProductUrl() {
+
+    public String getTownImgUrl() {
         return townImgUrl;
     }
 
-    public void setProductUrl(String productUrl) {
-        this.townImgUrl = productUrl;
+    public void setTownImgUrl(String townImgUrl) {
+        this.townImgUrl = townImgUrl;
     }
 
     private String townImgUrl;

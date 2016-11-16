@@ -3,6 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="#ddd"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <!--android:background="?android:attr/selectableItemBackground"-->
@@ -10,16 +11,14 @@
     android:id="@+id/cv_welcome_msg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardElevation="10dp"
-    card_view:cardCornerRadius="5dp"
-    card_view:contentPadding="5dp"
-    >
+    card_view:cardElevation="5dp"
+        card_view:contentPadding="2dp"
+    card_view:cardCornerRadius="2dp">
 
     <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff"
-    >
+    android:background="#fff" >
 
         <ImageView
             android:id="@+id/img_helpdesk"

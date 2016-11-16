@@ -47,7 +47,7 @@ public class DBOperationsHelper {
             savednews = false;
         }else{
             try {
-                dbref.child("NewsdModel").push().setValue(news);
+                dbref.child("NewsModel").push().setValue(news);
                 savednews = true;
             } catch (DatabaseException e) {
 

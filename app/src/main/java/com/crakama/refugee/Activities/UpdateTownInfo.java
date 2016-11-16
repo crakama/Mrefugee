@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crakama.refugee.PicassoClient;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.TownsModel;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,22 +32,40 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
+import java.util.List;
 
 public class UpdateTownInfo extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference databaseReference;
+    private StorageReference storageReference,myfileRef;
     private EditText textSchoolInfo,townName,hospInfo;
     Button btnUpdateTownInfo;
     ImageButton choosepic;
     ImageView imageView;
+    TownsModel townsModel;
     private ProgressDialog progressDialog;
-    String imgDownloadUrl;
+    String DOWNLOAD_URL, imgDownloadUrl;
     private static final int SELECT_PICTURE_ID = 1;
+    private static final String KEY_FILE_URI = "key_file_uri";
+    private static final String KEY_DOWNLOAD_URL = "key_download_url";
+
+    private Uri mDownloadUrl = null;
+    private Uri mFileUri = null;
+    String newmDownloadUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Restore instance state
+        if (savedInstanceState != null) {
+            mFileUri = savedInstanceState.getParcelable(KEY_FILE_URI);
+            newmDownloadUrl = savedInstanceState.getParcelable(KEY_DOWNLOAD_URL);
+        }
+
+
         setContentView(R.layout.activity_update_town_info);
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         choosepic = (ImageButton) findViewById(R.id.ImgBtnTowns);
         imageView =(ImageView) findViewById(R.id.ImgBtn) ;
@@ -66,7 +85,21 @@ public class UpdateTownInfo extends AppCompatActivity implements View.OnClickLis
         String school = textSchoolInfo.getText().toString();
         String townname = townName.getText().toString();
         String hospital = hospInfo.getText().toString();
-        TownsModel townsModel = new TownsModel(townname,school,hospital,imgDownloadUrl);
+        //String imgDownloadUrl = "URL" ;
+
+        /*** Set Data    */
+        townsModel = new TownsModel();
+        townsModel.setTownName(townname);
+        townsModel.setSchoolInfo(school);
+        townsModel.setHospitalInfo(hospital);
+        //townsModel.setTownImgUrl( );
+        if (newmDownloadUrl != null) {
+            townsModel.setTownImgUrl(newmDownloadUrl.toString());
+        }else {
+            townsModel.setTownImgUrl("URL IS NULL!!");
+        }
+
+        //TownsModel townsModel = new TownsModel(townname,school,hospital,imgDownloadUrl);
         databaseReference.child(TOWNS).push().setValue(townsModel);
     }
 
@@ -171,10 +204,12 @@ public class UpdateTownInfo extends AppCompatActivity implements View.OnClickLis
 
     protected void onUploadButtonClick(){
 
-
+           progressDialog.setMessage("Uploading ...");
                 // Creating a reference to the full path of the file. myfileRef now points
                 // gs://fir-demo-d7354.appspot.com/myuploadedfile.jpg
-                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("towns");
+               // StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Towns").child("town" + new Date().getTime());
+                myfileRef = storageReference.child("Towns").child("town" + new Date().getTime());
+
                 //StorageReference myfileRef = storageRef.child("myuploadedfile.jpg");
                 //imageView.setDrawingCacheEnabled(true);
                // imageView.buildDrawingCache();
@@ -184,7 +219,7 @@ public class UpdateTownInfo extends AppCompatActivity implements View.OnClickLis
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
 
-                UploadTask uploadTask = storageRef.putBytes(data);
+                UploadTask uploadTask = myfileRef.putBytes(data);
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
@@ -195,13 +230,46 @@ public class UpdateTownInfo extends AppCompatActivity implements View.OnClickLis
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(UpdateTownInfo.this, "TASK SUCCEEDED", Toast.LENGTH_SHORT).show();
                         Uri downloadUrl =taskSnapshot.getDownloadUrl();
-                        String DOWNLOAD_URL = downloadUrl.getPath();
-                        imgDownloadUrl = DOWNLOAD_URL ;
-                        Log.v("DOWNLOAD URL", DOWNLOAD_URL);
-                        Toast.makeText(UpdateTownInfo.this, DOWNLOAD_URL, Toast.LENGTH_SHORT).show();
+                        //DOWNLOAD_URL = downloadUrl.getPath();
+                        //DOWNLOAD_URL = taskSnapshot.getDownloadUrl().toString();
+                        mDownloadUrl = downloadUrl;
+                        //TownsModel townsModel = new TownsModel();
+                        //townsModel.setTownImgUrl(DOWNLOAD_URL);
+                        townsModel.setTownImgUrl(mDownloadUrl.toString());
+                        //PicassoClient.downloadProductImage(UpdateTownInfo.this,townsModel.getTownImgUrl(),viewHolder.productImg);
+                        Log.v("DOWNLOAD URL", mDownloadUrl.toString());
+                        Toast.makeText(UpdateTownInfo.this, mDownloadUrl.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
 
     }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_FILE_URI, mFileUri);
+        outState.putParcelable(KEY_DOWNLOAD_URL, mDownloadUrl);
+        // If there's an upload in progress, save the reference so you can query it later
+//        if (storageReference != null) {
+//            outState.putString("myfileRef", myfileRef.toString());
+//        }
+    }
+
+
+
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        // If there's an upload in progress, save the reference so you can query it later
+//        if (mStorageRef != null) {
+//            outState.putString("reference", mStorageRef.toString());
+//        }
+//    }
+
 }

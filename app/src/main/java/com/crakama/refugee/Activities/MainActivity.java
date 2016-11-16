@@ -2,6 +2,7 @@ package com.crakama.refugee.Activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -237,6 +238,13 @@ public class MainActivity extends AppCompatActivity implements
         }else if(id == R.id.action_helpdesk) {
             Intent helpdeskIntent = new Intent(MainActivity.this, UpdateTownInfo.class);
             startActivity(helpdeskIntent);
+            return true;
+        }else if(id == R.id.action_jobsearch){
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse("https://drc.dk/about-drc/vacancies"));
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.crakama.refugee.PicassoClient;
 import com.crakama.refugee.R;
 import com.crakama.refugee.database.TownsModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -36,19 +37,25 @@ public class HelpDeskSupport extends AppCompatActivity {
 
     private Resources mResources;
 
+    int [] gridViewImageId = {
+            R.drawable.childregistration, R.drawable.protection, R.drawable.refferal, R.drawable.resettlement, R.drawable.rsd,
+            R.drawable.repatriation,     };
 
     public static class TownsModelVH extends RecyclerView.ViewHolder{
 
-        public final TextView townName, schoolInfo,hospitalInfo,otherInfo;
+        public final TextView townName, schoolInfo,hospitalInfo;
+
         View mView;
+        ImageView imageurl;
+
 
         public TownsModelVH(View itemView) {
             super(itemView);
             this.mView = itemView;
             this.townName = (TextView) mView.findViewById(R.id.txttown_name);
-            this.schoolInfo = (TextView) mView.findViewById(R.id.listview_item_short_description);
-            this.hospitalInfo = (TextView) mView.findViewById(R.id.listview_item_organization);
-            this.otherInfo = (TextView) mView.findViewById(R.id.lv_item_date);
+            this.schoolInfo = (TextView) mView.findViewById(R.id.txtSchool);
+            this.hospitalInfo = (TextView) mView.findViewById(R.id.txtHospital);
+            //this.imageurl = (ImageView) mView.findViewById(R.id.cv_img_helpdesk);
 
 
         }
@@ -86,7 +93,7 @@ public class HelpDeskSupport extends AppCompatActivity {
     public void townsInfo(){
         newsrecyclerView =(RecyclerView) findViewById(R.id.rv_helpdesk);
         nwlinearLayoutManager = new LinearLayoutManager(this);
-        nwlinearLayoutManager.setStackFromEnd(true);
+        //nwlinearLayoutManager.setStackFromEnd(true);
 
         dbref = FirebaseDatabase.getInstance().getReference();
         newsprogressBar = (ProgressBar) findViewById(R.id.helpdeskprogress_bar);
@@ -100,27 +107,28 @@ public class HelpDeskSupport extends AppCompatActivity {
             @Override
             protected void populateViewHolder(TownsModelVH viewHolder, final TownsModel model, final int position) {
                 viewHolder.townName.setText(model.getTownName());
-                //viewHolder.schoolInfo.setText(model.getNewsBody());
-                //viewHolder.hospitalInfo.setText(model.getNewsorganization());
-                //viewHolder.newsDate.setText(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()));
+                viewHolder.schoolInfo.setText(model.getHospitalInfo());
+                viewHolder.hospitalInfo.setText(model.getSchoolInfo());
+//                viewHolder.hospitalInfo.setText(model.getTownImgUrl());
+                //PicassoClient.downloadProductImage(HelpDeskSupport.this,model.getTownImgUrl(),viewHolder.imageurl);
                 newsprogressBar.setVisibility(View.GONE);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //firebasenewsRecycleAdapter.getRef(position).removeValue();
-                        //openNewsDetailActivity(model.getNewsHead(), model.getNewsBody(),model.getNewsorganization());
+                        openNewsDetailActivity(model.getTownName(), model.getSchoolInfo(),model.getHospitalInfo());
                     }
                 });
             }
 
-//            private void openNewsDetailActivity(String...details) {
-//                Intent newsIntent = new Intent(this, ShowNoticeDetails.class);
-//                newsIntent.putExtra("TTTLE_KEY", details[0]);
-//                newsIntent.putExtra("DESC_KEY", details[1]);
-//                newsIntent.putExtra("ORG_KEY", details[2]);
-//
-//                startActivity(newsIntent);
-//            }
+            private void openNewsDetailActivity(String...details) {
+                Intent newsIntent = new Intent(HelpDeskSupport.this, TownDetails.class);
+                newsIntent.putExtra("TOWN_NAME", details[0]);
+                newsIntent.putExtra("TOWN_SCHOOL", details[1]);
+                newsIntent.putExtra("TOWN_HOSP", details[2]);
+
+                startActivity(newsIntent);
+            }
         };
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
