@@ -13,8 +13,10 @@
         android:layout_width="match_parent"
         card_view:cardCornerRadius="2dp"
         app:cardUseCompatPadding="true"
+        android:layout_margin="5dp"
         app:cardPreventCornerOverlap="false"
         android:layout_height="100dp"
+        card_view:contentPadding="2dp"
         card_view:cardElevation="5dp">
 
 
@@ -40,8 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_toRightOf="@+id/cv_img_helpdesk"
-
-                android:text="Viral Android"
                 android:textSize="24sp" />
 
             <TextView

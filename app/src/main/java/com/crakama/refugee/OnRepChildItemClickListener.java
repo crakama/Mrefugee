@@ -25,7 +25,6 @@ public class OnRepChildItemClickListener implements RecyclerView.OnItemTouchList
             }
         });
     }
-
     public interface OnItemClickListener{
         public void  onItemClick(View view, int i);
     }
@@ -43,12 +42,9 @@ public class OnRepChildItemClickListener implements RecyclerView.OnItemTouchList
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
 
     }
-
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
     }
-
-
 
 }

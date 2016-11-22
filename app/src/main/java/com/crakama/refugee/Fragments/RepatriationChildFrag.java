@@ -135,12 +135,12 @@ public class RepatriationChildFrag extends RootFragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof RepatriationChildFragListener) {
-            mListener = (RepatriationChildFragListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof RepatriationChildFragListener) {
+//            mListener = (RepatriationChildFragListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override
@@ -169,13 +169,14 @@ public class RepatriationChildFrag extends RootFragment  {
 
     }
 
-    public void updateArticleView(int position) {
+        public void updateArticleView(int position) {
 
         nwlinearLayoutManager = new LinearLayoutManager(getActivity());
         repatriationAdapter = new RepatriationAdapter(repartModelList);
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
        newsrecyclerView.setAdapter(repatriationAdapter);
-        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new OnRepChildItemClickListener.OnItemClickListener() {
+        newsrecyclerView.addOnItemTouchListener(new OnRepChildItemClickListener(getContext(), new
+                OnRepChildItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
                 switch (i){

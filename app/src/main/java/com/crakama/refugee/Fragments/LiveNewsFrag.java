@@ -150,12 +150,7 @@ public class LiveNewsFrag extends Fragment {
         return rootView;
 
 
-
         }
-
-
-
-
 
     @Override
     public void onAttach(Context context) {
@@ -181,22 +176,6 @@ public class LiveNewsFrag extends Fragment {
 
     }
 
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public static interface OnHomeTabFragListener {
-//        // TODO: Update argument type and name
-//        void itemClicked(int p,long id);
-//    }
     public static interface OnHomeTabFragListener {
         // TODO: Update argument type and name
         void itemClicked(int p,long id);

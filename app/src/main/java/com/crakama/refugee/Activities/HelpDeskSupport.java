@@ -37,9 +37,9 @@ public class HelpDeskSupport extends AppCompatActivity {
 
     private Resources mResources;
 
-    int [] gridViewImageId = {
-            R.drawable.childregistration, R.drawable.protection, R.drawable.refferal, R.drawable.resettlement, R.drawable.rsd,
-            R.drawable.repatriation,     };
+//    int [] gridViewImageId = {
+//            R.drawable.childregistration, R.drawable.protection, R.drawable.refferal, R.drawable.resettlement, R.drawable.rsd,
+//            R.drawable.repatriation,     };
 
     public static class TownsModelVH extends RecyclerView.ViewHolder{
 

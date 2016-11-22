@@ -18,11 +18,8 @@ import java.util.List;
  */
 
 public class RepatriationAdapter extends RecyclerView.Adapter<RepatriationAdapter.RepartVH> {
-
-   //private ArrayList<RepatriationChildFragModel> repatriationChildFragModels;
     private Context mcontext;
     private List<RepartChildModel> repartList;
-
     public class RepartVH extends RecyclerView.ViewHolder{
         private TextView stepsTitle, stepsBody, stepsDesc;
         private ImageView stepsImg;
@@ -32,49 +29,28 @@ public class RepatriationAdapter extends RecyclerView.Adapter<RepatriationAdapte
             stepsImg = (ImageView) itemView.findViewById(R.id.img_helpdesk);
             stepsTitle = (TextView) itemView.findViewById(R.id.headhealpdesk);
             stepsBody = (TextView) itemView.findViewById(R.id.txthelpDesk);
-
         }
     }
 
     public RepatriationAdapter(List<RepartChildModel> repartList){
         this.repartList = repartList;
     }
-
     @Override
     public RepartVH onCreateViewHolder(ViewGroup parent, int viewType) {
         View rv_view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_repatriation_child_one_cv,parent,false);
         return new RepartVH(rv_view);
     }
-
-
-
     @Override
     public void onBindViewHolder(RepartVH holder, int position) {
-
         RepartChildModel repartChildModel = repartList.get(position);
         holder.stepsImg.setImageResource(repartChildModel.getRepimage());
         holder.stepsTitle.setText(repartChildModel.getTitle());
         holder.stepsBody.setText(repartChildModel.getBody());
-
-
-
     }
         @Override
     public int getItemCount() {
         return repartList.size() ;
     }
-
-//    public RepatriationAdapter(Context context, ArrayList<RepatriationChildFragModel> repatriationChildFragModels) {
-//        this.repatriationChildFragModels = repatriationChildFragModels;
-//        this.mcontext = context;
-//    }
-
-//
-
-//
-
-//
-
 
 
 }

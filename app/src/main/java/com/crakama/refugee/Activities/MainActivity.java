@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,19 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.crakama.refugee.Auth.LoginActivity;
-import com.crakama.refugee.Auth.RegisterActivity;
-import com.crakama.refugee.Auth.ResetPasswordActivity;
 import com.crakama.refugee.Fragments.LiveNewsFrag;
 import com.crakama.refugee.Fragments.NoticeBoardFrag;
 import com.crakama.refugee.Fragments.RepatriationChildFrag;
-import com.crakama.refugee.Fragments.RepatriationRootFrag;
 import com.crakama.refugee.Fragments.TabsFragment;
 import com.crakama.refugee.R;
 
 public class MainActivity extends AppCompatActivity implements
-        RepatriationRootFrag.OnRepartButtonClickedListener,
-        LiveNewsFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener ,
-        RepatriationChildFrag.RepatriationChildFragListener{
+        LiveNewsFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener{
 
 
     DrawerLayout drawerLayout;
@@ -255,80 +249,66 @@ public class MainActivity extends AppCompatActivity implements
         super.onPostCreate(savedInstanceState);
       drawerToggle.syncState();
     }
-//
-//    public void helpDeskSupport(View v) {
-//        Intent newsIntent = new Intent(this, HelpDeskSupport.class);
-//        newsIntent.putExtra("TTTLE_KEY", details[0]);
-//        //newsIntent.putExtra("DESC_KEY", details[1]);
-//        //newsIntent.putExtra("ORG_KEY", details[2]);
-//
-//        startActivity(newsIntent);
-//    }
 
 
-
-    @Override
-    public void onRepartBtnClick(int position) {
-        // The user selected the headline of an article from the HeadlinesFragment
-
-
-        // Capture the RepatriationChildFrag fragment from the activity layout
-
-
-        View fragmentContainer = findViewById(R.id.fragment_container);
-
-        if (fragmentContainer != null) {
-            // If article frag is available, we're in two-pane layout...
-
-            /*
-            *
-            * TO DO: Differenciate display for tablets and phones
-             */
-            RepatriationChildFrag repatriationChildFrag = new RepatriationChildFrag();
-            // Call a method in the ArticleFragment to update its content
-            //repatriationChildFrag.updateArticleView(position);
-            Bundle args = new Bundle();
-            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
-            repatriationChildFrag.setArguments(args);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
-            transaction.replace(R.id.fragment_container, repatriationChildFrag);
-            transaction.addToBackStack(null);
-
-            // Commit the transaction
-            transaction.commit();
-
-        } else {
-            // If the frag is not available, we're in the one-pane layout and must swap frags...
-
-            // Create fragment and give it an argument for the selected article
-            RepatriationChildFrag repatriationChildFrag1 = new RepatriationChildFrag();
-            Bundle args = new Bundle();
-            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
-            repatriationChildFrag1.setArguments(args);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
-            transaction.replace(R.id.container, repatriationChildFrag1);
-            transaction.addToBackStack(null);
-
-            // Commit the transaction
-            transaction.commit();
-        }
-
-
-
-    }
 
 //    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        onCreate(savedInstanceState);
+//    public void onRepartBtnClick(int position) {
+//        // The user selected the headline of an article from the HeadlinesFragment
+//
+//
+//        // Capture the RepatriationChildFrag fragment from the activity layout
+//
+//
+//        View fragmentContainer = findViewById(R.id.fragment_container);
+//
+//        if (fragmentContainer != null) {
+//            // If article frag is available, we're in two-pane layout...
+//
+//            /*
+//            *
+//            * TO DO: Differenciate display for tablets and phones
+//             */
+//            RepatriationChildFrag repatriationChildFrag = new RepatriationChildFrag();
+//            // Call a method in the ArticleFragment to update its content
+//            //repatriationChildFrag.updateArticleView(position);
+//            Bundle args = new Bundle();
+//            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
+//            repatriationChildFrag.setArguments(args);
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//
+//            // Replace whatever is in the fragment_container view with this fragment,
+//            // and add the transaction to the back stack so the user can navigate back
+//            transaction.replace(R.id.fragment_container, repatriationChildFrag);
+//            transaction.addToBackStack(null);
+//
+//            // Commit the transaction
+//            transaction.commit();
+//
+//        } else {
+//            // If the frag is not available, we're in the one-pane layout and must swap frags...
+//
+//            // Create fragment and give it an argument for the selected article
+//            RepatriationChildFrag repatriationChildFrag1 = new RepatriationChildFrag();
+//            Bundle args = new Bundle();
+//            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
+//            repatriationChildFrag1.setArguments(args);
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//
+//            // Replace whatever is in the fragment_container view with this fragment,
+//            // and add the transaction to the back stack so the user can navigate back
+//            transaction.replace(R.id.container, repatriationChildFrag1);
+//            transaction.addToBackStack(null);
+//
+//            // Commit the transaction
+//            transaction.commit();
+//        }
+//
+//
 //
 //    }
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

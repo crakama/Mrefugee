@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.crakama.refugee.Fragments.LiveNewsFrag;
 import com.crakama.refugee.Fragments.NoticeBoardFrag;
 import com.crakama.refugee.Fragments.RepatriationChildFrag;
-import com.crakama.refugee.Fragments.RepatriationRootFrag;
 
 /**
  * Created by User on 10/8/2016.
