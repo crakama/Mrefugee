@@ -1,4 +1,4 @@
-package com.crakama.refugee.Activities;
+package com.crakama.refugee.UpdateDatabase;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,12 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crakama.refugee.PicassoClient;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.TownsModel;
+import com.crakama.refugee.FirebaseModels.TownsModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +30,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
-import java.util.List;
 
 public class UpdateTownInfo extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference databaseReference;

@@ -15,12 +15,10 @@ import android.widget.TextView;
 
 import com.crakama.refugee.Activities.ShowNoticeDetails;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.NewsModel;
+import com.crakama.refugee.FirebaseModels.NewsModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import static android.content.ContentValues.TAG;
 
 
 //import com.crakama.mrefugee.R;
@@ -140,12 +138,8 @@ public class LiveNewsFrag extends Fragment {
         };
         newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
         newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
-        /**
-         * SET ADAPTER
-         */
-
-
-        Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbref);
+        /*** SET ADAPTER */
+        //Log.v("RETRIEVE", " dbOperationsHelper.retrieveNews() NEWS=" + dbref);
 
         return rootView;
 

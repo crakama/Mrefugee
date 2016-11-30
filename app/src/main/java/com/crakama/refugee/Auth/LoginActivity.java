@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.crakama.refugee.Activities.MainActivity;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DBOperationsHelper;
+import com.crakama.refugee.FirebaseModels.DBOperationsHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

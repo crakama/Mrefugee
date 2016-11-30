@@ -17,7 +17,7 @@ import com.crakama.refugee.Activities.HelpDeskSupport;
 import com.crakama.refugee.Adapters.RepatriationAdapter;
 import com.crakama.refugee.OnRepChildItemClickListener;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.RepartChildModel;
+import com.crakama.refugee.FirebaseModels.RepartChildModel;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;

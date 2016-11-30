@@ -1,4 +1,4 @@
-package com.crakama.refugee.Activities;
+package com.crakama.refugee.UpdateDatabase;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DBOperationsHelper;
-import com.crakama.refugee.database.NoticeBoardModel;
+import com.crakama.refugee.FirebaseModels.DBOperationsHelper;
+import com.crakama.refugee.FirebaseModels.NoticeBoardModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,7 +19,7 @@ public class UpdateNoticeBoard extends AppCompatActivity {
     EditText noticeHead,noticeBody,noticeOrganization;
     DatabaseReference db;
     DBOperationsHelper dbOperationsHelper;
-    RecyclerView newsrecyclerView;
+    //RecyclerView newsrecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class UpdateNoticeBoard extends AppCompatActivity {
         dbOperationsHelper = new DBOperationsHelper(db);
 
 
-        newsrecyclerView =(RecyclerView)findViewById(R.id.rv_noticeboard);
+       // newsrecyclerView =(RecyclerView)findViewById(R.id.rv_noticeboard);
 
         noticeHead = (EditText) findViewById(R.id.txtNoticeHead);
         noticeBody = (EditText) findViewById(R.id.txtNoticeBody);

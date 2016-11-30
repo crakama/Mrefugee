@@ -1,4 +1,4 @@
-package com.crakama.refugee.database;
+package com.crakama.refugee.FirebaseModels;
 
 /**
  * Created by User on 10/8/2016.

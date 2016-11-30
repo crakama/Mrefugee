@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.RepartChildModel;
+import com.crakama.refugee.FirebaseModels.RepartChildModel;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/lightgrey"
     android:fitsSystemWindows="true"
-    tools:context="com.crakama.refugee.Activities.UpdateNoticeBoard">
+    tools:context=".UpdateDatabase.UpdateNoticeBoard">
 
     <!--<ProgressBar-->
     <!--android:id="@+id/progressBar"-->
@@ -17,7 +17,7 @@
     <!--android:layout_marginBottom="20dp"-->
     <!--android:visibility="gone" />-->
 
-    <include layout="@layout/fragment_notice_rv"/>
+    <!--<include layout="@layout/fragment_notice_rv"/>-->
 
     <LinearLayout
         android:layout_width="fill_parent"

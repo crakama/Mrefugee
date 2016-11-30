@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.crakama.refugee.Activities.ShowNoticeDetails;
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.NoticeBoardModel;
+import com.crakama.refugee.FirebaseModels.NoticeBoardModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

@@ -1,10 +1,6 @@
-package com.crakama.refugee.database;
+package com.crakama.refugee.FirebaseModels;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.firebase.client.ServerValue;
-
-import java.util.Map;
 
 /**
  * Created by User on 10/6/2016.

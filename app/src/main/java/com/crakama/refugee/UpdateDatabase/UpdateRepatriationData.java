@@ -1,4 +1,4 @@
-package com.crakama.refugee.Activities;
+package com.crakama.refugee.UpdateDatabase;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

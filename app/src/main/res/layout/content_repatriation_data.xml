@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/lightgrey"
     android:fitsSystemWindows="true"
-    tools:context="com.crakama.refugee.Activities.UpdateRepatriationData">
+    tools:context=".UpdateDatabase.UpdateRepatriationData">
 
     <!--<ProgressBar-->
     <!--android:id="@+id/progressBar"-->

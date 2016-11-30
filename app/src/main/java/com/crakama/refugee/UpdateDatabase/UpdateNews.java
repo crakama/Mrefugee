@@ -1,4 +1,4 @@
-package com.crakama.refugee.Activities;
+package com.crakama.refugee.UpdateDatabase;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.crakama.refugee.R;
-import com.crakama.refugee.database.DBOperationsHelper;
-import com.crakama.refugee.database.NewsModel;
-import com.firebase.client.ServerValue;
+import com.crakama.refugee.FirebaseModels.DBOperationsHelper;
+import com.crakama.refugee.FirebaseModels.NewsModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
