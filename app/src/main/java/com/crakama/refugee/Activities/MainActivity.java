@@ -153,42 +153,42 @@ public class MainActivity extends AppCompatActivity implements
         navigation = (NavigationView) findViewById(R.id.navigation_view);
 
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                switch (id) {
-                    case R.id.navigation_item_1:
-                        //Do some thing here
-                        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(loginIntent);
-                        break;
-                    case R.id.navigation_item_5:
-                        //Do some thing here
-                        break;
-
-                    case R.id.navigation_item_3:
-                        //Do some thing here
-                        break;
-                    case R.id.navigation_item_4:
-                        //Do some thing here
-                        break;
+//        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                int id = menuItem.getItemId();
+//                switch (id) {
+////                    case R.id.navigation_item_1:
+////                        //Do some thing here
+////                        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+////                        startActivity(loginIntent);
+////                        break;
+//                    case R.id.navigation_item_5:
+//                        //Do some thing here
+//                        break;
 //
-                    case R.id.nv_updatenoticeboard:
-                        //Do some thing here
-                        Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
-                        startActivity(noticeBoardIntent);
-                        break;
-                    case R.id.navigation_item_8:
-                        //Do some thing here
-                        Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
-                        startActivity(newsIntent);
-                        break;
-
-                }
-                return false;
-            }
-        });//end oclick listener
+////                    case R.id.navigation_item_3:
+////                        //Do some thing here
+////                        break;
+//                    case R.id.navigation_item_4:
+//                        //Do some thing here
+//                        break;
+////
+//                    case R.id.nv_updatenoticeboard:
+//                        //Do some thing here
+//                        Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
+//                        startActivity(noticeBoardIntent);
+//                        break;
+//                    case R.id.navigation_item_8:
+//                        //Do some thing here
+//                        Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
+//                        startActivity(newsIntent);
+//                        break;
+//
+//                }
+//                return false;
+//            }
+//        });//end oclick listener
 
 
 

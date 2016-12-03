@@ -30,7 +30,7 @@ public class UpdateNews extends AppCompatActivity {
         dbOperationsHelper = new DBOperationsHelper(db);
 
 
-        newsrecyclerView =(RecyclerView)findViewById(R.id.rv_noticeboard);
+        //newsrecyclerView =(RecyclerView)findViewById(R.id.rv_noticeboard);
 
         txtNewsHead = (EditText) findViewById(R.id.txtNewsHead);
         txtNewsBody = (EditText) findViewById(R.id.txtNewsBody);

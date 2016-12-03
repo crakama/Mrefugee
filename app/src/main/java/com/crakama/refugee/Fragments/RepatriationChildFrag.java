@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crakama.refugee.Activities.HelpDeskSupport;
+import com.crakama.refugee.Activities.MedicalScreening;
 import com.crakama.refugee.Adapters.RepatriationAdapter;
 import com.crakama.refugee.OnRepChildItemClickListener;
 import com.crakama.refugee.R;
@@ -181,12 +182,18 @@ public class RepatriationChildFrag extends RootFragment  {
             public void onItemClick(View view, int i) {
                 switch (i){
                     case 0:
-                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
-                        openNewsDetailActivity(rv_HelpDesk);
+
+                        openHelpDeskSupport(rv_HelpDesk);
 
                         break;
                     case 1:
-                        Toast.makeText(view.getContext(), "POSITION"+ i,Toast.LENGTH_LONG).show();
+                       Toast.makeText(view.getContext(), "NO MORE INFORMATION TO SHOW",Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        Toast.makeText(view.getContext(), "NO MORE INFORMATION TO SHOW",Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        Toast.makeText(view.getContext(), "NO MORE INFORMATION TO SHOW",Toast.LENGTH_LONG).show();
                         break;
                 }
             }
@@ -197,17 +204,22 @@ public class RepatriationChildFrag extends RootFragment  {
 //
 
 
-
-
-    private void openNewsDetailActivity(String rv_helpDesk) {
-
+    private void openHelpDeskSupport(String rv_helpDesk) {
         Intent newsIntent = new Intent(getActivity(), HelpDeskSupport.class);
-        newsIntent.putExtra("TTTLE_KEY", rv_helpDesk);
+        //newsIntent.putExtra("TTTLE_KEY", rv_helpDesk);
         //newsIntent.putExtra("DESC_KEY", details[1]);
         //newsIntent.putExtra("ORG_KEY", details[2]);
-
         startActivity(newsIntent);
     }
+
+//    private void openMedicalScreening(String ...details) {
+//        Intent newsIntent = new Intent(getActivity(), MedicalScreening.class);
+//        newsIntent.putExtra("TTTLE_KEY", details[0]);
+//        //newsIntent.putExtra("DESC_KEY", details[1]);
+//        //newsIntent.putExtra("ORG_KEY", details[2]);
+//        startActivity(newsIntent);
+//    }
+
 
 
     @Override
@@ -216,16 +228,7 @@ public class RepatriationChildFrag extends RootFragment  {
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public static interface RepatriationChildFragListener {
         // TODO: Update argument type and name
         void onRepartBtnClick(int p);

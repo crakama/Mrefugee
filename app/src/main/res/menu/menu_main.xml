@@ -7,9 +7,9 @@
         android:id="@+id/action_jobsearch"
         android:orderInCategory="100"
         android:title="Job Search"
-
         app:showAsAction="always"
-        android:icon="@drawable/ic_action_jobsearch" />
+         />
+    <!--android:icon="@drawable/ic_action_jobsearch"-->
     <item
         android:id="@+id/action_addcamp"
         android:orderInCategory="102"

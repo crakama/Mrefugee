@@ -38,7 +38,8 @@
         <activity
             android:name=".UpdateDatabase.UpdateTownInfo"
             android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".Activities.TownDetails"></activity>
+        <activity android:name=".Activities.TownDetails" />
+        <activity android:name=".Activities.MedicalScreening"></activity>
     </application>
 
 </manifest>

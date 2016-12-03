@@ -8,13 +8,21 @@
 
 
     <!--NAV DRAWER MENU ITEMS-->
-    <string name="nav_view_item_1">Login</string>
+    <string name="nav_welcome_msg">About Mrefugee ajgdcdujaschbaskjch a dhxbashxjbjhbjabscjds</string>
+
+
+
     <string name="nav_view_item_5">About App</string>
     <string name="nav_view_item_3">Do Follow Up</string>
     <string name="nav_view_item_4">Send feedback</string>
     <string name="nav_view_item_6">Register</string>
     <string name="nav_view_item_7">Change Password</string>
+
+
     <string name="nav_view_category_2">Second Category</string>
+
+
+
     <string name="action_addcamp"> Add Camp</string>
     <string name="updatenoticeboard"> Update Notice Board</string>
     <string name="updatenews"> Update News</string>
