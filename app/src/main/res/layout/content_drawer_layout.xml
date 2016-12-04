@@ -56,8 +56,10 @@
             <ImageButton
                 android:id="@+id/img_helpdesk"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:layout_height="20dp"
+
+                android:background="#fff"
+                android:src="@mipmap/ic_dba"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"/>
@@ -117,8 +119,10 @@
             <ImageButton
                 android:id="@+id/img_helpdesk2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:layout_height="20dp"
+                android:background="#fff"
+                android:src="@mipmap/ic_dba"
+
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"/>
@@ -166,8 +170,10 @@
             <ImageButton
                 android:id="@+id/img_helpdesk3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:layout_height="20dp"
+
+                android:background="#fff"
+                android:src="@mipmap/ic_dba"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"/>

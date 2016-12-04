@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.crakama.refugee.UpdateDatabase.UpdateNews;
 import com.crakama.refugee.UpdateDatabase.UpdateNoticeBoard;
@@ -146,51 +148,35 @@ public class MainActivity extends AppCompatActivity implements
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.welcome, R.string.welcome);
         drawerLayout.addDrawerListener(drawerToggle);
-
-
-
         //Initializing NavigationView
         navigation = (NavigationView) findViewById(R.id.navigation_view);
 
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-//        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                int id = menuItem.getItemId();
-//                switch (id) {
-////                    case R.id.navigation_item_1:
-////                        //Do some thing here
-////                        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-////                        startActivity(loginIntent);
-////                        break;
-//                    case R.id.navigation_item_5:
-//                        //Do some thing here
-//                        break;
-//
-////                    case R.id.navigation_item_3:
-////                        //Do some thing here
-////                        break;
-//                    case R.id.navigation_item_4:
-//                        //Do some thing here
-//                        break;
-////
-//                    case R.id.nv_updatenoticeboard:
-//                        //Do some thing here
-//                        Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
-//                        startActivity(noticeBoardIntent);
-//                        break;
-//                    case R.id.navigation_item_8:
-//                        //Do some thing here
-//                        Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
-//                        startActivity(newsIntent);
-//                        break;
-//
-//                }
-//                return false;
-//            }
-//        });//end oclick listener
+        ImageButton imageButton1 = (ImageButton)findViewById(R.id.img_helpdesk);
+        imageButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://drc.dk/about-drc"));
+                startActivity(browserIntent);
+            }
+        });
+        ImageButton imageButton2 = (ImageButton)findViewById(R.id.img_helpdesk2);
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent2 = new Intent(Intent.ACTION_VIEW,Uri.parse("https://drc.dk/about-drc"));
+                startActivity(browserIntent2);
+            }
+        });
 
-
+        ImageButton imageButton3 = (ImageButton)findViewById(R.id.img_helpdesk3);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent3 = new Intent(Intent.ACTION_VIEW,Uri.parse("https://drc.dk/about-drc"));
+                startActivity(browserIntent3);
+            }
+        });
 
 
     }
@@ -219,20 +205,10 @@ public class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.action_addcamp) {
-            Intent addcampIntent = new Intent(MainActivity.this, UpdateNews.class);
-            startActivity(addcampIntent);
-            return true;
-        }else if(id == R.id.home){
+        if(id == R.id.home){
             onBackPressed();
             return true;
 
-        }else if(id == R.id.action_helpdesk) {
-            Intent helpdeskIntent = new Intent(MainActivity.this, UpdateTownInfo.class);
-            startActivity(helpdeskIntent);
-            return true;
         }else if(id == R.id.action_jobsearch){
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
@@ -249,66 +225,6 @@ public class MainActivity extends AppCompatActivity implements
         super.onPostCreate(savedInstanceState);
       drawerToggle.syncState();
     }
-
-
-
-//    @Override
-//    public void onRepartBtnClick(int position) {
-//        // The user selected the headline of an article from the HeadlinesFragment
-//
-//
-//        // Capture the RepatriationChildFrag fragment from the activity layout
-//
-//
-//        View fragmentContainer = findViewById(R.id.fragment_container);
-//
-//        if (fragmentContainer != null) {
-//            // If article frag is available, we're in two-pane layout...
-//
-//            /*
-//            *
-//            * TO DO: Differenciate display for tablets and phones
-//             */
-//            RepatriationChildFrag repatriationChildFrag = new RepatriationChildFrag();
-//            // Call a method in the ArticleFragment to update its content
-//            //repatriationChildFrag.updateArticleView(position);
-//            Bundle args = new Bundle();
-//            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
-//            repatriationChildFrag.setArguments(args);
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//
-//            // Replace whatever is in the fragment_container view with this fragment,
-//            // and add the transaction to the back stack so the user can navigate back
-//            transaction.replace(R.id.fragment_container, repatriationChildFrag);
-//            transaction.addToBackStack(null);
-//
-//            // Commit the transaction
-//            transaction.commit();
-//
-//        } else {
-//            // If the frag is not available, we're in the one-pane layout and must swap frags...
-//
-//            // Create fragment and give it an argument for the selected article
-//            RepatriationChildFrag repatriationChildFrag1 = new RepatriationChildFrag();
-//            Bundle args = new Bundle();
-//            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
-//            repatriationChildFrag1.setArguments(args);
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//
-//            // Replace whatever is in the fragment_container view with this fragment,
-//            // and add the transaction to the back stack so the user can navigate back
-//            transaction.replace(R.id.container, repatriationChildFrag1);
-//            transaction.addToBackStack(null);
-//
-//            // Commit the transaction
-//            transaction.commit();
-//        }
-//
-//
-//
-//    }
-
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

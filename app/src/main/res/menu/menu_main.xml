@@ -10,26 +10,7 @@
         app:showAsAction="always"
          />
     <!--android:icon="@drawable/ic_action_jobsearch"-->
-    <item
-        android:id="@+id/action_addcamp"
-        android:orderInCategory="102"
-        android:title="@string/action_addcamp"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="104"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_logout"
-        android:orderInCategory="103"
-        android:title="@string/action_logout"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_helpdesk"
-        android:orderInCategory="104"
-        android:title="@string/action_helpdesk"
-        app:showAsAction="never" />
+
 
 </menu>
 
