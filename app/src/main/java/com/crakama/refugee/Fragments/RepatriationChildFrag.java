@@ -206,7 +206,7 @@ public class RepatriationChildFrag extends RootFragment  {
 
     private void openHelpDeskSupport(String rv_helpDesk) {
         Intent newsIntent = new Intent(getActivity(), HelpDeskSupport.class);
-        //newsIntent.putExtra("TTTLE_KEY", rv_helpDesk);
+        newsIntent.putExtra("TTTLE_KEY", rv_helpDesk);
         //newsIntent.putExtra("DESC_KEY", details[1]);
         //newsIntent.putExtra("ORG_KEY", details[2]);
         startActivity(newsIntent);
