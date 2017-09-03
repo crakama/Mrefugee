@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/lightgrey"
     android:fitsSystemWindows="true"
-    tools:context="com.crakama.refugee.Auth.ResetPasswordActivity">
+    tools:context="com.dadaabcamps.mrefugee.Auth.ResetPasswordActivity">
 
     <!--<ProgressBar-->
         <!--android:id="@+id/progressBar"-->

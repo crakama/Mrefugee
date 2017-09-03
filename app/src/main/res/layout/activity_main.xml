@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.crakama.refugee.Activities.MainActivity">
+    tools:context="com.dadaabcamps.mrefugee.Activities.MainActivity">
 
 
     <FrameLayout
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/container" >
-        <!--tools:context="com.crakama.refugee.Fragments.TabsFragment-->
+        <!--tools:context="dadaabcampsamps.mrefugee.Fragments.TabsFragment-->
         <!-- TODO: Update blank fragment layout -->
         <TextView
             android:layout_width="match_parent"

@@ -1,43 +1,27 @@
 {
   "project_info": {
-    "project_number": "111962076370",
-    "firebase_url": "https://refugee-6e084.firebaseio.com",
-    "project_id": "refugee-6e084",
-    "storage_bucket": "refugee-6e084.appspot.com"
+    "project_number": "347885631164",
+    "firebase_url": "https://mrefugee-dcfe0.firebaseio.com",
+    "project_id": "mrefugee-dcfe0",
+    "storage_bucket": "mrefugee-dcfe0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:111962076370:android:d74ca195ef5a3a41",
+        "mobilesdk_app_id": "1:347885631164:android:c2e46663bcaddea7",
         "android_client_info": {
-          "package_name": "com.crakama.refugee"
+          "package_name": "com.dadaabcamps.mrefugee"
         }
       },
       "oauth_client": [
         {
-          "client_id": "111962076370-nkh1um0e9nau74mvff6dpr1otp9grqak.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.crakama.refugee",
-            "certificate_hash": "3BBC2979F6F0D01D7220CD5AB5338A2513DF5F62"
-          }
-        },
-        {
-          "client_id": "111962076370-d18g9eakb1uocem16hnvk37a6edcf5kr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.crakama.refugee",
-            "certificate_hash": "C75E7E5BAF362D8EB71CD3A7C9372E1F662E3305"
-          }
-        },
-        {
-          "client_id": "111962076370-61eb4tev5ce6efftiaagras4bpbhb95m.apps.googleusercontent.com",
+          "client_id": "347885631164-fj41h7hsttbc3nk1l0bmvdm59ptm2qbr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDOvjbjIfAcCMGDJ2PvyeEPfbS70OMQSjo"
+          "current_key": "AIzaSyAYBrMZkoBYyuOtYGr5j17uuusaiSEQ_DA"
         }
       ],
       "services": {

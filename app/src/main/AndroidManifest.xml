@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.crakama.refugee">
+    package="com.dadaabcamps.mrefugee">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".Mrefugee"
+        android:name="com.dadaabcamps.mrefugee.Mrefugee"
         android:allowBackup="true"
         android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name="com.dadaabcamps.mrefugee.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,24 +22,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UpdateDatabase.UpdateNews"
-            android:parentActivityName=".Activities.MainActivity" />
+            android:name="com.dadaabcamps.mrefugee.UpdateDatabase.UpdateNews"
+            android:parentActivityName="com.dadaabcamps.mrefugee.Activities.MainActivity" />
         <activity
-            android:name=".Activities.IssueFollowUp"
-            android:parentActivityName=".Activities.MainActivity" />
-        <activity android:name=".Auth.LoginActivity" />
-        <activity android:name=".Auth.RegisterActivity" />
-        <activity android:name=".Auth.ResetPasswordActivity" />
-        <activity android:name=".Auth.ChangePasswordActivity" />
-        <activity android:name=".UpdateDatabase.UpdateNoticeBoard" />
-        <activity android:name=".Activities.ShowNoticeDetails" />
-        <activity android:name=".UpdateDatabase.UpdateRepatriationData" />
-        <activity android:name=".Activities.HelpDeskSupport" />
+            android:name="com.dadaabcamps.mrefugee.Activities.IssueFollowUp"
+            android:parentActivityName="com.dadaabcamps.mrefugee.Activities.MainActivity" />
+        <activity android:name="com.dadaabcamps.mrefugee.Auth.LoginActivity" />
+        <activity android:name="com.dadaabcamps.mrefugee.Auth.RegisterActivity" />
+        <activity android:name="com.dadaabcamps.mrefugee.Auth.ResetPasswordActivity" />
+        <activity android:name="com.dadaabcamps.mrefugee.Auth.ChangePasswordActivity" />
+        <activity android:name="com.dadaabcamps.mrefugee.UpdateDatabase.UpdateNoticeBoard" />
+        <activity android:name="com.dadaabcamps.mrefugee.Activities.ShowNoticeDetails" />
+        <activity android:name="com.dadaabcamps.mrefugee.UpdateDatabase.UpdateRepatriationData" />
+        <activity android:name="com.dadaabcamps.mrefugee.Activities.HelpDeskSupport" />
         <activity
-            android:name=".UpdateDatabase.UpdateTownInfo"
+            android:name="com.dadaabcamps.mrefugee.UpdateDatabase.UpdateTownInfo"
             android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".Activities.TownDetails" />
-        <activity android:name=".Activities.MedicalScreening"></activity>
+        <activity android:name="com.dadaabcamps.mrefugee.Activities.TownDetails" />
+        <activity android:name="com.dadaabcamps.mrefugee.Activities.MedicalScreening"></activity>
     </application>
 
 </manifest>
